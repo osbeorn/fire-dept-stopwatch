@@ -128,16 +128,6 @@ namespace FireDeptStopwatch.Forms
 
             lineupCounter = 11;
             lineupTimer.Start();
-
-            TimerResult timerResult = new TimerResult();
-            timerResult.result = current - start;
-            timerResult.dateTime = start;
-
-            resultList.Insert(0, timerResult);
-
-            listBox1.Items.Insert(0, timerResult);
-
-            SaveResults();
         }
 
         private void SaveResults()
@@ -239,7 +229,7 @@ namespace FireDeptStopwatch.Forms
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     resultList = (List<TimerResult>) bin.Deserialize(stream);
-                    resultList.Sort((x, y) => y.dateTime.CompareTo(x.dateTime));
+                    resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
 
                     foreach (TimerResult result in resultList)
                     {
@@ -272,6 +262,28 @@ namespace FireDeptStopwatch.Forms
 
                 startButton.Enabled = true;
                 preparationButton.Enabled = true;
+
+                TimerResult timerResult = new TimerResult();
+                timerResult.Result = current - start;
+                timerResult.DateTime = start;
+
+                if (inputPenalties)
+                {
+                    var penaltiesForm = new PenaltiesForm();
+                    if (penaltiesForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        timerResult.Penalties = penaltiesForm.ReturnValue;
+                    }
+                }
+                else
+                {
+                    timerResult.Penalties = 0;
+                }
+
+                resultList.Insert(0, timerResult);
+                listBox1.Items.Insert(0, timerResult);
+
+                SaveResults();
             }
             else
             {

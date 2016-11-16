@@ -97,11 +97,11 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "min";
             // 
-            // penaltiesInputCheckBox
+            // inputPenaltiesCheckBox
             // 
             this.inputPenaltiesCheckBox.AutoSize = true;
             this.inputPenaltiesCheckBox.Location = new System.Drawing.Point(15, 38);
-            this.inputPenaltiesCheckBox.Name = "penaltiesInputCheckBox";
+            this.inputPenaltiesCheckBox.Name = "inputPenaltiesCheckBox";
             this.inputPenaltiesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.inputPenaltiesCheckBox.Size = new System.Drawing.Size(125, 17);
             this.inputPenaltiesCheckBox.TabIndex = 6;
@@ -115,6 +115,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(293, 107);
+            this.ControlBox = false;
             this.Controls.Add(this.inputPenaltiesCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cancelButton);

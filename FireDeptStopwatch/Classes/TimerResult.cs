@@ -9,23 +9,23 @@ namespace FireDeptStopwatch.Classes
     [Serializable]
     class TimerResult
     {
-        public DateTime dateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
-        public TimeSpan result { get; set; }
+        public TimeSpan Result { get; set; }
 
-        public int penalties { get; set; }
+        public int Penalties { get; set; }
 
-        public TimeSpan getEndResult()
+        public TimeSpan GetEndResult()
         {
-            var seconds = TimeSpan.FromSeconds(penalties);
-            var endResult = result.Add(seconds);
+            var seconds = TimeSpan.FromSeconds(Penalties);
+            var endResult = Result.Add(seconds);
 
             return endResult;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} - {1}", new[] { dateTime.ToString(), getEndResult().ToString(@"mm\:ss\.ffff") });
+            return string.Format("{0} - {1}", new[] { DateTime.ToString(), GetEndResult().ToString(@"mm\:ss\.ffff") });
         }
     }
 }
