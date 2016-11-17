@@ -16,6 +16,13 @@ namespace FireDeptStopwatch.Forms
         public PenaltiesForm()
         {
             InitializeComponent();
+            InitializeComponents();
+        }
+
+        private void InitializeComponents()
+        {
+            this.penaltiesNumericUpDown.Focus();
+            this.penaltiesNumericUpDown.Select(0, this.penaltiesNumericUpDown.Text.Length);
         }
 
         private void AddPenalties(int penalties)
