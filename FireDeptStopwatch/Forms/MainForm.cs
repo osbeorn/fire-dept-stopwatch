@@ -41,6 +41,11 @@ namespace FireDeptStopwatch.Forms
             InitializeComponents();
         }
 
+        public List<TimerResult> GetResultsList()
+        {
+            return resultList;
+        }
+
         public int GetPreparationTime()
         {
             return preparationTime / 60;
@@ -379,6 +384,13 @@ namespace FireDeptStopwatch.Forms
             PreferencesForm preferencesForm = new PreferencesForm();
             preferencesForm.InitializeComponents(this);
             preferencesForm.ShowDialog(this);
+        }
+
+        private void GraphsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GraphsForm graphsForm = new GraphsForm();
+            graphsForm.InitializeComponents(this);
+            graphsForm.Show();
         }
 
         #endregion

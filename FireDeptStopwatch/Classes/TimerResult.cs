@@ -7,20 +7,23 @@ using System.Threading.Tasks;
 namespace FireDeptStopwatch.Classes
 {
     [Serializable]
-    class TimerResult
+    public class TimerResult
     {
         public DateTime DateTime { get; set; }
 
         public TimeSpan Result { get; set; }
 
-        public int Penalties { get; set; }
+        public int? Penalties { get; set; }
 
         public TimeSpan GetEndResult()
         {
-            var seconds = TimeSpan.FromSeconds(Penalties);
-            var endResult = Result.Add(seconds);
-
-            return endResult;
+            if (Penalties.HasValue)
+            {
+                var seconds = TimeSpan.FromSeconds(Penalties.Value);
+                return Result.Add(seconds);
+            }
+            else
+                return Result;
         }
 
         public override string ToString()
