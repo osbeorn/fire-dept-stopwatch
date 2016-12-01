@@ -127,7 +127,45 @@ namespace FireDeptStopwatch.Forms
 
         private void EndTimerAndLogResult()
         {
-            PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, false);
+            List<KeyValuePair<UnmanagedMemoryStream, double>> sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
+            {
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 0.1
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 0.1
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 0.1
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 0.1
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 0.1
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 0.1
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 0.4
+                ),
+            };
+
+            Random r = new Random();
+            double diceRoll = r.NextDouble();
+
+            double cumulative = 0.0;
+            for (int i = 0; i < sounds.Count; i++)
+            {
+                cumulative += sounds[i].Value;
+                if (diceRoll < cumulative)
+                {
+                    PlaySound(sounds[i].Key, false);
+                    //var selectedElement = sounds[i].Key;
+                    break;
+                }
+            }
 
             stopwatchTimer.Stop();
 

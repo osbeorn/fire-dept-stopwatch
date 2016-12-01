@@ -159,6 +159,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pgd_zagradec_logo_favicon.ico" />
+    <None Include="Resources\descending_craft-Sonidor-991848481.wav" />
+    <None Include="Resources\Cuckoo Clock-SoundBible.com-1776874523.wav" />
+    <None Include="Resources\Air Horn-SoundBible.com-964603082-cut.wav" />
+    <None Include="Resources\Freeze-motherfucker!-cut.wav" />
+    <None Include="Resources\Ship_Brass_Bell-Mike_Koenig-1458750630-cut.wav" />
+    <None Include="Resources\Train Whistle-SoundBible.com-458982136-cut.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
