@@ -35,11 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.inputPenaltiesCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -75,7 +72,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(68, 327);
+            this.confirmButton.Location = new System.Drawing.Point(68, 90);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 2;
@@ -86,7 +83,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(149, 327);
+            this.cancelButton.Location = new System.Drawing.Point(149, 90);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
@@ -126,34 +123,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Splošno";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 90);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(269, 231);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Bluetooth";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Išči";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // PreferencesForm
             // 
             this.AcceptButton = this.confirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(293, 362);
+            this.ClientSize = new System.Drawing.Size(293, 122);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.confirmButton);
@@ -166,7 +143,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -180,7 +156,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox inputPenaltiesCheckBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
     }
 }

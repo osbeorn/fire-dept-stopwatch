@@ -33,6 +33,12 @@ namespace FireDeptStopwatch.Forms
                 return;
             }
 
+            if (this.penaltiesNumericUpDown.Value + penalties > this.penaltiesNumericUpDown.Maximum)
+            {
+                this.penaltiesNumericUpDown.Value = this.penaltiesNumericUpDown.Maximum;
+                return;
+            }
+
             this.penaltiesNumericUpDown.Value += penalties;
         }
 
