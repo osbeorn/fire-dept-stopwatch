@@ -22,6 +22,8 @@ namespace FireDeptStopwatch.Forms
     {
         private DateTime start;
         private DateTime current;
+        private TimeSpan diff;
+
         private List<TimerResult> resultList;
         private IKeyboardMouseEvents globalHook;
 
@@ -130,43 +132,60 @@ namespace FireDeptStopwatch.Forms
             List<KeyValuePair<UnmanagedMemoryStream, double>> sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
             {
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 0.8d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 0.8d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 0.8d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 0.8d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 0.8d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 0.8d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 0.4d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 0.8d/9.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_party_horn, 0.8d/9.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 0.8d/9.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 0.2d
                 ),
             };
 
-            Random r = new Random();
-            double diceRoll = r.NextDouble();
+            stopwatchTimer.Stop();
 
-            double cumulative = 0.0d;
-            for (int i = 0; i < sounds.Count; i++)
+            var fifteenSecs = new TimeSpan(0, 0, 15);
+            if (diff < fifteenSecs)
             {
-                cumulative += sounds[i].Value;
-                if (diceRoll < cumulative)
+                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_na_golici_10s_cut, false);
+            }
+            else
+            {
+                Random r = new Random();
+                double diceRoll = r.NextDouble();
+
+                double cumulative = 0.0d;
+                for (int i = 0; i < sounds.Count; i++)
                 {
-                    PlaySound(sounds[i].Key, false);
-                    break;
+                    cumulative += sounds[i].Value;
+                    if (diceRoll < cumulative)
+                    {
+                        PlaySound(sounds[i].Key, false);
+                        break;
+                    }
                 }
             }
-
-            stopwatchTimer.Stop();
 
             lineupCounter = 11;
             lineupTimer.Start();
@@ -242,7 +261,7 @@ namespace FireDeptStopwatch.Forms
         {
             current = DateTime.Now;
 
-            var diff = current - start;
+            diff = current - start;
             stopwatchLabel.Text = diff.ToString(@"mm\:ss\.ffff");
         }
 
@@ -299,7 +318,7 @@ namespace FireDeptStopwatch.Forms
         {
             if (lineupCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_2, false);
+                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 lineupTimer.Stop();
 
                 startButton.Enabled = true;
@@ -388,8 +407,11 @@ namespace FireDeptStopwatch.Forms
         {
             preparationButton.Enabled = false;
             startButton.Enabled = false;
+            resetButton.Enabled = true;
 
             preparationCounter = preparationTime;
+
+            PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zacetek, false);
 
             preparationTimer.Start();
         }
@@ -398,11 +420,12 @@ namespace FireDeptStopwatch.Forms
         {
             if (preparationCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_2, false);
+                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 preparationTimer.Stop();
 
                 preparationButton.Enabled = true;
                 startButton.Enabled = true;
+                resetButton.Enabled = false;
             }
             else
             {

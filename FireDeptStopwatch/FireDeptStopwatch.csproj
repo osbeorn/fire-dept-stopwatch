@@ -146,7 +146,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ssv_startno_povelje_trimmed.wav" />
@@ -159,6 +161,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pgd_zagradec_logo_favicon.ico" />
+    <None Include="Resources\na_golici_10s_cut.wav" />
+    <None Include="Resources\ssv_priprava_orodja_zacetek.wav" />
+    <None Include="Resources\Get To The Choppa! Sound Effect #136_cut.wav" />
+    <None Include="Resources\party_horn-Mike_Koenig-76599891_cut.wav" />
+    <None Include="Resources\Bike Horn-SoundBible.com-602544869_cut.wav" />
     <None Include="Resources\descending_craft-Sonidor-991848481.wav" />
     <None Include="Resources\Cuckoo Clock-SoundBible.com-1776874523.wav" />
     <None Include="Resources\Air Horn-SoundBible.com-964603082-cut.wav" />
