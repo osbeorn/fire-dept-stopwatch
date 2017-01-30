@@ -105,10 +105,10 @@ namespace FireDeptStopwatch.Forms
             start = DateTime.Now;
             stopwatchTimer.Start();
 
-            Cursor.Position = new Point(
-                Screen.PrimaryScreen.Bounds.Width / 2,
-                Screen.PrimaryScreen.Bounds.Height / 2
-            );
+            //Cursor.Position = new Point(
+            //    Screen.PrimaryScreen.Bounds.Width / 2,
+            //    Screen.PrimaryScreen.Bounds.Height / 2
+            //);
         }
 
         private void ResetTimers()
