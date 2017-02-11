@@ -32,19 +32,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.stopwatchTimer = new System.Windows.Forms.Timer(this.components);
             this.lineupTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.logoPanel = new System.Windows.Forms.Panel();
             this.preparationLabel = new System.Windows.Forms.Label();
-            this.preparationButton = new System.Windows.Forms.Button();
+            this.lineupLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.stopwatchLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.preparationButton = new System.Windows.Forms.Button();
             this.resultListGroupBox = new System.Windows.Forms.GroupBox();
             this.deleteAllResultsButton = new System.Windows.Forms.Button();
             this.deleteResultButton = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lineupLabel = new System.Windows.Forms.Label();
-            this.stopwatchLabel = new System.Windows.Forms.Label();
             this.preparationTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,8 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel2.SuspendLayout();
+            this.mainPanel.SuspendLayout();
+            this.logoPanel.SuspendLayout();
             this.resultListGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,32 +70,86 @@
             this.lineupTimer.Interval = 1000;
             this.lineupTimer.Tick += new System.EventHandler(this.LineupTimer_Tick);
             // 
-            // panel2
+            // mainPanel
             // 
-            this.panel2.Controls.Add(this.preparationLabel);
-            this.panel2.Controls.Add(this.preparationButton);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.resultListGroupBox);
-            this.panel2.Controls.Add(this.resetButton);
-            this.panel2.Controls.Add(this.startButton);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.lineupLabel);
-            this.panel2.Controls.Add(this.stopwatchLabel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 24);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(728, 457);
-            this.panel2.TabIndex = 1;
+            this.mainPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mainPanel.Controls.Add(this.logoPanel);
+            this.mainPanel.Controls.Add(this.preparationButton);
+            this.mainPanel.Controls.Add(this.resultListGroupBox);
+            this.mainPanel.Controls.Add(this.resetButton);
+            this.mainPanel.Controls.Add(this.startButton);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 24);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(728, 457);
+            this.mainPanel.TabIndex = 1;
+            // 
+            // logoPanel
+            // 
+            this.logoPanel.BackgroundImage = global::FireDeptStopwatch.Properties.Resources.logo_background;
+            this.logoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.logoPanel.Controls.Add(this.preparationLabel);
+            this.logoPanel.Controls.Add(this.lineupLabel);
+            this.logoPanel.Controls.Add(this.label2);
+            this.logoPanel.Controls.Add(this.stopwatchLabel);
+            this.logoPanel.Controls.Add(this.label1);
+            this.logoPanel.Location = new System.Drawing.Point(221, 3);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Size = new System.Drawing.Size(504, 413);
+            this.logoPanel.TabIndex = 6;
             // 
             // preparationLabel
             // 
             this.preparationLabel.AutoSize = true;
+            this.preparationLabel.BackColor = System.Drawing.Color.Transparent;
             this.preparationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.preparationLabel.Location = new System.Drawing.Point(583, 88);
+            this.preparationLabel.Location = new System.Drawing.Point(372, 88);
             this.preparationLabel.Name = "preparationLabel";
             this.preparationLabel.Size = new System.Drawing.Size(41, 44);
             this.preparationLabel.TabIndex = 5;
             this.preparationLabel.Text = "0";
+            // 
+            // lineupLabel
+            // 
+            this.lineupLabel.AutoSize = true;
+            this.lineupLabel.BackColor = System.Drawing.Color.Transparent;
+            this.lineupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lineupLabel.Location = new System.Drawing.Point(372, 274);
+            this.lineupLabel.Name = "lineupLabel";
+            this.lineupLabel.Size = new System.Drawing.Size(41, 44);
+            this.lineupLabel.TabIndex = 1;
+            this.lineupLabel.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(15, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(351, 44);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Priprava orodja: ";
+            // 
+            // stopwatchLabel
+            // 
+            this.stopwatchLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stopwatchLabel.BackColor = System.Drawing.Color.Transparent;
+            this.stopwatchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.stopwatchLabel.Location = new System.Drawing.Point(7, 162);
+            this.stopwatchLabel.Name = "stopwatchLabel";
+            this.stopwatchLabel.Size = new System.Drawing.Size(488, 93);
+            this.stopwatchLabel.TabIndex = 0;
+            this.stopwatchLabel.Text = "00:00:0000";
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(15, 274);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(351, 44);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Končna postavitev: ";
             // 
             // preparationButton
             // 
@@ -104,15 +160,6 @@
             this.preparationButton.Text = "Priprava orodja";
             this.preparationButton.UseVisualStyleBackColor = true;
             this.preparationButton.Click += new System.EventHandler(this.PreparationButton_Click);
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(226, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(351, 44);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Priprava orodja: ";
             // 
             // resultListGroupBox
             // 
@@ -182,35 +229,6 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(226, 274);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(351, 44);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Končna postavitev: ";
-            // 
-            // lineupLabel
-            // 
-            this.lineupLabel.AutoSize = true;
-            this.lineupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lineupLabel.Location = new System.Drawing.Point(583, 274);
-            this.lineupLabel.Name = "lineupLabel";
-            this.lineupLabel.Size = new System.Drawing.Size(41, 44);
-            this.lineupLabel.TabIndex = 1;
-            this.lineupLabel.Text = "0";
-            // 
-            // stopwatchLabel
-            // 
-            this.stopwatchLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stopwatchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.stopwatchLabel.Location = new System.Drawing.Point(215, 157);
-            this.stopwatchLabel.Name = "stopwatchLabel";
-            this.stopwatchLabel.Size = new System.Drawing.Size(504, 93);
-            this.stopwatchLabel.TabIndex = 0;
-            this.stopwatchLabel.Text = "label1";
-            // 
             // preparationTimer
             // 
             this.preparationTimer.Interval = 1000;
@@ -263,7 +281,6 @@
             // 
             this.analysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.graphsToolStripMenuItem});
-            this.analysisToolStripMenuItem.Enabled = false;
             this.analysisToolStripMenuItem.Name = "analysisToolStripMenuItem";
             this.analysisToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.analysisToolStripMenuItem.Text = "&Analize";
@@ -271,7 +288,7 @@
             // graphsToolStripMenuItem
             // 
             this.graphsToolStripMenuItem.Name = "graphsToolStripMenuItem";
-            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.graphsToolStripMenuItem.Text = "&Grafi";
             this.graphsToolStripMenuItem.Click += new System.EventHandler(this.GraphsToolStripMenuItem_Click);
             // 
@@ -280,7 +297,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 481);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -289,11 +306,12 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SSV štoparica";
+            this.Text = "SSV štoparica (PGD Zagradec pri Grosupljem)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.mainPanel.ResumeLayout(false);
+            this.logoPanel.ResumeLayout(false);
+            this.logoPanel.PerformLayout();
             this.resultListGroupBox.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -306,7 +324,7 @@
 
         private System.Windows.Forms.Timer stopwatchTimer;
         private System.Windows.Forms.Timer lineupTimer;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.GroupBox resultListGroupBox;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button resetButton;
@@ -327,6 +345,7 @@
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem graphsToolStripMenuItem;
+        private System.Windows.Forms.Panel logoPanel;
     }
 }
 

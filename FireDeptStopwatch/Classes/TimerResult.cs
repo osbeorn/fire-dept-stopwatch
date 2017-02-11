@@ -28,7 +28,7 @@ namespace FireDeptStopwatch.Classes
 
         public override string ToString()
         {
-            return string.Format("{0} - {1}", new[] { DateTime.ToString(), GetEndResult().ToString(@"mm\:ss\.ffff") });
+            return string.Format("{0} - {1}", new[] { DateTime.ToString("dd.MM.yyyy"), GetEndResult().ToString(@"mm\:ss\.ffff") });
         }
     }
 }

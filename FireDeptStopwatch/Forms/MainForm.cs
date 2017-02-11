@@ -132,41 +132,48 @@ namespace FireDeptStopwatch.Forms
             List<KeyValuePair<UnmanagedMemoryStream, double>> sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
             {
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 0.95d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_party_horn, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_party_horn, 0.885714d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 0.8d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 0.95d/9.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 0.2d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 0.1d
                 ),
             };
 
             stopwatchTimer.Stop();
 
             var fifteenSecs = new TimeSpan(0, 0, 15);
-            if (diff < fifteenSecs)
+            var fourteenSecs = new TimeSpan(0, 0, 14);
+            var thirteenSecs = new TimeSpan(0, 0, 13);
+
+            if (diff >= thirteenSecs && diff < fourteenSecs)
+            {
+                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_hallelujah_2, false);
+            }
+            else if (diff >= fourteenSecs && diff < fifteenSecs)
             {
                 PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_na_golici_10s_cut, false);
             }
@@ -230,7 +237,7 @@ namespace FireDeptStopwatch.Forms
                 resetButton
             };
 
-            var controlClickPoint = panel2.PointToClient(clickPoint);
+            var controlClickPoint = mainPanel.PointToClient(clickPoint);
             foreach (Control control in controls)
             {
                 //var controlBounds = panel2.RectangleToScreen(control.Bounds);
@@ -267,11 +274,10 @@ namespace FireDeptStopwatch.Forms
 
         private void GlobalHook_MouseDownExt(object sender, MouseEventExtArgs e)
         {
-            if (IsClickOnControl(e.Location))
-            {
-                System.Diagnostics.Debug.WriteLine("Click on control.");
-                return;
-            }
+            //if (IsClickOnControl(e.Location))
+            //{
+            //    return;
+            //}
 
 
             if (stopwatchTimer.Enabled && e.Button.Equals(MouseButtons.Left))
@@ -448,10 +454,23 @@ namespace FireDeptStopwatch.Forms
 
         private void GraphsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GraphsForm graphsForm = new GraphsForm();
+            AnalysesForm graphsForm = new AnalysesForm();
             graphsForm.InitializeComponents(this);
             graphsForm.Show();
         }
+
+        #endregion
+
+        #region Overrides
+
+        //protected override void OnPaintBackground(PaintEventArgs e)
+        //{
+        //    base.OnPaintBackground(e);
+        //    var rc = new Rectangle(this.ClientSize.Width - backgroundImage.Width,
+        //        this.ClientSize.Height - backgroundImage.Height,
+        //        backgroundImage.Width, backgroundImage.Height);
+        //    e.Graphics.DrawImage(backgroundImage, rc);
+        //}
 
         #endregion
     }

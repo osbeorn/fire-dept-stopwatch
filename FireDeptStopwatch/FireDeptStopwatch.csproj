@@ -35,7 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>pgd_zagradec_logo_favicon.ico</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gma.System.MouseKeyHook, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -83,11 +83,11 @@
   <ItemGroup>
     <Compile Include="Classes\RawInputDevices.cs" />
     <Compile Include="Classes\TimerResult.cs" />
-    <Compile Include="Forms\GraphsForm.cs">
+    <Compile Include="Forms\AnalysesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\GraphsForm.Designer.cs">
-      <DependentUpon>GraphsForm.cs</DependentUpon>
+    <Compile Include="Forms\AnalysesForm.Designer.cs">
+      <DependentUpon>AnalysesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -109,8 +109,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\GraphsForm.resx">
-      <DependentUpon>GraphsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AnalysesForm.resx">
+      <DependentUpon>AnalysesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -160,7 +160,11 @@
     <None Include="Resources\ssv_zakljucek_2.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="pgd_zagradec_logo_favicon.ico" />
+    <None Include="Resources\Hallelujah SOUND Effect.wav" />
+    <None Include="Resources\logo_tekmovalna_enota1 - Copy2.png" />
+    <None Include="Resources\hallelujah.wav" />
     <None Include="Resources\na_golici_10s_cut.wav" />
     <None Include="Resources\ssv_priprava_orodja_zacetek.wav" />
     <None Include="Resources\Get To The Choppa! Sound Effect #136_cut.wav" />

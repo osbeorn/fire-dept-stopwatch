@@ -61,6 +61,16 @@ namespace FireDeptStopwatch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_background {
+            get {
+                object obj = ResourceManager.GetObject("logo_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream ssv_priprava_orodja_zacetek {
@@ -138,6 +148,24 @@ namespace FireDeptStopwatch.Properties {
         internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_get_to_da_choppa {
             get {
                 return ResourceManager.GetStream("ssv_zakljucek_1_alt_get_to_da_choppa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_hallelujah {
+            get {
+                return ResourceManager.GetStream("ssv_zakljucek_1_alt_hallelujah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_hallelujah_2 {
+            get {
+                return ResourceManager.GetStream("ssv_zakljucek_1_alt_hallelujah_2", resourceCulture);
             }
         }
         
