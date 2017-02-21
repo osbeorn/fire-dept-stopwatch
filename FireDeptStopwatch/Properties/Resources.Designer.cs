@@ -145,6 +145,15 @@ namespace FireDeptStopwatch.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_get_down {
+            get {
+                return ResourceManager.GetStream("ssv_zakljucek_1_alt_get_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_get_to_da_choppa {
             get {
                 return ResourceManager.GetStream("ssv_zakljucek_1_alt_get_to_da_choppa", resourceCulture);
@@ -166,6 +175,24 @@ namespace FireDeptStopwatch.Properties {
         internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_hallelujah_2 {
             get {
                 return ResourceManager.GetStream("ssv_zakljucek_1_alt_hallelujah_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_its_a_cookbook {
+            get {
+                return ResourceManager.GetStream("ssv_zakljucek_1_alt_its_a_cookbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_zakljucek_1_alt_its_over_9000 {
+            get {
+                return ResourceManager.GetStream("ssv_zakljucek_1_alt_its_over_9000", resourceCulture);
             }
         }
         

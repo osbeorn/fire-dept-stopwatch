@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Prostovoljno gasilsko društvo Zagradec pri Grosupljem")]
-[assembly: AssemblyProduct("FireDeptStopwatch")]
+[assembly: AssemblyProduct("SSV štoparica")]
 [assembly: AssemblyCopyright("Copyright © 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

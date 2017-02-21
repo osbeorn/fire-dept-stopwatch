@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+FireDeptStopwatch/deploy/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

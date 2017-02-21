@@ -22,6 +22,7 @@ namespace FireDeptStopwatch.Forms
 
         public void InitializeComponents(MainForm parent) {
             ResultList = parent.GetResultsList();
+            ResultList.Reverse();
 
             resultsChart.Series.Clear();
             var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
@@ -69,7 +70,7 @@ namespace FireDeptStopwatch.Forms
                 resultsChart.ChartAreas[0].AxisY.Maximum = max;
 
                 resultsChart.ChartAreas[0].AxisY.LabelStyle.Format = "mm:ss.ffff";
-                resultsChart.ChartAreas[0].AxisX.LabelStyle.Format = "dd.MM.yyyy hh:mm:ss";
+                resultsChart.ChartAreas[0].AxisX.LabelStyle.Format = "dd.MM.yyyy HH:mm:ss";
 
                 resultsChart.Invalidate();
             }

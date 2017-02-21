@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Media;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -15,6 +16,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -72,6 +75,8 @@ namespace FireDeptStopwatch.Forms
         {
             //Application.AddMessageFilter(this);
 
+            //PrepareDataFile();
+
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
 
             resultList = new List<TimerResult>();
@@ -80,6 +85,17 @@ namespace FireDeptStopwatch.Forms
             globalHook.MouseDownExt += GlobalHook_MouseDownExt;
 
             //deviceHandler = new RawInputDevices(Handle);
+        }
+
+        private void PrepareDataFile()
+        {
+            using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (var fs = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
+                {
+                    // do nothing
+                }
+            }
         }
 
         private void PlaySound(UnmanagedMemoryStream sound, bool sync)
@@ -132,34 +148,43 @@ namespace FireDeptStopwatch.Forms
             List<KeyValuePair<UnmanagedMemoryStream, double>> sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
             {
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 0.95d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_party_horn, 0.885714d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_party_horn, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 0.95d/9.0d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 0.1d
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_down, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_its_a_cookbook, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_its_over_9000, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 1.0d/12.0d
                 ),
             };
 
@@ -200,17 +225,40 @@ namespace FireDeptStopwatch.Forms
 
         private void SaveResults()
         {
-            try
+            if (Debugger.IsAttached)
             {
-                using (Stream stream = File.Open("Data/results.bin", FileMode.Create))
+                // project file for debugging
+                try
                 {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    bin.Serialize(stream, resultList);
+                    using (var stream = File.Open("Data/results.bin", FileMode.Create))
+                    {
+                        BinaryFormatter bin = new BinaryFormatter();
+                        bin.Serialize(stream, resultList);
+                    }
+                }
+                catch (IOException)
+                {
+                    // do nothing
                 }
             }
-            catch (IOException)
+            else
             {
-                // do nothing
+                // isolated storage
+                try
+                {
+                    using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
+                        {
+                            BinaryFormatter bin = new BinaryFormatter();
+                            bin.Serialize(stream, resultList);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // do nothing
+                }
             }
         }
 
@@ -230,7 +278,7 @@ namespace FireDeptStopwatch.Forms
 
         private bool IsClickOnControl(Point clickPoint)
         {
-            List<Control> controls = new List<Control>()
+            var controls = new List<Control>()
             {
                 preparationButton,
                 startButton,
@@ -238,7 +286,7 @@ namespace FireDeptStopwatch.Forms
             };
 
             var controlClickPoint = mainPanel.PointToClient(clickPoint);
-            foreach (Control control in controls)
+            foreach (var control in controls)
             {
                 //var controlBounds = panel2.RectangleToScreen(control.Bounds);
 
@@ -290,23 +338,52 @@ namespace FireDeptStopwatch.Forms
         {
             //deviceHandler = new RawInputDevices(this.Handle);
 
-            try
+            if (Debugger.IsAttached)
             {
-                using (Stream stream = File.Open("Data/results.bin", FileMode.Open))
+                // project file for debugging
+                try
                 {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    resultList = (List<TimerResult>) bin.Deserialize(stream);
-                    resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
-
-                    foreach (TimerResult result in resultList)
+                    using (var stream = File.Open("Data/results.bin", FileMode.Open))
                     {
-                        listBox1.Items.Add(result);
+                        var binaryFormatter = new BinaryFormatter();
+                        resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
+                        resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+
+                        foreach (var result in resultList)
+                        {
+                            listBox1.Items.Add(result);
+                        }
                     }
                 }
+                catch (Exception)
+                {
+                    resultList = new List<TimerResult>();
+                }
             }
-            catch (Exception)
+            else
             {
-                resultList = new List<TimerResult>();
+                // isolated storage
+                try
+                {
+                    using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
+                        {
+                            var binaryFormatter = new BinaryFormatter();
+                            resultList = (List<TimerResult>) binaryFormatter.Deserialize(stream);
+                            resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+
+                            foreach (var result in resultList)
+                            {
+                                listBox1.Items.Add(result);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    resultList = new List<TimerResult>();
+                }
             }
 
             preparationTime = Int32.Parse(ConfigurationManager.AppSettings["preparationTime"]);
@@ -340,6 +417,7 @@ namespace FireDeptStopwatch.Forms
                     if (penaltiesForm.ShowDialog(this) == DialogResult.OK)
                     {
                         timerResult.Penalties = penaltiesForm.ReturnValue;
+                        stopwatchLabel.Text = timerResult.GetEndResult().ToString(@"mm\:ss\.ffff");
                     }
                 }
                 else
