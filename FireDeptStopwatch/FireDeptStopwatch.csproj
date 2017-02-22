@@ -197,9 +197,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ssv_startno_povelje_trimmed.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ssv_zakljucek_1.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -207,23 +204,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <None Include="Resources\its-over-9000.wav" />
-    <None Include="Resources\its-a-cookbook.wav" />
-    <None Include="Resources\get-down.wav" />
-    <None Include="Resources\Hallelujah SOUND Effect.wav" />
-    <None Include="Resources\logo_tekmovalna_enota1 - Copy2.png" />
-    <None Include="Resources\hallelujah.wav" />
-    <None Include="Resources\na_golici_10s_cut.wav" />
+    <None Include="Resources\ssv_startno_povelje.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_hallelujah.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_ufo.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_train_whistle.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_ship_bell.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_party_horn.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_na_golici_10s_cut.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_its_over_9000.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_its_a_cookbook.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_get_to_da_choppa.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_get_down.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_freeze.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_cuckoo_clock.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_bike_horn.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_air_horn.wav" />
+    <None Include="Resources\ssv_priprava_orodja_zakljucek.wav" />
+    <None Include="Resources\logo_background.png" />
     <None Include="Resources\ssv_priprava_orodja_zacetek.wav" />
-    <None Include="Resources\Get To The Choppa! Sound Effect #136_cut.wav" />
-    <None Include="Resources\party_horn-Mike_Koenig-76599891_cut.wav" />
-    <None Include="Resources\Bike Horn-SoundBible.com-602544869_cut.wav" />
-    <None Include="Resources\descending_craft-Sonidor-991848481.wav" />
-    <None Include="Resources\Cuckoo Clock-SoundBible.com-1776874523.wav" />
-    <None Include="Resources\Air Horn-SoundBible.com-964603082-cut.wav" />
-    <None Include="Resources\Freeze-motherfucker!-cut.wav" />
-    <None Include="Resources\Ship_Brass_Bell-Mike_Koenig-1458750630-cut.wav" />
-    <None Include="Resources\Train Whistle-SoundBible.com-458982136-cut.wav" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

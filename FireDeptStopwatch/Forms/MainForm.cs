@@ -2,21 +2,14 @@
 using Gma.System.MouseKeyHook;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Media;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace FireDeptStopwatch.Forms
@@ -114,7 +107,7 @@ namespace FireDeptStopwatch.Forms
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
             resetButton.Enabled = false;
 
-            await Task.Factory.StartNew(() => PlaySound(FireDeptStopwatch.Properties.Resources.ssv_startno_povelje_trimmed, true));
+            await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje, true));
 
             resetButton.Enabled = true;
 
@@ -145,46 +138,46 @@ namespace FireDeptStopwatch.Forms
 
         private void EndTimerAndLogResult()
         {
-            List<KeyValuePair<UnmanagedMemoryStream, double>> sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
+            var sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
             {
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_air_horn, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_air_horn, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_freeze, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_freeze, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_ufo, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_ufo, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_party_horn, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_party_horn, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_get_down, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_get_down, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_its_a_cookbook, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_its_a_cookbook, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_its_over_9000, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1_alt_its_over_9000, 1.0d/12.0d
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
-                    FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, 1.0d/12.0d
+                    Properties.Resources.ssv_zakljucek_1, 1.0d/12.0d
                 ),
             };
 
@@ -196,11 +189,11 @@ namespace FireDeptStopwatch.Forms
 
             if (diff >= thirteenSecs && diff < fourteenSecs)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_hallelujah_2, false);
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_hallelujah, false);
             }
             else if (diff >= fourteenSecs && diff < fifteenSecs)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1_alt_na_golici_10s_cut, false);
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_na_golici_10s_cut, false);
             }
             else
             {
