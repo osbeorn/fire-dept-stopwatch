@@ -285,6 +285,31 @@ namespace FireDeptStopwatch.Forms
             return false;
         }
 
+        private void DeleteResult()
+        {
+            string message = "Ali res želite brisati izbrane rezultate?";
+            string caption = "Briši";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult result = MessageBox.Show(message, caption, buttons);
+
+            if (!result.Equals(DialogResult.Yes))
+                return;
+
+            var selectedItems = resultsListBox.SelectedItems;
+
+            if (selectedItems.Count == 0)
+                return;
+
+            for (var i = selectedItems.Count - 1; i >= 0; i--)
+            {
+                resultList.Remove(selectedItems[i] as TimerResult);
+                resultsListBox.Items.Remove(selectedItems[i]);
+            }
+
+            SaveResults();
+        }
+
         #region Event handlers
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -427,27 +452,7 @@ namespace FireDeptStopwatch.Forms
 
         private void DeleteResultButton_Click(object sender, EventArgs e)
         {
-            string message = "Ali res želite brisati izbrane rezultate?";
-            string caption = "Briši";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-            DialogResult result = MessageBox.Show(message, caption, buttons);
-
-            if (!result.Equals(DialogResult.Yes))
-                return;
-
-            var selectedItems = resultsListBox.SelectedItems;
-
-            if (selectedItems.Count == 0)
-                return;
-
-            for (var i = selectedItems.Count - 1; i >= 0; i--)
-            {
-                resultList.Remove(selectedItems[i] as TimerResult);
-                resultsListBox.Items.Remove(selectedItems[i]);
-            }
-
-            SaveResults();
+            DeleteResult();
         }
 
         private void DeleteAllResultsButton_Click(object sender, EventArgs e)
@@ -535,6 +540,14 @@ namespace FireDeptStopwatch.Forms
                     resultsContextMenuStrip.Tag = resultsListBox.SelectedItem;
                     resultsContextMenuStrip.Show(Cursor.Position);
                 }
+            }
+        }
+
+        private void ResultsListBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && resultsListBox.SelectedItems.Count > 0)
+            {
+                DeleteResult();
             }
         }
 

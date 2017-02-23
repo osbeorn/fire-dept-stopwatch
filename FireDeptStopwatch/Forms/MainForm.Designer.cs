@@ -208,6 +208,7 @@
             this.resultsListBox.Size = new System.Drawing.Size(204, 388);
             this.resultsListBox.TabIndex = 0;
             this.resultsListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.resultsListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResultsListBox_KeyUp);
             this.resultsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResultsListBox_MouseDown);
             // 
             // resetButton
@@ -302,12 +303,12 @@
             this.editResultToolStripMenuItem});
             this.resultsContextMenuStrip.Name = "resultsContextMenuStrip";
             this.resultsContextMenuStrip.ShowImageMargin = false;
-            this.resultsContextMenuStrip.Size = new System.Drawing.Size(128, 48);
+            this.resultsContextMenuStrip.Size = new System.Drawing.Size(78, 26);
             // 
             // editResultToolStripMenuItem
             // 
             this.editResultToolStripMenuItem.Name = "editResultToolStripMenuItem";
-            this.editResultToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.editResultToolStripMenuItem.Size = new System.Drawing.Size(77, 22);
             this.editResultToolStripMenuItem.Text = "Uredi";
             this.editResultToolStripMenuItem.Click += new System.EventHandler(this.EditResultToolStripMenuItem_Click);
             // 
