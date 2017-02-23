@@ -1,5 +1,5 @@
 language: csharp
 script:
-  - xbuild /p:VisualStudioVersion=14.0 /p:Configuration=Release /t:publish FireDeptStopwatch.sln
+  - xbuild /p:VisualStudioVersion=14.0 /p:Configuration=Release /t:publish FireDeptStopwatch/FireDeptStopwatch.csproj
 before_script:
   - nuget restore FireDeptStopwatch.sln
