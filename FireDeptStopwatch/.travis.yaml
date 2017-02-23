@@ -1,0 +1,4 @@
+﻿language: csharp
+solution: FireDeptStopwatch.sln
+script:
+  - xbuild /p:VisualStudioVersion=14.0 /p:Configuration=Release /t:publish FireDeptStopwatch.sln
