@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FireDeptStopwatch.Forms
@@ -16,6 +10,17 @@ namespace FireDeptStopwatch.Forms
         public PenaltiesForm()
         {
             InitializeComponent();
+            InitializeComponents();
+        }
+
+        public PenaltiesForm(int? penalties)
+        {
+            InitializeComponent();
+
+            this.penaltiesNumericUpDown.Value = penalties.HasValue 
+                ? penalties.Value 
+                : 0;
+
             InitializeComponents();
         }
 

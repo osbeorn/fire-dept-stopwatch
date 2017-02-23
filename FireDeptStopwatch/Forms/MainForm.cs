@@ -339,7 +339,7 @@ namespace FireDeptStopwatch.Forms
 
                         foreach (var result in resultList)
                         {
-                            listBox1.Items.Add(result);
+                            resultsListBox.Items.Add(result);
                         }
                     }
                 }
@@ -363,7 +363,7 @@ namespace FireDeptStopwatch.Forms
 
                             foreach (var result in resultList)
                             {
-                                listBox1.Items.Add(result);
+                                resultsListBox.Items.Add(result);
                             }
                         }
                     }
@@ -414,7 +414,7 @@ namespace FireDeptStopwatch.Forms
                 }
 
                 resultList.Insert(0, timerResult);
-                listBox1.Items.Insert(0, timerResult);
+                resultsListBox.Items.Insert(0, timerResult);
 
                 SaveResults();
             }
@@ -436,7 +436,7 @@ namespace FireDeptStopwatch.Forms
             if (!result.Equals(DialogResult.Yes))
                 return;
 
-            var selectedItems = listBox1.SelectedItems;
+            var selectedItems = resultsListBox.SelectedItems;
 
             if (selectedItems.Count == 0)
                 return;
@@ -444,7 +444,7 @@ namespace FireDeptStopwatch.Forms
             for (var i = selectedItems.Count - 1; i >= 0; i--)
             {
                 resultList.Remove(selectedItems[i] as TimerResult);
-                listBox1.Items.Remove(selectedItems[i]);
+                resultsListBox.Items.Remove(selectedItems[i]);
             }
 
             SaveResults();
@@ -462,14 +462,14 @@ namespace FireDeptStopwatch.Forms
                 return;
 
             resultList.Clear();
-            listBox1.Items.Clear();
+            resultsListBox.Items.Clear();
 
             SaveResults();
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems.Count > 0)
+            if (resultsListBox.SelectedItems.Count > 0)
                 deleteResultButton.Enabled = true;
             else
                 deleteResultButton.Enabled = false;
@@ -523,6 +523,35 @@ namespace FireDeptStopwatch.Forms
             AnalysesForm graphsForm = new AnalysesForm();
             graphsForm.InitializeComponents(this);
             graphsForm.Show();
+        }
+
+        private void ResultsListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                resultsListBox.SelectedIndex = resultsListBox.IndexFromPoint(e.Location);
+                if (resultsListBox.SelectedIndex != -1)
+                {
+                    resultsContextMenuStrip.Tag = resultsListBox.SelectedItem;
+                    resultsContextMenuStrip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void EditResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var timerResult = resultsContextMenuStrip.Tag as TimerResult;
+
+            var penaltiesForm = new PenaltiesForm(timerResult.Penalties);
+            if (penaltiesForm.ShowDialog(this) == DialogResult.OK)
+            {
+                timerResult.Penalties = penaltiesForm.ReturnValue;
+
+                // workaround for updating an item in a listbox
+                var index = resultsListBox.SelectedIndex;
+                resultsListBox.Items.RemoveAt(resultsListBox.SelectedIndex);
+                resultsListBox.Items.Insert(index, timerResult);
+            }
         }
 
         #endregion

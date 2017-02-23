@@ -43,7 +43,7 @@
             this.resultListGroupBox = new System.Windows.Forms.GroupBox();
             this.deleteAllResultsButton = new System.Windows.Forms.Button();
             this.deleteResultButton = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.resultsListBox = new System.Windows.Forms.ListBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.preparationTimer = new System.Windows.Forms.Timer(this.components);
@@ -54,10 +54,13 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             this.resultListGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.resultsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // stopwatchTimer
@@ -165,7 +168,7 @@
             // 
             this.resultListGroupBox.Controls.Add(this.deleteAllResultsButton);
             this.resultListGroupBox.Controls.Add(this.deleteResultButton);
-            this.resultListGroupBox.Controls.Add(this.listBox1);
+            this.resultListGroupBox.Controls.Add(this.resultsListBox);
             this.resultListGroupBox.Location = new System.Drawing.Point(-1, 3);
             this.resultListGroupBox.Name = "resultListGroupBox";
             this.resultListGroupBox.Size = new System.Drawing.Size(216, 456);
@@ -194,17 +197,18 @@
             this.deleteResultButton.UseVisualStyleBackColor = true;
             this.deleteResultButton.Click += new System.EventHandler(this.DeleteResultButton_Click);
             // 
-            // listBox1
+            // resultsListBox
             // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(6, 16);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(204, 388);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.resultsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.resultsListBox.FormattingEnabled = true;
+            this.resultsListBox.ItemHeight = 16;
+            this.resultsListBox.Location = new System.Drawing.Point(6, 16);
+            this.resultsListBox.Name = "resultsListBox";
+            this.resultsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.resultsListBox.Size = new System.Drawing.Size(204, 388);
+            this.resultsListBox.TabIndex = 0;
+            this.resultsListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.resultsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResultsListBox_MouseDown);
             // 
             // resetButton
             // 
@@ -245,7 +249,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(728, 24);
             this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Text = "mainMenuStrip";
             // 
             // fileToolStripMenuItem
             // 
@@ -292,6 +296,21 @@
             this.graphsToolStripMenuItem.Text = "&Grafi";
             this.graphsToolStripMenuItem.Click += new System.EventHandler(this.GraphsToolStripMenuItem_Click);
             // 
+            // resultsContextMenuStrip
+            // 
+            this.resultsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editResultToolStripMenuItem});
+            this.resultsContextMenuStrip.Name = "resultsContextMenuStrip";
+            this.resultsContextMenuStrip.ShowImageMargin = false;
+            this.resultsContextMenuStrip.Size = new System.Drawing.Size(128, 48);
+            // 
+            // editResultToolStripMenuItem
+            // 
+            this.editResultToolStripMenuItem.Name = "editResultToolStripMenuItem";
+            this.editResultToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.editResultToolStripMenuItem.Text = "Uredi";
+            this.editResultToolStripMenuItem.Click += new System.EventHandler(this.EditResultToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,6 +334,7 @@
             this.resultListGroupBox.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.resultsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,7 +346,7 @@
         private System.Windows.Forms.Timer lineupTimer;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.GroupBox resultListGroupBox;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox resultsListBox;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Label label1;
@@ -346,6 +366,8 @@
         private System.Windows.Forms.ToolStripMenuItem analysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem graphsToolStripMenuItem;
         private System.Windows.Forms.Panel logoPanel;
+        private System.Windows.Forms.ContextMenuStrip resultsContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem editResultToolStripMenuItem;
     }
 }
 
