@@ -10,35 +10,38 @@ namespace PublishToAwsS3
 {
     class Program
     {
-        private static string bucketName;
         private static string sourceDirectory;
+        private static string bucketName;
+        private static string awsAccessKey;
+        private static string awsSecretKey;
 
         static void Main(string[] args)
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("Please enter required arguments. Usage: PublishToAwsS3 <bucketName> <sourceDirectory>");
+                Console.WriteLine("Please enter required arguments.\nUsage: PublishToAwsS3 <sourceDirectory> <bucketName> <awsAccessKey> <awsSecretKey>");
                 return;
             }
 
-            bucketName = args[0];
-            sourceDirectory = args[1];
+            sourceDirectory = args[0];
+            bucketName = args[1];
+            awsAccessKey = args[2];
+            awsSecretKey = args[3];
 
             CheckBucket();
         }
 
         private static void CheckBucket()
         {
-            using (var client = new AmazonS3Client(Amazon.RegionEndpoint.EUCentral1))
+            Amazon.Runtime.AWSCredentials credentials = new Amazon.Runtime.BasicAWSCredentials(awsAccessKey, awsSecretKey);
+            using (var client = new AmazonS3Client(credentials, Amazon.RegionEndpoint.EUCentral1))
             {
                 if (!(AmazonS3Util.DoesS3BucketExist(client, bucketName)))
                 {
                     CreateBucket(client);
                 }
 
-                // Upload files.
                 UploadFiles(client);
-                //UploadFiles("F:\\Development\\FireDeptStopwatch\\FireDeptStopwatch\\deploy", bucketName, client);
             }
         }
 
