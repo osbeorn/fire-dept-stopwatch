@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FireDeptStopwatch.Forms
@@ -19,6 +13,17 @@ namespace FireDeptStopwatch.Forms
             InitializeComponents();
         }
 
+        public PenaltiesForm(int? penalties)
+        {
+            InitializeComponent();
+
+            this.penaltiesNumericUpDown.Value = penalties.HasValue 
+                ? penalties.Value 
+                : 0;
+
+            InitializeComponents();
+        }
+
         private void InitializeComponents()
         {
             this.penaltiesNumericUpDown.Focus();
@@ -30,6 +35,12 @@ namespace FireDeptStopwatch.Forms
             if (this.penaltiesNumericUpDown.Value + penalties < 0)
             {
                 this.penaltiesNumericUpDown.Value = 0;
+                return;
+            }
+
+            if (this.penaltiesNumericUpDown.Value + penalties > this.penaltiesNumericUpDown.Maximum)
+            {
+                this.penaltiesNumericUpDown.Value = this.penaltiesNumericUpDown.Maximum;
                 return;
             }
 

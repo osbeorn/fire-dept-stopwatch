@@ -2,19 +2,15 @@
 using Gma.System.MouseKeyHook;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
+using System.IO.IsolatedStorage;
 using System.Media;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -22,6 +18,8 @@ namespace FireDeptStopwatch.Forms
     {
         private DateTime start;
         private DateTime current;
+        private TimeSpan diff;
+
         private List<TimerResult> resultList;
         private IKeyboardMouseEvents globalHook;
 
@@ -70,6 +68,8 @@ namespace FireDeptStopwatch.Forms
         {
             //Application.AddMessageFilter(this);
 
+            //PrepareDataFile();
+
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
 
             resultList = new List<TimerResult>();
@@ -78,6 +78,17 @@ namespace FireDeptStopwatch.Forms
             globalHook.MouseDownExt += GlobalHook_MouseDownExt;
 
             //deviceHandler = new RawInputDevices(Handle);
+        }
+
+        private void PrepareDataFile()
+        {
+            using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (var fs = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
+                {
+                    // do nothing
+                }
+            }
         }
 
         private void PlaySound(UnmanagedMemoryStream sound, bool sync)
@@ -96,17 +107,12 @@ namespace FireDeptStopwatch.Forms
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
             resetButton.Enabled = false;
 
-            await Task.Factory.StartNew(() => PlaySound(FireDeptStopwatch.Properties.Resources.ssv_startno_povelje_trimmed, true));
+            await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje, true));
 
             resetButton.Enabled = true;
 
             start = DateTime.Now;
             stopwatchTimer.Start();
-
-            Cursor.Position = new Point(
-                Screen.PrimaryScreen.Bounds.Width / 2,
-                Screen.PrimaryScreen.Bounds.Height / 2
-            );
         }
 
         private void ResetTimers()
@@ -127,9 +133,79 @@ namespace FireDeptStopwatch.Forms
 
         private void EndTimerAndLogResult()
         {
-            PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_1, false);
+            var sounds = new List<KeyValuePair<UnmanagedMemoryStream, double>>
+            {
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_air_horn, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_cuckoo_clock, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_freeze, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_ship_bell, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_train_whistle, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_ufo, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_bike_horn, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_party_horn, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_get_to_da_choppa, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_get_down, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_its_a_cookbook, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1_alt_its_over_9000, 1.0d/12.0d
+                ),
+                new KeyValuePair<UnmanagedMemoryStream, double>(
+                    Properties.Resources.ssv_zakljucek_1, 1.0d/12.0d
+                ),
+            };
 
             stopwatchTimer.Stop();
+
+            var fifteenSecs = new TimeSpan(0, 0, 15);
+            var fourteenSecs = new TimeSpan(0, 0, 14);
+            var thirteenSecs = new TimeSpan(0, 0, 13);
+
+            if (diff >= thirteenSecs && diff < fourteenSecs)
+            {
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_hallelujah, false);
+            }
+            else if (diff >= fourteenSecs && diff < fifteenSecs)
+            {
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_na_golici_10s_cut, false);
+            }
+            else
+            {
+                Random r = new Random();
+                double diceRoll = r.NextDouble();
+
+                double cumulative = 0.0d;
+                for (int i = 0; i < sounds.Count; i++)
+                {
+                    cumulative += sounds[i].Value;
+                    if (diceRoll < cumulative)
+                    {
+                        PlaySound(sounds[i].Key, false);
+                        break;
+                    }
+                }
+            }
 
             lineupCounter = 11;
             lineupTimer.Start();
@@ -137,17 +213,40 @@ namespace FireDeptStopwatch.Forms
 
         private void SaveResults()
         {
-            try
+            if (Debugger.IsAttached)
             {
-                using (Stream stream = File.Open("Data/results.bin", FileMode.Create))
+                // project file for debugging
+                try
                 {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    bin.Serialize(stream, resultList);
+                    using (var stream = File.Open("Data/results.bin", FileMode.Create))
+                    {
+                        BinaryFormatter bin = new BinaryFormatter();
+                        bin.Serialize(stream, resultList);
+                    }
+                }
+                catch (IOException)
+                {
+                    // do nothing
                 }
             }
-            catch (IOException)
+            else
             {
-                // do nothing
+                // isolated storage
+                try
+                {
+                    using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
+                        {
+                            BinaryFormatter bin = new BinaryFormatter();
+                            bin.Serialize(stream, resultList);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // do nothing
+                }
             }
         }
 
@@ -167,15 +266,15 @@ namespace FireDeptStopwatch.Forms
 
         private bool IsClickOnControl(Point clickPoint)
         {
-            List<Control> controls = new List<Control>()
+            var controls = new List<Control>()
             {
                 preparationButton,
                 startButton,
                 resetButton
             };
 
-            var controlClickPoint = panel2.PointToClient(clickPoint);
-            foreach (Control control in controls)
+            var controlClickPoint = mainPanel.PointToClient(clickPoint);
+            foreach (var control in controls)
             {
                 //var controlBounds = panel2.RectangleToScreen(control.Bounds);
 
@@ -184,6 +283,31 @@ namespace FireDeptStopwatch.Forms
             }
 
             return false;
+        }
+
+        private void DeleteResult()
+        {
+            string message = "Ali res želite brisati izbrane rezultate?";
+            string caption = "Briši";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult result = MessageBox.Show(message, caption, buttons);
+
+            if (!result.Equals(DialogResult.Yes))
+                return;
+
+            var selectedItems = resultsListBox.SelectedItems;
+
+            if (selectedItems.Count == 0)
+                return;
+
+            for (var i = selectedItems.Count - 1; i >= 0; i--)
+            {
+                resultList.Remove(selectedItems[i] as TimerResult);
+                resultsListBox.Items.Remove(selectedItems[i]);
+            }
+
+            SaveResults();
         }
 
         #region Event handlers
@@ -205,17 +329,16 @@ namespace FireDeptStopwatch.Forms
         {
             current = DateTime.Now;
 
-            var diff = current - start;
+            diff = current - start;
             stopwatchLabel.Text = diff.ToString(@"mm\:ss\.ffff");
         }
 
         private void GlobalHook_MouseDownExt(object sender, MouseEventExtArgs e)
         {
-            if (IsClickOnControl(e.Location))
-            {
-                System.Diagnostics.Debug.WriteLine("Click on control.");
-                return;
-            }
+            //if (IsClickOnControl(e.Location))
+            //{
+            //    return;
+            //}
 
 
             if (stopwatchTimer.Enabled && e.Button.Equals(MouseButtons.Left))
@@ -228,23 +351,52 @@ namespace FireDeptStopwatch.Forms
         {
             //deviceHandler = new RawInputDevices(this.Handle);
 
-            try
+            if (Debugger.IsAttached)
             {
-                using (Stream stream = File.Open("Data/results.bin", FileMode.Open))
+                // project file for debugging
+                try
                 {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    resultList = (List<TimerResult>) bin.Deserialize(stream);
-                    resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
-
-                    foreach (TimerResult result in resultList)
+                    using (var stream = File.Open("Data/results.bin", FileMode.Open))
                     {
-                        listBox1.Items.Add(result);
+                        var binaryFormatter = new BinaryFormatter();
+                        resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
+                        resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+
+                        foreach (var result in resultList)
+                        {
+                            resultsListBox.Items.Add(result);
+                        }
                     }
                 }
+                catch (Exception)
+                {
+                    resultList = new List<TimerResult>();
+                }
             }
-            catch (Exception)
+            else
             {
-                resultList = new List<TimerResult>();
+                // isolated storage
+                try
+                {
+                    using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
+                        {
+                            var binaryFormatter = new BinaryFormatter();
+                            resultList = (List<TimerResult>) binaryFormatter.Deserialize(stream);
+                            resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+
+                            foreach (var result in resultList)
+                            {
+                                resultsListBox.Items.Add(result);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    resultList = new List<TimerResult>();
+                }
             }
 
             preparationTime = Int32.Parse(ConfigurationManager.AppSettings["preparationTime"]);
@@ -262,7 +414,7 @@ namespace FireDeptStopwatch.Forms
         {
             if (lineupCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_2, false);
+                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 lineupTimer.Stop();
 
                 startButton.Enabled = true;
@@ -278,6 +430,7 @@ namespace FireDeptStopwatch.Forms
                     if (penaltiesForm.ShowDialog(this) == DialogResult.OK)
                     {
                         timerResult.Penalties = penaltiesForm.ReturnValue;
+                        stopwatchLabel.Text = timerResult.GetEndResult().ToString(@"mm\:ss\.ffff");
                     }
                 }
                 else
@@ -286,7 +439,7 @@ namespace FireDeptStopwatch.Forms
                 }
 
                 resultList.Insert(0, timerResult);
-                listBox1.Items.Insert(0, timerResult);
+                resultsListBox.Items.Insert(0, timerResult);
 
                 SaveResults();
             }
@@ -299,27 +452,7 @@ namespace FireDeptStopwatch.Forms
 
         private void DeleteResultButton_Click(object sender, EventArgs e)
         {
-            string message = "Ali res želite brisati izbrane rezultate?";
-            string caption = "Briši";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-            DialogResult result = MessageBox.Show(message, caption, buttons);
-
-            if (!result.Equals(DialogResult.Yes))
-                return;
-
-            var selectedItems = listBox1.SelectedItems;
-
-            if (selectedItems.Count == 0)
-                return;
-
-            for (var i = selectedItems.Count - 1; i >= 0; i--)
-            {
-                resultList.Remove(selectedItems[i] as TimerResult);
-                listBox1.Items.Remove(selectedItems[i]);
-            }
-
-            SaveResults();
+            DeleteResult();
         }
 
         private void DeleteAllResultsButton_Click(object sender, EventArgs e)
@@ -334,14 +467,14 @@ namespace FireDeptStopwatch.Forms
                 return;
 
             resultList.Clear();
-            listBox1.Items.Clear();
+            resultsListBox.Items.Clear();
 
             SaveResults();
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems.Count > 0)
+            if (resultsListBox.SelectedItems.Count > 0)
                 deleteResultButton.Enabled = true;
             else
                 deleteResultButton.Enabled = false;
@@ -351,8 +484,11 @@ namespace FireDeptStopwatch.Forms
         {
             preparationButton.Enabled = false;
             startButton.Enabled = false;
+            resetButton.Enabled = true;
 
             preparationCounter = preparationTime;
+
+            PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zacetek, false);
 
             preparationTimer.Start();
         }
@@ -361,11 +497,12 @@ namespace FireDeptStopwatch.Forms
         {
             if (preparationCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_zakljucek_2, false);
+                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 preparationTimer.Stop();
 
                 preparationButton.Enabled = true;
                 startButton.Enabled = true;
+                resetButton.Enabled = false;
             }
             else
             {
@@ -388,10 +525,60 @@ namespace FireDeptStopwatch.Forms
 
         private void GraphsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GraphsForm graphsForm = new GraphsForm();
+            AnalysesForm graphsForm = new AnalysesForm();
             graphsForm.InitializeComponents(this);
             graphsForm.Show();
         }
+
+        private void ResultsListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                resultsListBox.SelectedIndex = resultsListBox.IndexFromPoint(e.Location);
+                if (resultsListBox.SelectedIndex != -1)
+                {
+                    resultsContextMenuStrip.Tag = resultsListBox.SelectedItem;
+                    resultsContextMenuStrip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void ResultsListBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && resultsListBox.SelectedItems.Count > 0)
+            {
+                DeleteResult();
+            }
+        }
+
+        private void EditResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var timerResult = resultsContextMenuStrip.Tag as TimerResult;
+
+            var penaltiesForm = new PenaltiesForm(timerResult.Penalties);
+            if (penaltiesForm.ShowDialog(this) == DialogResult.OK)
+            {
+                timerResult.Penalties = penaltiesForm.ReturnValue;
+
+                // workaround for updating an item in a listbox
+                var index = resultsListBox.SelectedIndex;
+                resultsListBox.Items.RemoveAt(resultsListBox.SelectedIndex);
+                resultsListBox.Items.Insert(index, timerResult);
+            }
+        }
+
+        #endregion
+
+        #region Overrides
+
+        //protected override void OnPaintBackground(PaintEventArgs e)
+        //{
+        //    base.OnPaintBackground(e);
+        //    var rc = new Rectangle(this.ClientSize.Width - backgroundImage.Width,
+        //        this.ClientSize.Height - backgroundImage.Height,
+        //        backgroundImage.Width, backgroundImage.Height);
+        //    e.Graphics.DrawImage(backgroundImage, rc);
+        //}
 
         #endregion
     }

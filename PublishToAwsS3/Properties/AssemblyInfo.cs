@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FireDeptStopwatch")]
+[assembly: AssemblyTitle("PublishToAwsS3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Prostovoljno gasilsko društvo Zagradec pri Grosupljem")]
-[assembly: AssemblyProduct("SSV štoparica")]
-[assembly: AssemblyCopyright("Copyright © 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("PublishToAwsS3")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("250566ed-9b7f-4997-ac0c-968cee117753")]
+[assembly: Guid("76051179-139f-4d13-9a04-dd0d8be686c3")]
 
 // Version information for an assembly consists of the following four values:
 //
