@@ -241,7 +241,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(255)))), ((int)(((byte)(149)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -293,7 +293,7 @@
             // graphsToolStripMenuItem
             // 
             this.graphsToolStripMenuItem.Name = "graphsToolStripMenuItem";
-            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.graphsToolStripMenuItem.Text = "&Grafi";
             this.graphsToolStripMenuItem.Click += new System.EventHandler(this.GraphsToolStripMenuItem_Click);
             // 

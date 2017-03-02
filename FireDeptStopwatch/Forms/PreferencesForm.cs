@@ -85,6 +85,7 @@ namespace FireDeptStopwatch.Forms
             // if you want to maintain the connection then calls to Read() on the client's stream should block when awaiting data from the device
 
             // when you're done reading/writing and want to close the connection or the device servers the connection control flow will resume here and you need to tidy up
+
             client.Close();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FireDeptStopwatch.Classes
 {
@@ -10,6 +11,8 @@ namespace FireDeptStopwatch.Classes
         public TimeSpan Result { get; set; }
 
         public int? Penalties { get; set; }
+
+        public List<TimeSpan> SplitTimes { get; set; }
 
         public TimeSpan GetEndResult()
         {
