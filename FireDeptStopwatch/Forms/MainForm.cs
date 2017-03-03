@@ -276,8 +276,8 @@ namespace FireDeptStopwatch.Forms
         {
             var controls = new List<Control>()
             {
-                preparationButton,
-                startButton,
+                //preparationButton,
+                //startButton,
                 resetButton
             };
 
@@ -368,10 +368,10 @@ namespace FireDeptStopwatch.Forms
 
         private void GlobalHook_MouseDownExt(object sender, MouseEventExtArgs e)
         {
-            //if (IsClickOnControl(e.Location))
-            //{
-            //    return;
-            //}
+            if (IsClickOnControl(e.Location))
+            {
+                return;
+            }
 
 
             if (stopwatchTimer.Enabled && e.Button.Equals(MouseButtons.Left))
