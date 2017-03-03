@@ -137,6 +137,8 @@ namespace FireDeptStopwatch.Forms
 
             lineupTimer.Stop();
             lineupLabel.Text = "0";
+
+            UnmuteApplications();
         }
 
         private void EndTimerAndLogResult()
