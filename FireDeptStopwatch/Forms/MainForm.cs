@@ -11,6 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using AudioSwitcher.AudioApi.CoreAudio;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -32,6 +33,8 @@ namespace FireDeptStopwatch.Forms
         private bool resetTriggered { get; set; }
 
         //RawInputDevices deviceHandler;
+        CoreAudioController audioController;
+        List<String> mutedSessions;
 
         public MainForm()
         {
@@ -78,6 +81,9 @@ namespace FireDeptStopwatch.Forms
             globalHook.MouseDownExt += GlobalHook_MouseDownExt;
 
             //deviceHandler = new RawInputDevices(Handle);
+
+            audioController = new CoreAudioController();
+            mutedSessions = new List<string>();
         }
 
         private void PrepareDataFile()
@@ -104,6 +110,8 @@ namespace FireDeptStopwatch.Forms
 
         private async void StartTimer()
         {
+            MuteApplications();
+
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
             resetButton.Enabled = false;
 
@@ -310,6 +318,31 @@ namespace FireDeptStopwatch.Forms
             SaveResults();
         }
 
+        private void MuteApplications()
+        {
+            mutedSessions = new List<string>();
+
+            var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
+            foreach (var session in sessions)
+            {
+                if (session.IsSystemSession || session.IsMuted || session.DisplayName.Contains("SSV štoparica"))
+                    continue;
+
+                session.IsMuted = true;
+                mutedSessions.Add(session.Id);
+            }
+        }
+
+        private void UnmuteApplications()
+        {
+            var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
+            foreach (var session in sessions)
+            {
+                if (mutedSessions.Contains(session.Id))
+                    session.IsMuted = false;
+            }
+        }
+
         #region Event handlers
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -414,7 +447,7 @@ namespace FireDeptStopwatch.Forms
         {
             if (lineupCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
+                PlaySound(Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 lineupTimer.Stop();
 
                 startButton.Enabled = true;
@@ -442,6 +475,8 @@ namespace FireDeptStopwatch.Forms
                 resultsListBox.Items.Insert(0, timerResult);
 
                 SaveResults();
+
+                UnmuteApplications();
             }
             else
             {
