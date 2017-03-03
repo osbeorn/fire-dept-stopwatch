@@ -214,7 +214,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <None Include="Resources\ssv_zakljucek_1_alt_sparta.wav" />
     <None Include="Resources\ssv_startno_povelje.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_hallelujah.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_ufo.wav" />
