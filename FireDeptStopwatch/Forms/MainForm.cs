@@ -186,11 +186,16 @@ namespace FireDeptStopwatch.Forms
 
             stopwatchTimer.Stop();
 
-            var fifteenSecs = new TimeSpan(0, 0, 15);
-            var fourteenSecs = new TimeSpan(0, 0, 14);
+            var twelveSecs = new TimeSpan(0, 0, 12);
             var thirteenSecs = new TimeSpan(0, 0, 13);
-
-            if (diff >= thirteenSecs && diff < fourteenSecs)
+            var fourteenSecs = new TimeSpan(0, 0, 14);
+            var fifteenSecs = new TimeSpan(0, 0, 15);
+            
+            if (diff >= twelveSecs && diff < thirteenSecs)
+            {
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sparta, false);
+            }
+            else if (diff >= thirteenSecs && diff < fourteenSecs)
             {
                 PlaySound(Properties.Resources.ssv_zakljucek_1_alt_hallelujah, false);
             }
@@ -284,8 +289,6 @@ namespace FireDeptStopwatch.Forms
             var controlClickPoint = mainPanel.PointToClient(clickPoint);
             foreach (var control in controls)
             {
-                //var controlBounds = panel2.RectangleToScreen(control.Bounds);
-
                 if (control.Bounds.Contains(controlClickPoint))
                     return true;
             }
@@ -325,7 +328,7 @@ namespace FireDeptStopwatch.Forms
             var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
             foreach (var session in sessions)
             {
-                if (session.IsSystemSession || session.IsMuted || session.DisplayName.Contains("SSV štoparica"))
+                if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
                     continue;
 
                 session.IsMuted = true;
