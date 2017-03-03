@@ -11,6 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using AudioSwitcher.AudioApi.CoreAudio;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -32,6 +33,8 @@ namespace FireDeptStopwatch.Forms
         private bool resetTriggered { get; set; }
 
         //RawInputDevices deviceHandler;
+        CoreAudioController audioController;
+        List<String> mutedSessions;
 
         public MainForm()
         {
@@ -78,6 +81,9 @@ namespace FireDeptStopwatch.Forms
             globalHook.MouseDownExt += GlobalHook_MouseDownExt;
 
             //deviceHandler = new RawInputDevices(Handle);
+
+            audioController = new CoreAudioController();
+            mutedSessions = new List<string>();
         }
 
         private void PrepareDataFile()
@@ -104,6 +110,8 @@ namespace FireDeptStopwatch.Forms
 
         private async void StartTimer()
         {
+            MuteApplications();
+
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
             resetButton.Enabled = false;
 
@@ -129,6 +137,8 @@ namespace FireDeptStopwatch.Forms
 
             lineupTimer.Stop();
             lineupLabel.Text = "0";
+
+            UnmuteApplications();
         }
 
         private void EndTimerAndLogResult()
@@ -178,11 +188,16 @@ namespace FireDeptStopwatch.Forms
 
             stopwatchTimer.Stop();
 
-            var fifteenSecs = new TimeSpan(0, 0, 15);
-            var fourteenSecs = new TimeSpan(0, 0, 14);
+            var twelveSecs = new TimeSpan(0, 0, 12);
             var thirteenSecs = new TimeSpan(0, 0, 13);
-
-            if (diff >= thirteenSecs && diff < fourteenSecs)
+            var fourteenSecs = new TimeSpan(0, 0, 14);
+            var fifteenSecs = new TimeSpan(0, 0, 15);
+            
+            if (diff >= twelveSecs && diff < thirteenSecs)
+            {
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sparta, false);
+            }
+            else if (diff >= thirteenSecs && diff < fourteenSecs)
             {
                 PlaySound(Properties.Resources.ssv_zakljucek_1_alt_hallelujah, false);
             }
@@ -268,16 +283,14 @@ namespace FireDeptStopwatch.Forms
         {
             var controls = new List<Control>()
             {
-                preparationButton,
-                startButton,
+                //preparationButton,
+                //startButton,
                 resetButton
             };
 
             var controlClickPoint = mainPanel.PointToClient(clickPoint);
             foreach (var control in controls)
             {
-                //var controlBounds = panel2.RectangleToScreen(control.Bounds);
-
                 if (control.Bounds.Contains(controlClickPoint))
                     return true;
             }
@@ -310,6 +323,31 @@ namespace FireDeptStopwatch.Forms
             SaveResults();
         }
 
+        private void MuteApplications()
+        {
+            mutedSessions = new List<string>();
+
+            var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
+            foreach (var session in sessions)
+            {
+                if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
+                    continue;
+
+                session.IsMuted = true;
+                mutedSessions.Add(session.Id);
+            }
+        }
+
+        private void UnmuteApplications()
+        {
+            var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
+            foreach (var session in sessions)
+            {
+                if (mutedSessions.Contains(session.Id))
+                    session.IsMuted = false;
+            }
+        }
+
         #region Event handlers
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -335,10 +373,10 @@ namespace FireDeptStopwatch.Forms
 
         private void GlobalHook_MouseDownExt(object sender, MouseEventExtArgs e)
         {
-            //if (IsClickOnControl(e.Location))
-            //{
-            //    return;
-            //}
+            if (IsClickOnControl(e.Location))
+            {
+                return;
+            }
 
 
             if (stopwatchTimer.Enabled && e.Button.Equals(MouseButtons.Left))
@@ -414,7 +452,7 @@ namespace FireDeptStopwatch.Forms
         {
             if (lineupCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
+                PlaySound(Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 lineupTimer.Stop();
 
                 startButton.Enabled = true;
@@ -442,6 +480,8 @@ namespace FireDeptStopwatch.Forms
                 resultsListBox.Items.Insert(0, timerResult);
 
                 SaveResults();
+
+                UnmuteApplications();
             }
             else
             {
