@@ -229,6 +229,7 @@
     <None Include="Resources\ssv_zakljucek_1_alt_cuckoo_clock.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_bike_horn.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_air_horn.wav" />
+	<None Include="Resources\ssv_zakljucek_1_alt_sparta.wav" />
     <None Include="Resources\ssv_priprava_orodja_zakljucek.wav" />
     <None Include="Resources\logo_background.png" />
     <None Include="Resources\ssv_priprava_orodja_zacetek.wav" />
