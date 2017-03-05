@@ -70,7 +70,12 @@ namespace FireDeptStopwatch.Forms
 
                 // device should now be paired with the OS so make a connection to it asynchronously
                 var client = new BluetoothClient();
-                client.BeginConnect(deviceInfo.DeviceAddress, BluetoothService.SerialPort, this.BluetoothClientConnectCallback, client);
+                client.BeginConnect(
+                    deviceInfo.DeviceAddress,
+                    Guid.Parse("fa87c0d0-afac-11de-8a39-0800200c9a66")/*BluetoothService.SerialPort*/,
+                    BluetoothClientConnectCallback,
+                    client
+                );
 
                 return true;
             }

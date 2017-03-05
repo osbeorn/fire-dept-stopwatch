@@ -36,6 +36,8 @@ namespace FireDeptStopwatch.Forms
         CoreAudioController audioController;
         List<String> mutedSessions;
 
+        private BluetoothReceiverService bluetoothReceiverService;
+
         public MainForm()
         {
             InitializeComponent();
@@ -84,6 +86,14 @@ namespace FireDeptStopwatch.Forms
 
             audioController = new CoreAudioController();
             mutedSessions = new List<string>();
+
+            bluetoothReceiverService = BluetoothReceiverService.Instance;
+            bluetoothReceiverService.Start(ReceiveBluetoothData);
+        }
+
+        private void ReceiveBluetoothData(string data)
+        {
+            Debug.WriteLine("Received data: " + data);
         }
 
         private void PrepareDataFile()

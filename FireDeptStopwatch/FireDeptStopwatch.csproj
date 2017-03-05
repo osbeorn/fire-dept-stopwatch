@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>F:\Development\fireDeptStopwatch\FireDeptStopwatch\deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -35,8 +37,6 @@
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -140,6 +140,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BluetoothReceiverService.cs" />
+    <Compile Include="Classes\BluetoothSenderService.cs" />
     <Compile Include="Classes\RawInputDevices.cs" />
     <Compile Include="Classes\TimerResult.cs" />
     <Compile Include="Forms\AnalysesForm.cs">
@@ -233,7 +235,7 @@
     <None Include="Resources\ssv_zakljucek_1_alt_cuckoo_clock.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_bike_horn.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_air_horn.wav" />
-	<None Include="Resources\ssv_zakljucek_1_alt_sparta.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_sparta.wav" />
     <None Include="Resources\ssv_priprava_orodja_zakljucek.wav" />
     <None Include="Resources\logo_background.png" />
     <None Include="Resources\ssv_priprava_orodja_zacetek.wav" />
