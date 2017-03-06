@@ -84,12 +84,12 @@
     <TargetZone>Internet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioSwitcher.AudioApi, Version=3.0.0.209, Culture=neutral, PublicKeyToken=fda5729e2db3a64f, processorArchitecture=MSIL">
-      <HintPath>..\packages\AudioSwitcher.AudioApi.3.0.0\lib\net40\AudioSwitcher.AudioApi.dll</HintPath>
+    <Reference Include="AudioSwitcher.AudioApi, Version=4.0.0.308, Culture=neutral, PublicKeyToken=fda5729e2db3a64f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AudioSwitcher.AudioApi.4.0.0-alpha5\lib\net40\AudioSwitcher.AudioApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AudioSwitcher.AudioApi.CoreAudio, Version=3.0.0.209, Culture=neutral, PublicKeyToken=fda5729e2db3a64f, processorArchitecture=MSIL">
-      <HintPath>..\packages\AudioSwitcher.AudioApi.CoreAudio.3.0.0.1\lib\net40\AudioSwitcher.AudioApi.CoreAudio.dll</HintPath>
+    <Reference Include="AudioSwitcher.AudioApi.CoreAudio, Version=4.0.0.308, Culture=neutral, PublicKeyToken=fda5729e2db3a64f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AudioSwitcher.AudioApi.CoreAudio.4.0.0-alpha5\lib\net40\AudioSwitcher.AudioApi.CoreAudio.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Gma.System.MouseKeyHook, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -229,7 +229,7 @@
     <None Include="Resources\ssv_zakljucek_1_alt_cuckoo_clock.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_bike_horn.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_air_horn.wav" />
-	<None Include="Resources\ssv_zakljucek_1_alt_sparta.wav" />
+    <None Include="Resources\ssv_zakljucek_1_alt_sparta.wav" />
     <None Include="Resources\ssv_priprava_orodja_zakljucek.wav" />
     <None Include="Resources\logo_background.png" />
     <None Include="Resources\ssv_priprava_orodja_zacetek.wav" />

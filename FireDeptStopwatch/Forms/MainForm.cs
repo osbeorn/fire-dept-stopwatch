@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using AudioSwitcher.AudioApi.CoreAudio;
+using AudioSwitcher.AudioApi.Session;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -325,27 +326,27 @@ namespace FireDeptStopwatch.Forms
 
         private void MuteApplications()
         {
-            mutedSessions = new List<string>();
+            //mutedSessions = new List<string>();
 
-            var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
-            foreach (var session in sessions)
-            {
-                if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
-                    continue;
+            //var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
+            //foreach (var session in sessions)
+            //{
+            //    if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
+            //        continue;
 
-                session.IsMuted = true;
-                mutedSessions.Add(session.Id);
-            }
+            //    session.SetMuteAsync(true);
+            //    mutedSessions.Add(session.Id);
+            //}
         }
 
         private void UnmuteApplications()
         {
-            var sessions = audioController.DefaultPlaybackDevice.SessionController.All();
-            foreach (var session in sessions)
-            {
-                if (mutedSessions.Contains(session.Id))
-                    session.IsMuted = false;
-            }
+            //var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
+            //foreach (var session in sessions)
+            //{
+            //    if (mutedSessions.Contains(session.Id))
+            //        session.SetMuteAsync(false);
+            //}
         }
 
         #region Event handlers
