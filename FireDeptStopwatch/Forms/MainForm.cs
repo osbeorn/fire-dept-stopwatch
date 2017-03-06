@@ -326,7 +326,7 @@ namespace FireDeptStopwatch.Forms
 
         private void MuteApplications()
         {
-            //mutedSessions = new List<string>();
+            mutedSessions = new List<string>();
 
             //var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
             //foreach (var session in sessions)
