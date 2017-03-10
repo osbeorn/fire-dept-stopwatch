@@ -191,7 +191,7 @@ namespace FireDeptStopwatch.Forms
             var thirteenSecs = new TimeSpan(0, 0, 13);
             var fourteenSecs = new TimeSpan(0, 0, 14);
             var fifteenSecs = new TimeSpan(0, 0, 15);
-            
+
             if (diff >= twelveSecs && diff < thirteenSecs)
             {
                 PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sparta, false);
@@ -420,7 +420,7 @@ namespace FireDeptStopwatch.Forms
                         using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
                         {
                             var binaryFormatter = new BinaryFormatter();
-                            resultList = (List<TimerResult>) binaryFormatter.Deserialize(stream);
+                            resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
                             resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
 
                             foreach (var result in resultList)
@@ -607,4 +607,5 @@ namespace FireDeptStopwatch.Forms
         }
 
         #endregion
+    }
 }
