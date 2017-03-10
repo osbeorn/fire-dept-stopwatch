@@ -100,13 +100,11 @@ namespace FireDeptStopwatch.Forms
 
         private void PlaySound(UnmanagedMemoryStream sound, bool sync)
         {
-            using (var player = new SoundPlayer(sound))
-            {
-                if (sync)
-                    player.PlaySync();
-                else
-                    player.Play();
-            }
+            var player = new SoundPlayer(sound);
+            if (sync)
+                player.PlaySync();
+            else
+                player.Play();
         }
 
         private async void StartTimer()
@@ -328,25 +326,25 @@ namespace FireDeptStopwatch.Forms
         {
             mutedSessions = new List<string>();
 
-            //var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
-            //foreach (var session in sessions)
-            //{
-            //    if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
-            //        continue;
+            var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
+            foreach (var session in sessions)
+            {
+                if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
+                    continue;
 
-            //    session.SetMuteAsync(true);
-            //    mutedSessions.Add(session.Id);
-            //}
+                session.SetMuteAsync(true);
+                mutedSessions.Add(session.Id);
+            }
         }
 
         private void UnmuteApplications()
         {
-            //var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
-            //foreach (var session in sessions)
-            //{
-            //    if (mutedSessions.Contains(session.Id))
-            //        session.SetMuteAsync(false);
-            //}
+            var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
+            foreach (var session in sessions)
+            {
+                if (mutedSessions.Contains(session.Id))
+                    session.SetMuteAsync(false);
+            }
         }
 
         #region Event handlers
@@ -529,7 +527,7 @@ namespace FireDeptStopwatch.Forms
 
             preparationCounter = preparationTime;
 
-            PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zacetek, false);
+            PlaySound(Properties.Resources.ssv_priprava_orodja_zacetek, false);
 
             preparationTimer.Start();
         }
@@ -538,7 +536,7 @@ namespace FireDeptStopwatch.Forms
         {
             if (preparationCounter == 0)
             {
-                PlaySound(FireDeptStopwatch.Properties.Resources.ssv_priprava_orodja_zakljucek, false);
+                PlaySound(Properties.Resources.ssv_priprava_orodja_zakljucek, false);
                 preparationTimer.Stop();
 
                 preparationButton.Enabled = true;
@@ -609,18 +607,4 @@ namespace FireDeptStopwatch.Forms
         }
 
         #endregion
-
-        #region Overrides
-
-        //protected override void OnPaintBackground(PaintEventArgs e)
-        //{
-        //    base.OnPaintBackground(e);
-        //    var rc = new Rectangle(this.ClientSize.Width - backgroundImage.Width,
-        //        this.ClientSize.Height - backgroundImage.Height,
-        //        backgroundImage.Width, backgroundImage.Height);
-        //    e.Graphics.DrawImage(backgroundImage, rc);
-        //}
-
-        #endregion
-    }
 }
