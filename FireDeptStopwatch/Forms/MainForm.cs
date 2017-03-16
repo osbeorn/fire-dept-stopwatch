@@ -461,6 +461,8 @@ namespace FireDeptStopwatch.Forms
                 timerResult.Result = current - start;
                 timerResult.DateTime = start;
 
+                UnmuteApplications();
+
                 if (inputPenalties)
                 {
                     var penaltiesForm = new PenaltiesForm();
@@ -479,8 +481,6 @@ namespace FireDeptStopwatch.Forms
                 resultsListBox.Items.Insert(0, timerResult);
 
                 SaveResults();
-
-                UnmuteApplications();
             }
             else
             {
