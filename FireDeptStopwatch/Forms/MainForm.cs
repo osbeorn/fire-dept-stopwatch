@@ -22,6 +22,9 @@ namespace FireDeptStopwatch.Forms
         private DateTime current;
         private TimeSpan diff;
 
+        private List<TimeSpan> splitTimes;
+        private DateTime lastSplitTime;
+
         private List<TimerResult> resultList;
         private IKeyboardMouseEvents globalHook;
 
@@ -76,10 +79,14 @@ namespace FireDeptStopwatch.Forms
 
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
 
+            splitTimes = new List<TimeSpan>();
+
             resultList = new List<TimerResult>();
 
             globalHook = Hook.GlobalEvents();
             globalHook.MouseDownExt += GlobalHook_MouseDownExt;
+            //globalHook.KeyPress += GlobalHook_KeyPress;
+            globalHook.KeyDown += GlobalHook_KeyDown;
 
             //deviceHandler = new RawInputDevices(Handle);
 
@@ -223,6 +230,17 @@ namespace FireDeptStopwatch.Forms
 
             lineupCounter = 11;
             lineupTimer.Start();
+        }
+
+        private void LogSplitTime()
+        {
+            TimeSpan splitTime;
+            if (this.lastSplitTime != null)
+                splitTime = current - start;
+            else
+                splitTime = current - this.lastSplitTime;
+
+            splitTimes.Add(splitTime);
         }
 
         private void SaveResults()
@@ -382,6 +400,26 @@ namespace FireDeptStopwatch.Forms
             {
                 EndTimerAndLogResult();
             }
+        }
+
+        //private void GlobalHook_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (e.KeyChar == ' ')
+        //    {
+        //        LogSplitTime();
+        //    }
+
+        //    e.Handled = true;
+        //}
+
+        private void GlobalHook_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                LogSplitTime();
+            }
+
+            e.Handled = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
