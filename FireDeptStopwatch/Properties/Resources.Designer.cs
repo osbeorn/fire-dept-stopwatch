@@ -91,9 +91,18 @@ namespace FireDeptStopwatch.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ssv_startno_povelje {
+        internal static System.IO.UnmanagedMemoryStream ssv_startno_povelje_HR {
             get {
-                return ResourceManager.GetStream("ssv_startno_povelje", resourceCulture);
+                return ResourceManager.GetStream("ssv_startno_povelje_HR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_startno_povelje_SI {
+            get {
+                return ResourceManager.GetStream("ssv_startno_povelje_SI", resourceCulture);
             }
         }
         

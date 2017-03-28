@@ -136,6 +136,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Country.cs" />
     <Compile Include="Classes\RawInputDevices.cs" />
     <Compile Include="Classes\TimerResult.cs" />
     <Compile Include="Forms\AnalysesForm.cs">
@@ -214,7 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <None Include="Resources\ssv_startno_povelje.wav" />
+    <None Include="Resources\ssv_startno_povelje_HR.wav" />
+    <None Include="Resources\ssv_startno_povelje_SI.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_hallelujah.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_ufo.wav" />
     <None Include="Resources\ssv_zakljucek_1_alt_train_whistle.wav" />

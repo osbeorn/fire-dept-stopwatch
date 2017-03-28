@@ -33,6 +33,7 @@ namespace FireDeptStopwatch.Forms
 
         private int preparationTime;
         private bool inputPenalties;
+        private CountryCode country;
 
         private bool resetTriggered { get; set; }
 
@@ -69,6 +70,16 @@ namespace FireDeptStopwatch.Forms
         public void SetInputPenalties(bool inputPenalties)
         {
             this.inputPenalties = inputPenalties;
+        }
+
+        public CountryCode GetCountry()
+        {
+            return country;
+        }
+
+        public void SetCountry(CountryCode country)
+        {
+            this.country = country;
         }
 
         private void InitializeComponents()
@@ -120,8 +131,20 @@ namespace FireDeptStopwatch.Forms
 
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
             resetButton.Enabled = false;
-
-            await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje, true));
+            
+            switch (country)
+            {
+                case CountryCode.AT:
+                    // TODO
+                    break;
+                case CountryCode.HR:
+                    await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_HR, true));
+                    break;
+                case CountryCode.SI:
+                default:
+                    await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_SI, true));
+                    break;
+            }
 
             resetButton.Enabled = true;
 
@@ -476,6 +499,7 @@ namespace FireDeptStopwatch.Forms
 
             preparationTime = Int32.Parse(ConfigurationManager.AppSettings["preparationTime"]);
             inputPenalties = Boolean.Parse(ConfigurationManager.AppSettings["inputPenalties"]);
+            country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -127,8 +127,11 @@
   <data name="ssv_priprava_orodja_zakljucek" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ssv_priprava_orodja_zakljucek.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ssv_startno_povelje" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ssv_startno_povelje.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ssv_startno_povelje_HR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ssv_startno_povelje_HR.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ssv_startno_povelje_SI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ssv_startno_povelje_SI.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ssv_zakljucek_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ssv_zakljucek_1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
