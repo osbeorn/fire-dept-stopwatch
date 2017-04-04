@@ -12,7 +12,7 @@ namespace FireDeptStopwatch.Classes
 
         public int? Penalties { get; set; }
 
-        public List<TimeSpan> SplitTimes { get; set; }
+        public List<SplitTimeResult> SplitTimes { get; set; }
 
         public TimeSpan GetEndResult()
         {
@@ -25,9 +25,14 @@ namespace FireDeptStopwatch.Classes
                 return Result;
         }
 
+        public bool HasSplitTimes()
+        {
+            return SplitTimes != null && SplitTimes.Count > 0;
+        }
+
         public override string ToString()
         {
-            return string.Format("{0} - {1}", new[] { DateTime.ToString("dd.MM.yyyy"), GetEndResult().ToString(@"mm\:ss\.ffff") });
+            return string.Format("{0} - {1}", DateTime.ToString("dd.MM.yyyy"), GetEndResult().ToString(@"mm\:ss\.ffff"));
         }
     }
 }

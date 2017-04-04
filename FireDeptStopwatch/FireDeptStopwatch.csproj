@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="Classes\Country.cs" />
     <Compile Include="Classes\RawInputDevices.cs" />
+    <Compile Include="Classes\SplitTimeResult.cs" />
     <Compile Include="Classes\TimerResult.cs" />
     <Compile Include="Forms\AnalysesForm.cs">
       <SubType>Form</SubType>
@@ -163,6 +164,12 @@
     <Compile Include="Forms\PreferencesForm.Designer.cs">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SplitTimesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplitTimesForm.Designer.cs">
+      <DependentUpon>SplitTimesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AnalysesForm.resx">
@@ -176,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PreferencesForm.resx">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplitTimesForm.resx">
+      <DependentUpon>SplitTimesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

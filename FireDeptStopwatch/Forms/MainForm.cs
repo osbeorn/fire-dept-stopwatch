@@ -22,8 +22,9 @@ namespace FireDeptStopwatch.Forms
         private DateTime current;
         private TimeSpan diff;
 
-        private List<TimeSpan> splitTimes;
-        private DateTime lastSplitTime;
+        private List<SplitTimeResult> splitTimes;
+        private DateTime? lastSplitTime = null;
+        private SplitTimesForm splitTimesForm;
 
         private List<TimerResult> resultList;
         private IKeyboardMouseEvents globalHook;
@@ -33,13 +34,14 @@ namespace FireDeptStopwatch.Forms
 
         private int preparationTime;
         private bool inputPenalties;
+        private bool recordSplitTimes;
         private CountryCode country;
 
         private bool resetTriggered { get; set; }
 
-        //RawInputDevices deviceHandler;
-        CoreAudioController audioController;
-        List<String> mutedSessions;
+        //private RawInputDevices deviceHandler;
+        private CoreAudioController audioController;
+        private List<String> mutedSessions;
 
         public MainForm()
         {
@@ -72,6 +74,16 @@ namespace FireDeptStopwatch.Forms
             this.inputPenalties = inputPenalties;
         }
 
+        public bool GetRecordSplitTimes()
+        {
+            return recordSplitTimes;
+        }
+
+        public void SetRecordSplitTimes(bool recordSplitTimes)
+        {
+            this.recordSplitTimes = recordSplitTimes;
+        }
+
         public CountryCode GetCountry()
         {
             return country;
@@ -90,19 +102,18 @@ namespace FireDeptStopwatch.Forms
 
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
 
-            splitTimes = new List<TimeSpan>();
+            splitTimes = new List<SplitTimeResult>();
 
             resultList = new List<TimerResult>();
 
             globalHook = Hook.GlobalEvents();
             globalHook.MouseDownExt += GlobalHook_MouseDownExt;
-            //globalHook.KeyPress += GlobalHook_KeyPress;
             globalHook.KeyDown += GlobalHook_KeyDown;
 
             //deviceHandler = new RawInputDevices(Handle);
 
             audioController = new CoreAudioController();
-            mutedSessions = new List<string>();
+            mutedSessions = new List<string>();            
         }
 
         private void PrepareDataFile()
@@ -127,6 +138,11 @@ namespace FireDeptStopwatch.Forms
 
         private async void StartTimer()
         {
+            startButton.Enabled = false;
+            preparationButton.Enabled = false;
+
+            ClearSplitTimes();
+
             MuteApplications();
 
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
@@ -149,6 +165,8 @@ namespace FireDeptStopwatch.Forms
             resetButton.Enabled = true;
 
             start = DateTime.Now;
+            lastSplitTime = null;
+
             stopwatchTimer.Start();
         }
 
@@ -168,6 +186,14 @@ namespace FireDeptStopwatch.Forms
             lineupLabel.Text = "0";
 
             UnmuteApplications();
+
+            ClearSplitTimes();
+        }
+
+        private void ClearSplitTimes()
+        {
+            if (recordSplitTimes && splitTimesForm != null)
+                splitTimesForm.ClearSplitTimes();
         }
 
         private void EndTimerAndLogResult()
@@ -258,12 +284,18 @@ namespace FireDeptStopwatch.Forms
         private void LogSplitTime()
         {
             TimeSpan splitTime;
-            if (this.lastSplitTime != null)
+            //if (!lastSplitTime.HasValue)
                 splitTime = current - start;
-            else
-                splitTime = current - this.lastSplitTime;
+            //else
+            //    splitTime = current - this.lastSplitTime.Value;
 
-            splitTimes.Add(splitTime);
+            var splitTimeResult = new SplitTimeResult(splitTime);
+            splitTimes.Add(splitTimeResult);
+
+            lastSplitTime = current;
+
+            if (splitTimesForm != null)
+                splitTimesForm.AddSplitTime(splitTimeResult);
         }
 
         private void SaveResults()
@@ -388,13 +420,26 @@ namespace FireDeptStopwatch.Forms
             }
         }
 
+        private void ShowSplitTimesForm()
+        {
+            splitTimesForm = new SplitTimesForm();
+            splitTimesForm.Location = new Point(this.Location.X + this.Bounds.Width, this.Location.Y);
+            splitTimesForm.Show();
+        }
+
+        private void HideSplitTimesForm()
+        {
+            if (splitTimesForm != null)
+            {
+                splitTimesForm.Close();
+                splitTimesForm = null;
+            }
+        }
+
         #region Event handlers
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            startButton.Enabled = false;
-            preparationButton.Enabled = false;
-
             StartTimer();
         }
 
@@ -418,31 +463,19 @@ namespace FireDeptStopwatch.Forms
                 return;
             }
 
-
             if (stopwatchTimer.Enabled && e.Button.Equals(MouseButtons.Left))
             {
                 EndTimerAndLogResult();
             }
         }
 
-        //private void GlobalHook_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (e.KeyChar == ' ')
-        //    {
-        //        LogSplitTime();
-        //    }
-
-        //    e.Handled = true;
-        //}
-
         private void GlobalHook_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (recordSplitTimes && stopwatchTimer.Enabled && e.KeyCode == Keys.Space)
             {
                 LogSplitTime();
+                e.Handled = true;
             }
-
-            e.Handled = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -499,7 +532,13 @@ namespace FireDeptStopwatch.Forms
 
             preparationTime = Int32.Parse(ConfigurationManager.AppSettings["preparationTime"]);
             inputPenalties = Boolean.Parse(ConfigurationManager.AppSettings["inputPenalties"]);
+            recordSplitTimes = Boolean.Parse(ConfigurationManager.AppSettings["recordSplitTimes"]);
             country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
+
+            if (recordSplitTimes)
+            {
+                ShowSplitTimesForm();
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -522,6 +561,8 @@ namespace FireDeptStopwatch.Forms
                 TimerResult timerResult = new TimerResult();
                 timerResult.Result = current - start;
                 timerResult.DateTime = start;
+                if (splitTimes != null && splitTimes.Count > 0)
+                    timerResult.SplitTimes = splitTimes;
 
                 UnmuteApplications();
 
@@ -621,7 +662,19 @@ namespace FireDeptStopwatch.Forms
         {
             PreferencesForm preferencesForm = new PreferencesForm();
             preferencesForm.InitializeComponents(this);
-            preferencesForm.ShowDialog(this);
+            var result = preferencesForm.ShowDialog(this);
+
+            if (result == DialogResult.OK) {
+                // show / hide split times form
+                if (recordSplitTimes)
+                {
+                    ShowSplitTimesForm();
+                }
+                else
+                {
+                    HideSplitTimesForm();
+                }
+            }
         }
 
         private void GraphsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -640,6 +693,21 @@ namespace FireDeptStopwatch.Forms
                 {
                     resultsContextMenuStrip.Tag = resultsListBox.SelectedItem;
                     resultsContextMenuStrip.Show(Cursor.Position);
+                }
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                if (e.Clicks == 2) // double click
+                {
+                    resultsListBox.SelectedIndex = resultsListBox.IndexFromPoint(e.Location);
+                    if (resultsListBox.SelectedIndex != -1)
+                    {
+                        var selectedResult = resultsListBox.SelectedItem as TimerResult;
+                        if (selectedResult.HasSplitTimes())
+                        {
+                            // TODO - show split times from with selected split time results
+                        }
+                    }
                 }
             }
         }
@@ -666,6 +734,12 @@ namespace FireDeptStopwatch.Forms
                 resultsListBox.Items.RemoveAt(resultsListBox.SelectedIndex);
                 resultsListBox.Items.Insert(index, timerResult);
             }
+        }
+
+        private void MainForm_Move(object sender, EventArgs e)
+        {
+            if (splitTimesForm != null && splitTimesForm.Visible)
+                splitTimesForm.Location = new Point(this.Location.X + this.Bounds.Width, this.Location.Y);
         }
 
         #endregion

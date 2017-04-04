@@ -37,6 +37,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.countriesComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.recordSplitTimesCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +75,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(68, 124);
+            this.confirmButton.Location = new System.Drawing.Point(71, 147);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 2;
@@ -85,12 +86,13 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(149, 124);
+            this.cancelButton.Location = new System.Drawing.Point(152, 147);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Prekliči";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // label2
             // 
@@ -104,7 +106,7 @@
             // inputPenaltiesCheckBox
             // 
             this.inputPenaltiesCheckBox.AutoSize = true;
-            this.inputPenaltiesCheckBox.Location = new System.Drawing.Point(8, 45);
+            this.inputPenaltiesCheckBox.Location = new System.Drawing.Point(9, 45);
             this.inputPenaltiesCheckBox.Name = "inputPenaltiesCheckBox";
             this.inputPenaltiesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.inputPenaltiesCheckBox.Size = new System.Drawing.Size(125, 17);
@@ -114,6 +116,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.recordSplitTimesCheckBox);
             this.groupBox1.Controls.Add(this.countriesComboBox);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.preparationTimeNumericUpDown);
@@ -122,7 +125,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 103);
+            this.groupBox1.Size = new System.Drawing.Size(269, 129);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Splošno";
@@ -130,7 +133,7 @@
             // countriesComboBox
             // 
             this.countriesComboBox.FormattingEnabled = true;
-            this.countriesComboBox.Location = new System.Drawing.Point(95, 68);
+            this.countriesComboBox.Location = new System.Drawing.Point(95, 91);
             this.countriesComboBox.Name = "countriesComboBox";
             this.countriesComboBox.Size = new System.Drawing.Size(168, 21);
             this.countriesComboBox.TabIndex = 8;
@@ -138,11 +141,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 71);
+            this.label3.Location = new System.Drawing.Point(6, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Država:";
+            // 
+            // recordSplitTimesCheckBox
+            // 
+            this.recordSplitTimesCheckBox.AutoSize = true;
+            this.recordSplitTimesCheckBox.Location = new System.Drawing.Point(9, 68);
+            this.recordSplitTimesCheckBox.Name = "recordSplitTimesCheckBox";
+            this.recordSplitTimesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.recordSplitTimesCheckBox.Size = new System.Drawing.Size(146, 17);
+            this.recordSplitTimesCheckBox.TabIndex = 9;
+            this.recordSplitTimesCheckBox.Text = "Beleženje vmesnih časov";
+            this.recordSplitTimesCheckBox.UseVisualStyleBackColor = true;
             // 
             // PreferencesForm
             // 
@@ -150,7 +164,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(293, 159);
+            this.ClientSize = new System.Drawing.Size(293, 182);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cancelButton);
@@ -179,5 +193,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox countriesComboBox;
+        private System.Windows.Forms.CheckBox recordSplitTimesCheckBox;
     }
 }

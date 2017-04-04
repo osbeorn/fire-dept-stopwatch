@@ -199,15 +199,14 @@
             // 
             // resultsListBox
             // 
-            this.resultsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.resultsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.resultsListBox.FormattingEnabled = true;
-            this.resultsListBox.ItemHeight = 16;
+            this.resultsListBox.ItemHeight = 20;
             this.resultsListBox.Location = new System.Drawing.Point(6, 16);
             this.resultsListBox.Name = "resultsListBox";
             this.resultsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.resultsListBox.Size = new System.Drawing.Size(204, 388);
+            this.resultsListBox.Size = new System.Drawing.Size(204, 384);
             this.resultsListBox.TabIndex = 0;
-            this.resultsListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             this.resultsListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResultsListBox_KeyUp);
             this.resultsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResultsListBox_MouseDown);
             // 
@@ -329,6 +328,7 @@
             this.Text = "SSV štoparica (PGD Zagradec pri Grosupljem)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Move += new System.EventHandler(this.MainForm_Move);
             this.mainPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             this.logoPanel.PerformLayout();

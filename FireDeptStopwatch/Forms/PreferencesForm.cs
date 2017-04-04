@@ -21,6 +21,7 @@ namespace FireDeptStopwatch.Forms
             preparationTimeNumericUpDown.Value = parent.GetPreparationTime();
 
             inputPenaltiesCheckBox.Checked = parent.GetInputPenalties();
+            recordSplitTimesCheckBox.Checked = parent.GetRecordSplitTimes();
 
             countriesComboBox.ValueMember = "Code";
             countriesComboBox.DisplayMember = "Name";
@@ -33,6 +34,7 @@ namespace FireDeptStopwatch.Forms
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings["preparationTime"].Value = ((int)(preparationTimeNumericUpDown.Value * 60)).ToString();
             config.AppSettings.Settings["inputPenalties"].Value = inputPenaltiesCheckBox.Checked.ToString();
+            config.AppSettings.Settings["recordSplitTimes"].Value = recordSplitTimesCheckBox.Checked.ToString();
             config.AppSettings.Settings["country"].Value = countriesComboBox.SelectedValue.ToString();
             config.Save(ConfigurationSaveMode.Modified);
 
@@ -40,10 +42,16 @@ namespace FireDeptStopwatch.Forms
 
             parent.SetPreparationTime((int) preparationTimeNumericUpDown.Value);
             parent.SetInputPenalties(inputPenaltiesCheckBox.Checked);
+            parent.SetRecordSplitTimes(recordSplitTimesCheckBox.Checked);
             parent.SetCountry((CountryCode) countriesComboBox.SelectedValue);
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
