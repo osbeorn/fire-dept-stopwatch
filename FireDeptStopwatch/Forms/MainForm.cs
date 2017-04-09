@@ -283,13 +283,18 @@ namespace FireDeptStopwatch.Forms
 
         private void LogSplitTime()
         {
-            TimeSpan splitTime;
-            //if (!lastSplitTime.HasValue)
-                splitTime = current - start;
-            //else
-            //    splitTime = current - this.lastSplitTime.Value;
+            TimeSpan fromStart = current - start;
+            TimeSpan fromPrevious;
+            if (!lastSplitTime.HasValue)
+                fromPrevious = current - start;
+            else
+                fromPrevious = current - this.lastSplitTime.Value;
 
-            var splitTimeResult = new SplitTimeResult(splitTime);
+            var splitTimeResult = new SplitTimeResult
+            {
+                FromPrevious = fromPrevious,
+                FromStart = fromStart
+            };
             splitTimes.Add(splitTimeResult);
 
             lastSplitTime = current;

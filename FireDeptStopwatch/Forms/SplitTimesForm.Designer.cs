@@ -40,14 +40,14 @@
             this.splitTimesListBox.Location = new System.Drawing.Point(12, 19);
             this.splitTimesListBox.Name = "splitTimesListBox";
             this.splitTimesListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.splitTimesListBox.Size = new System.Drawing.Size(112, 444);
+            this.splitTimesListBox.Size = new System.Drawing.Size(202, 444);
             this.splitTimesListBox.TabIndex = 0;
             // 
             // SplitTimesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(140, 507);
+            this.ClientSize = new System.Drawing.Size(230, 507);
             this.ControlBox = false;
             this.Controls.Add(this.splitTimesListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
