@@ -76,6 +76,8 @@ namespace FireDeptStopwatch.Forms
 
         public void ClearSplitTimes()
         {
+            splitTimes = null;
+            splitTimesListBox.DataSource = null;
             splitTimesListBox.Items.Clear();
         }
     }

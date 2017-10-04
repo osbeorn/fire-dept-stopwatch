@@ -56,6 +56,8 @@
             this.graphsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             this.resultListGroupBox.SuspendLayout();
@@ -98,7 +100,7 @@
             this.logoPanel.Controls.Add(this.label1);
             this.logoPanel.Location = new System.Drawing.Point(221, 3);
             this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Size = new System.Drawing.Size(504, 413);
+            this.logoPanel.Size = new System.Drawing.Size(504, 400);
             this.logoPanel.TabIndex = 6;
             // 
             // preparationLabel
@@ -138,7 +140,7 @@
             this.stopwatchLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.stopwatchLabel.BackColor = System.Drawing.Color.Transparent;
             this.stopwatchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.stopwatchLabel.Location = new System.Drawing.Point(7, 162);
+            this.stopwatchLabel.Location = new System.Drawing.Point(7, 156);
             this.stopwatchLabel.Name = "stopwatchLabel";
             this.stopwatchLabel.Size = new System.Drawing.Size(488, 93);
             this.stopwatchLabel.TabIndex = 0;
@@ -156,9 +158,9 @@
             // 
             // preparationButton
             // 
-            this.preparationButton.Location = new System.Drawing.Point(342, 422);
+            this.preparationButton.Location = new System.Drawing.Point(342, 410);
             this.preparationButton.Name = "preparationButton";
-            this.preparationButton.Size = new System.Drawing.Size(86, 23);
+            this.preparationButton.Size = new System.Drawing.Size(86, 35);
             this.preparationButton.TabIndex = 4;
             this.preparationButton.Text = "Priprava orodja";
             this.preparationButton.UseVisualStyleBackColor = true;
@@ -178,9 +180,9 @@
             // 
             // deleteAllResultsButton
             // 
-            this.deleteAllResultsButton.Location = new System.Drawing.Point(112, 419);
+            this.deleteAllResultsButton.Location = new System.Drawing.Point(112, 407);
             this.deleteAllResultsButton.Name = "deleteAllResultsButton";
-            this.deleteAllResultsButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteAllResultsButton.Size = new System.Drawing.Size(75, 35);
             this.deleteAllResultsButton.TabIndex = 2;
             this.deleteAllResultsButton.Text = "Briši vse";
             this.deleteAllResultsButton.UseVisualStyleBackColor = true;
@@ -189,9 +191,9 @@
             // deleteResultButton
             // 
             this.deleteResultButton.Enabled = false;
-            this.deleteResultButton.Location = new System.Drawing.Point(31, 419);
+            this.deleteResultButton.Location = new System.Drawing.Point(31, 407);
             this.deleteResultButton.Name = "deleteResultButton";
-            this.deleteResultButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteResultButton.Size = new System.Drawing.Size(75, 35);
             this.deleteResultButton.TabIndex = 1;
             this.deleteResultButton.Text = "Briši";
             this.deleteResultButton.UseVisualStyleBackColor = true;
@@ -214,9 +216,9 @@
             // 
             this.resetButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.resetButton.Enabled = false;
-            this.resetButton.Location = new System.Drawing.Point(515, 422);
+            this.resetButton.Location = new System.Drawing.Point(515, 410);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.Size = new System.Drawing.Size(75, 35);
             this.resetButton.TabIndex = 1;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
@@ -225,9 +227,9 @@
             // startButton
             // 
             this.startButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.startButton.Location = new System.Drawing.Point(434, 422);
+            this.startButton.Location = new System.Drawing.Point(434, 410);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(75, 23);
+            this.startButton.Size = new System.Drawing.Size(75, 35);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
@@ -244,7 +246,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.analysisToolStripMenuItem});
+            this.analysisToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(728, 24);
@@ -262,7 +265,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Izhod";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -277,7 +280,7 @@
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.preferencesToolStripMenuItem.Text = "&Nastavitve";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.PreferencesToolStripMenuItem_Click);
             // 
@@ -292,7 +295,7 @@
             // graphsToolStripMenuItem
             // 
             this.graphsToolStripMenuItem.Name = "graphsToolStripMenuItem";
-            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.graphsToolStripMenuItem.Text = "&Grafi";
             this.graphsToolStripMenuItem.Click += new System.EventHandler(this.GraphsToolStripMenuItem_Click);
             // 
@@ -310,6 +313,21 @@
             this.editResultToolStripMenuItem.Size = new System.Drawing.Size(77, 22);
             this.editResultToolStripMenuItem.Text = "Uredi";
             this.editResultToolStripMenuItem.Click += new System.EventHandler(this.EditResultToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.helpToolStripMenuItem.Text = "Pomoč";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "O programu";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -369,6 +387,8 @@
         private System.Windows.Forms.Panel logoPanel;
         private System.Windows.Forms.ContextMenuStrip resultsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem editResultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

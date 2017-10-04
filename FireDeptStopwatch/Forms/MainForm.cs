@@ -192,8 +192,16 @@ namespace FireDeptStopwatch.Forms
 
         private void ClearSplitTimes()
         {
+            if (splitTimes != null)
+            {
+                splitTimes = new List<SplitTimeResult>();
+            }
+
             if (recordSplitTimes && splitTimesForm != null)
+            {
                 splitTimesForm.ClearSplitTimes();
+            }
+
         }
 
         private void EndTimerAndLogResult()
@@ -567,7 +575,7 @@ namespace FireDeptStopwatch.Forms
                 timerResult.Result = current - start;
                 timerResult.DateTime = start;
                 if (splitTimes != null && splitTimes.Count > 0)
-                    timerResult.SplitTimes = splitTimes;
+                    timerResult.SplitTimes = new List<SplitTimeResult>(splitTimes);
 
                 UnmuteApplications();
 
@@ -704,13 +712,21 @@ namespace FireDeptStopwatch.Forms
             {
                 if (e.Clicks == 2) // double click
                 {
-                    resultsListBox.SelectedIndex = resultsListBox.IndexFromPoint(e.Location);
-                    if (resultsListBox.SelectedIndex != -1)
+                    if (recordSplitTimes)
                     {
-                        var selectedResult = resultsListBox.SelectedItem as TimerResult;
-                        if (selectedResult.HasSplitTimes())
+                        resultsListBox.SelectedIndex = resultsListBox.IndexFromPoint(e.Location);
+                        if (resultsListBox.SelectedIndex != -1)
                         {
-                            // TODO - show split times from with selected split time results
+                            var selectedResult = resultsListBox.SelectedItem as TimerResult;
+                            if (selectedResult.HasSplitTimes())
+                            {
+                                if (splitTimesForm == null)
+                                {
+                                    ShowSplitTimesForm();
+                                }
+
+                                splitTimesForm.SetSplitTimes(selectedResult.SplitTimes);
+                            }
                         }
                     }
                 }
@@ -745,6 +761,11 @@ namespace FireDeptStopwatch.Forms
         {
             if (splitTimesForm != null && splitTimesForm.Visible)
                 splitTimesForm.Location = new Point(this.Location.X + this.Bounds.Width, this.Location.Y);
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("SSV štoparica\n\n© 2016-2017 Benjamin Kastelic & PGD Zagradec pri Grosupljem", "O programu", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion
