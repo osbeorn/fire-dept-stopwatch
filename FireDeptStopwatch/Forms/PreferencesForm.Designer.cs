@@ -35,16 +35,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.inputPenaltiesCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.recordSplitTimesCheckBox = new System.Windows.Forms.CheckBox();
             this.countriesComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.addCameraButton = new System.Windows.Forms.Button();
-            this.cameraUrlsListBox = new System.Windows.Forms.ListBox();
-            this.recordVideosCheckBox = new System.Windows.Forms.CheckBox();
+            this.recordSplitTimesCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +75,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(71, 335);
+            this.confirmButton.Location = new System.Drawing.Point(71, 147);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 2;
@@ -91,12 +86,13 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(152, 335);
+            this.cancelButton.Location = new System.Drawing.Point(152, 147);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Prekliči";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // label2
             // 
@@ -129,21 +125,10 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 126);
+            this.groupBox1.Size = new System.Drawing.Size(269, 129);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Splošno";
-            // 
-            // recordSplitTimesCheckBox
-            // 
-            this.recordSplitTimesCheckBox.AutoSize = true;
-            this.recordSplitTimesCheckBox.Location = new System.Drawing.Point(9, 68);
-            this.recordSplitTimesCheckBox.Name = "recordSplitTimesCheckBox";
-            this.recordSplitTimesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.recordSplitTimesCheckBox.Size = new System.Drawing.Size(146, 17);
-            this.recordSplitTimesCheckBox.TabIndex = 9;
-            this.recordSplitTimesCheckBox.Text = "Beleženje vmesnih časov";
-            this.recordSplitTimesCheckBox.UseVisualStyleBackColor = true;
             // 
             // countriesComboBox
             // 
@@ -162,48 +147,16 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Država:";
             // 
-            // groupBox2
+            // recordSplitTimesCheckBox
             // 
-            this.groupBox2.Controls.Add(this.addCameraButton);
-            this.groupBox2.Controls.Add(this.cameraUrlsListBox);
-            this.groupBox2.Controls.Add(this.recordVideosCheckBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 144);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(269, 185);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Snemanje";
-            // 
-            // addCameraButton
-            // 
-            this.addCameraButton.Location = new System.Drawing.Point(176, 156);
-            this.addCameraButton.Name = "addCameraButton";
-            this.addCameraButton.Size = new System.Drawing.Size(87, 23);
-            this.addCameraButton.TabIndex = 9;
-            this.addCameraButton.Text = "Dodaj kamero";
-            this.addCameraButton.UseVisualStyleBackColor = true;
-            this.addCameraButton.Click += new System.EventHandler(this.AddCameraButton_Click);
-            // 
-            // cameraUrlsListBox
-            // 
-            this.cameraUrlsListBox.FormattingEnabled = true;
-            this.cameraUrlsListBox.Location = new System.Drawing.Point(6, 42);
-            this.cameraUrlsListBox.Name = "cameraUrlsListBox";
-            this.cameraUrlsListBox.Size = new System.Drawing.Size(257, 108);
-            this.cameraUrlsListBox.TabIndex = 8;
-            this.cameraUrlsListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CameraUrlsListBox_KeyUp);
-            this.cameraUrlsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CameraUrlsListBox_MouseDown);
-            // 
-            // recordVideosCheckBox
-            // 
-            this.recordVideosCheckBox.AutoSize = true;
-            this.recordVideosCheckBox.Location = new System.Drawing.Point(9, 19);
-            this.recordVideosCheckBox.Name = "recordVideosCheckBox";
-            this.recordVideosCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.recordVideosCheckBox.Size = new System.Drawing.Size(84, 17);
-            this.recordVideosCheckBox.TabIndex = 7;
-            this.recordVideosCheckBox.Text = "Omogočeno";
-            this.recordVideosCheckBox.UseVisualStyleBackColor = true;
+            this.recordSplitTimesCheckBox.AutoSize = true;
+            this.recordSplitTimesCheckBox.Location = new System.Drawing.Point(9, 68);
+            this.recordSplitTimesCheckBox.Name = "recordSplitTimesCheckBox";
+            this.recordSplitTimesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.recordSplitTimesCheckBox.Size = new System.Drawing.Size(146, 17);
+            this.recordSplitTimesCheckBox.TabIndex = 9;
+            this.recordSplitTimesCheckBox.Text = "Beleženje vmesnih časov";
+            this.recordSplitTimesCheckBox.UseVisualStyleBackColor = true;
             // 
             // PreferencesForm
             // 
@@ -211,9 +164,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(293, 370);
+            this.ClientSize = new System.Drawing.Size(293, 182);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.confirmButton);
@@ -226,8 +178,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -244,9 +194,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox countriesComboBox;
         private System.Windows.Forms.CheckBox recordSplitTimesCheckBox;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox recordVideosCheckBox;
-        private System.Windows.Forms.ListBox cameraUrlsListBox;
-        private System.Windows.Forms.Button addCameraButton;
     }
 }
