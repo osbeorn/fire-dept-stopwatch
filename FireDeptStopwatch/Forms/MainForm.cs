@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using AudioSwitcher.AudioApi.CoreAudio;
 using AudioSwitcher.AudioApi.Session;
+using FireDeptStopwatch.Helpers;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -36,8 +37,11 @@ namespace FireDeptStopwatch.Forms
         private bool inputPenalties;
         private bool recordSplitTimes;
         private CountryCode country;
+        private bool recording;
+        private List<CameraInfo> cameras;
+        private List<string> streamUrls;
 
-        private bool resetTriggered { get; set; }
+        private List<VideoRecorder> videoRecorders;
 
         //private RawInputDevices deviceHandler;
         private CoreAudioController audioController;
@@ -94,6 +98,38 @@ namespace FireDeptStopwatch.Forms
             this.country = country;
         }
 
+        public bool GetRecordVideos()
+        {
+            return recording;
+        }
+
+        public void SetRecordVideos(bool recording)
+        {
+            this.recording = recording;
+
+            this.webcamStatusPictureBox.Visible = this.recording;
+        }
+
+        public List<CameraInfo> GetCameras()
+        {
+            return cameras;
+        }
+
+        public void SetCameras(List<CameraInfo> cameraUrls)
+        {
+            this.cameras = cameraUrls;
+        }
+
+        public List<string> GetStreamUris()
+        {
+            return streamUrls;
+        }
+
+        public void SetStreamUrls(List<string> streamUris)
+        {
+            this.streamUrls = streamUris;
+        }
+
         private void InitializeComponents()
         {
             //Application.AddMessageFilter(this);
@@ -113,7 +149,7 @@ namespace FireDeptStopwatch.Forms
             //deviceHandler = new RawInputDevices(Handle);
 
             audioController = new CoreAudioController();
-            mutedSessions = new List<string>();            
+            mutedSessions = new List<string>();
         }
 
         private void PrepareDataFile()
@@ -145,9 +181,11 @@ namespace FireDeptStopwatch.Forms
 
             MuteApplications();
 
+            StartVideoRecorders();
+
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
             resetButton.Enabled = false;
-            
+
             switch (country)
             {
                 case CountryCode.AT:
@@ -162,10 +200,10 @@ namespace FireDeptStopwatch.Forms
                     break;
             }
 
-            resetButton.Enabled = true;
-
             start = DateTime.Now;
             lastSplitTime = null;
+
+            resetButton.Enabled = true;
 
             stopwatchTimer.Start();
         }
@@ -285,6 +323,8 @@ namespace FireDeptStopwatch.Forms
                 }
             }
 
+            StopVideoRecorders();
+
             lineupCounter = 11;
             lineupTimer.Start();
         }
@@ -390,12 +430,10 @@ namespace FireDeptStopwatch.Forms
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
             DialogResult result = MessageBox.Show(message, caption, buttons);
-
             if (!result.Equals(DialogResult.Yes))
                 return;
 
             var selectedItems = resultsListBox.SelectedItems;
-
             if (selectedItems.Count == 0)
                 return;
 
@@ -415,7 +453,7 @@ namespace FireDeptStopwatch.Forms
             var sessions = audioController.DefaultPlaybackDevice.GetCapability<IAudioSessionController>();
             foreach (var session in sessions)
             {
-                if (session.IsSystemSession || session.IsMuted || session.ExecutablePath.Contains("FireDeptStopwatch"))
+                if (session.IsSystemSession || session.IsMuted || (session.ExecutablePath != null && session.ExecutablePath.Contains("FireDeptStopwatch")))
                     continue;
 
                 session.SetMuteAsync(true);
@@ -433,6 +471,32 @@ namespace FireDeptStopwatch.Forms
             }
         }
 
+        private void StartVideoRecorders()
+        {
+            if (recording)
+            {
+                videoRecorders.ForEach(
+                    vr =>
+                    {
+                        vr.StartRecording(start.ToString("yyyyMMdd_hhmmss"));
+                    }
+                );
+            }
+        }
+
+        private void StopVideoRecorders()
+        {
+            if (recording)
+            {
+                videoRecorders.ForEach(
+                    vr =>
+                    {
+                        vr.StopRecording();
+                    }
+                );
+            }
+        }
+
         private void ShowSplitTimesForm()
         {
             splitTimesForm = new SplitTimesForm();
@@ -447,6 +511,46 @@ namespace FireDeptStopwatch.Forms
                 splitTimesForm.Close();
                 splitTimesForm = null;
             }
+        }
+
+        private List<CameraInfo> DelimitedStringToCameraInfoList(string delimitedString)
+        {
+            if (delimitedString == null || delimitedString == "")
+            {
+                return new List<CameraInfo>();
+            }
+
+            var cameras = new List<CameraInfo>();
+            foreach (var cameraString in delimitedString.Split(';')) {
+                var camera = new CameraInfo();
+
+                if (cameraString.Contains("@"))
+                {
+                    camera.Url = cameraString.Substring(cameraString.IndexOf("@") + 1);
+
+                    var credentials = cameraString.Substring(0, cameraString.IndexOf("@")).Replace("http://", "");
+                    camera.User = credentials.Split(':')[0];
+                    camera.Password = credentials.Split(':')[1];
+                }
+                else
+                {
+                    camera.Url = cameraString;
+                }
+
+                cameras.Add(camera);
+            }
+
+            return cameras;
+        }
+
+        private List<string> DelimitedStringToStringList(string delimitedString)
+        {
+            if (delimitedString == null || delimitedString == "")
+            {
+                return new List<string>();
+            }
+
+            return new List<string>(delimitedString.Split(';'));
         }
 
         #region Event handlers
@@ -547,11 +651,29 @@ namespace FireDeptStopwatch.Forms
             inputPenalties = Boolean.Parse(ConfigurationManager.AppSettings["inputPenalties"]);
             recordSplitTimes = Boolean.Parse(ConfigurationManager.AppSettings["recordSplitTimes"]);
             country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
+            recording = Boolean.Parse(ConfigurationManager.AppSettings["recordVideos"]);
+            cameras = DelimitedStringToCameraInfoList(ConfigurationManager.AppSettings["cameras"]);
+            streamUrls = DelimitedStringToStringList(ConfigurationManager.AppSettings["streamUrls"]);
+
+            videoRecorders = new List<VideoRecorder>();
+            for (var i = 0; i < cameras.Count; i++)
+            {
+                var videoRecorder = new VideoRecorder(cameras[i]);
+                videoRecorder.OnConnect += OnVideoCameraConnect;
+                videoRecorders.Add(videoRecorder);
+            }
 
             if (recordSplitTimes)
             {
                 ShowSplitTimesForm();
             }
+
+            this.webcamStatusPictureBox.Visible = recording;
+        }
+
+        private void OnVideoCameraConnect(object sender, EventArgs e)
+        {
+            webcamStatusPictureBox.Image = FireDeptStopwatch.Properties.Resources.webcam_ok;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -571,9 +693,11 @@ namespace FireDeptStopwatch.Forms
                 startButton.Enabled = true;
                 preparationButton.Enabled = true;
 
-                TimerResult timerResult = new TimerResult();
-                timerResult.Result = current - start;
-                timerResult.DateTime = start;
+                TimerResult timerResult = new TimerResult
+                {
+                    Result = current - start,
+                    DateTime = start
+                };
                 if (splitTimes != null && splitTimes.Count > 0)
                     timerResult.SplitTimes = new List<SplitTimeResult>(splitTimes);
 
