@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>F:\Development\fireDeptStopwatch\FireDeptStopwatch\deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -35,8 +37,6 @@
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -125,29 +125,29 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="onvif.discovery">
-      <HintPath>Libs\onvif.discovery.dll</HintPath>
+      <HintPath>onvif.discovery.dll</HintPath>
     </Reference>
     <Reference Include="onvif.services">
-      <HintPath>Libs\onvif.services.dll</HintPath>
+      <HintPath>onvif.services.dll</HintPath>
     </Reference>
     <Reference Include="onvif.session">
-      <HintPath>Libs\onvif.session.dll</HintPath>
+      <HintPath>onvif.session.dll</HintPath>
     </Reference>
     <Reference Include="onvif.utils">
-      <HintPath>Libs\onvif.utils.dll</HintPath>
+      <HintPath>onvif.utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Reactive.Core">
-      <HintPath>Libs\System.Reactive.Core.dll</HintPath>
+      <HintPath>System.Reactive.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Interfaces">
-      <HintPath>Libs\System.Reactive.Interfaces.dll</HintPath>
+      <HintPath>System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq">
-      <HintPath>Libs\System.Reactive.Linq.dll</HintPath>
+      <HintPath>System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -160,40 +160,40 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="utils.activities">
-      <HintPath>Libs\utils.activities.dll</HintPath>
+      <HintPath>utils.activities.dll</HintPath>
     </Reference>
     <Reference Include="utils.async">
-      <HintPath>Libs\utils.async.dll</HintPath>
+      <HintPath>utils.async.dll</HintPath>
     </Reference>
     <Reference Include="utils.bootstrapping">
-      <HintPath>Libs\utils.bootstrapping.dll</HintPath>
+      <HintPath>utils.bootstrapping.dll</HintPath>
     </Reference>
     <Reference Include="utils.common">
-      <HintPath>Libs\utils.common.dll</HintPath>
+      <HintPath>utils.common.dll</HintPath>
     </Reference>
     <Reference Include="utils.diagnostics">
-      <HintPath>Libs\utils.diagnostics.dll</HintPath>
+      <HintPath>utils.diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="utils.fsharp">
-      <HintPath>Libs\utils.fsharp.dll</HintPath>
+      <HintPath>utils.fsharp.dll</HintPath>
     </Reference>
     <Reference Include="utils.linq">
-      <HintPath>Libs\utils.linq.dll</HintPath>
+      <HintPath>utils.linq.dll</HintPath>
     </Reference>
     <Reference Include="utils.wpf">
-      <HintPath>Libs\utils.wpf.dll</HintPath>
+      <HintPath>utils.wpf.dll</HintPath>
     </Reference>
     <Reference Include="utils.xml">
-      <HintPath>Libs\utils.xml.dll</HintPath>
+      <HintPath>utils.xml.dll</HintPath>
     </Reference>
     <Reference Include="video.player.host">
-      <HintPath>Libs\video.player.host.exe</HintPath>
+      <HintPath>video.player.host.exe</HintPath>
     </Reference>
     <Reference Include="video.player.media">
-      <HintPath>Libs\video.player.media.dll</HintPath>
+      <HintPath>video.player.media.dll</HintPath>
     </Reference>
     <Reference Include="video.player.net">
-      <HintPath>Libs\video.player.net.dll</HintPath>
+      <HintPath>video.player.net.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -283,7 +283,9 @@
     <None Include="Data\results.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Libs\video.player.host.exe.config" />
+    <None Include="video.player.host.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -309,39 +311,67 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="Libs\avcodec-54.dll" />
-    <Content Include="Libs\avdevice-54.dll" />
-    <Content Include="Libs\avfilter-2.dll" />
-    <Content Include="Libs\avformat-54.dll" />
-    <Content Include="Libs\avutil-51.dll" />
-    <Content Include="Libs\msvcp110.dll" />
-    <Content Include="Libs\msvcp110d.dll" />
-    <Content Include="Libs\msvcr110.dll" />
-    <Content Include="Libs\msvcr110d.dll" />
-    <Content Include="Libs\onvif.discovery.dll" />
-    <Content Include="Libs\onvif.services.dll" />
-    <Content Include="Libs\onvif.session.dll" />
-    <Content Include="Libs\onvif.utils.dll" />
-    <Content Include="Libs\postproc-52.dll" />
-    <Content Include="Libs\swresample-0.dll" />
-    <Content Include="Libs\swscale-2.dll" />
-    <Content Include="Libs\System.Reactive.Core.dll" />
-    <Content Include="Libs\System.Reactive.Interfaces.dll" />
-    <Content Include="Libs\System.Reactive.Linq.dll" />
-    <Content Include="Libs\utils.activities.dll" />
-    <Content Include="Libs\utils.async.dll" />
-    <Content Include="Libs\utils.bootstrapping.dll" />
-    <Content Include="Libs\utils.common.dll" />
-    <Content Include="Libs\utils.diagnostics.dll" />
-    <Content Include="Libs\utils.fsharp.dll" />
-    <Content Include="Libs\utils.linq.dll" />
-    <Content Include="Libs\utils.wpf.dll" />
-    <Content Include="Libs\utils.xml.dll" />
-    <Content Include="Libs\vccorlib110.dll" />
-    <Content Include="Libs\vccorlib110d.dll" />
-    <Content Include="Libs\video.player.host.exe" />
-    <Content Include="Libs\video.player.media.dll" />
-    <Content Include="Libs\video.player.net.dll" />
+    <Content Include="avcodec-54.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="avdevice-54.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="avfilter-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="avformat-54.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="avutil-51.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="msvcp110.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="msvcp110d.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="msvcr110.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="msvcr110d.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="onvif.discovery.dll" />
+    <None Include="onvif.services.dll" />
+    <None Include="onvif.session.dll" />
+    <None Include="onvif.utils.dll" />
+    <Content Include="postproc-52.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="swresample-0.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="swscale-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="System.Reactive.Core.dll" />
+    <None Include="System.Reactive.Interfaces.dll" />
+    <None Include="System.Reactive.Linq.dll" />
+    <None Include="utils.activities.dll" />
+    <None Include="utils.async.dll" />
+    <None Include="utils.bootstrapping.dll" />
+    <None Include="utils.common.dll" />
+    <None Include="utils.diagnostics.dll" />
+    <None Include="utils.fsharp.dll" />
+    <None Include="utils.linq.dll" />
+    <None Include="utils.wpf.dll" />
+    <None Include="utils.xml.dll" />
+    <Content Include="vccorlib110.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="vccorlib110d.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="video.player.host.exe" />
+    <None Include="video.player.media.dll" />
+    <None Include="video.player.net.dll" />
     <None Include="Resources\webcam-nok.png" />
     <None Include="Resources\webcam-ok.png" />
     <None Include="Resources\loader.gif" />
@@ -390,9 +420,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy/b/y "$(ProjectDir)Libs\*" "$(TargetDir)"</PostBuildEvent>
-  </PropertyGroup>
   <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

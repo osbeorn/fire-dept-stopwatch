@@ -128,16 +128,13 @@ namespace FireDeptStopwatch.Forms
             {
                 if (e.Clicks == 2) // double click
                 {
-                    if (recordVideos)
+                    cameraUrlsListBox.SelectedIndex = cameraUrlsListBox.IndexFromPoint(e.Location);
+                    if (cameraUrlsListBox.SelectedIndex != -1)
                     {
-                        cameraUrlsListBox.SelectedIndex = cameraUrlsListBox.IndexFromPoint(e.Location);
-                        if (cameraUrlsListBox.SelectedIndex != -1)
+                        var selectedResult = cameraUrlsListBox.SelectedItem as CameraInfo;
+                        if (selectedResult != null)
                         {
-                            var selectedResult = cameraUrlsListBox.SelectedItem as CameraInfo;
-                            if (selectedResult != null)
-                            {
-                                new CameraDisplayForm(selectedResult, streamUrls[0]).Show();
-                            }
+                            new CameraDisplayForm(selectedResult, streamUrls[0]).Show();
                         }
                     }
                 }
@@ -166,11 +163,6 @@ namespace FireDeptStopwatch.Forms
                     cameraUrlsListBox.Items.Remove(selectedItems[i]);
                 }
             }
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            //vlcPlayer.Stop();
         }
     }
 }
