@@ -126,30 +126,37 @@
       <HintPath>..\packages\MouseKeyHook.5.4.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="onvif.discovery">
-      <HintPath>onvif.discovery.dll</HintPath>
+    <Reference Include="onvif.discovery, Version=2.2.118.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\onvif.discovery.dll</HintPath>
     </Reference>
-    <Reference Include="onvif.services">
-      <HintPath>onvif.services.dll</HintPath>
+    <Reference Include="onvif.services, Version=2.2.118.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\onvif.services.dll</HintPath>
     </Reference>
-    <Reference Include="onvif.session">
-      <HintPath>onvif.session.dll</HintPath>
+    <Reference Include="onvif.session, Version=2.2.118.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\onvif.session.dll</HintPath>
     </Reference>
-    <Reference Include="onvif.utils">
-      <HintPath>onvif.utils.dll</HintPath>
+    <Reference Include="onvif.utils, Version=2.2.118.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\onvif.utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.Reactive.Core">
-      <HintPath>System.Reactive.Core.dll</HintPath>
+    <Reference Include="System.Reactive.Core, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Reactive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces">
-      <HintPath>System.Reactive.Interfaces.dll</HintPath>
+    <Reference Include="System.Reactive.Interfaces, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Linq">
-      <HintPath>System.Reactive.Linq.dll</HintPath>
+    <Reference Include="System.Reactive.Linq, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -161,41 +168,53 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="utils.activities">
-      <HintPath>utils.activities.dll</HintPath>
+    <Reference Include="utils.activities, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.activities.dll</HintPath>
     </Reference>
-    <Reference Include="utils.async">
-      <HintPath>utils.async.dll</HintPath>
+    <Reference Include="utils.async, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.async.dll</HintPath>
     </Reference>
-    <Reference Include="utils.bootstrapping">
-      <HintPath>utils.bootstrapping.dll</HintPath>
+    <Reference Include="utils.bootstrapping, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.bootstrapping.dll</HintPath>
     </Reference>
-    <Reference Include="utils.common">
-      <HintPath>utils.common.dll</HintPath>
+    <Reference Include="utils.common, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.common.dll</HintPath>
     </Reference>
-    <Reference Include="utils.diagnostics">
-      <HintPath>utils.diagnostics.dll</HintPath>
+    <Reference Include="utils.diagnostics, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="utils.fsharp">
-      <HintPath>utils.fsharp.dll</HintPath>
+    <Reference Include="utils.fsharp, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.fsharp.dll</HintPath>
     </Reference>
-    <Reference Include="utils.linq">
-      <HintPath>utils.linq.dll</HintPath>
+    <Reference Include="utils.linq, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.linq.dll</HintPath>
     </Reference>
-    <Reference Include="utils.wpf">
-      <HintPath>utils.wpf.dll</HintPath>
+    <Reference Include="utils.wpf, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.wpf.dll</HintPath>
     </Reference>
-    <Reference Include="utils.xml">
-      <HintPath>utils.xml.dll</HintPath>
+    <Reference Include="utils.xml, Version=2.2.257.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\utils.xml.dll</HintPath>
     </Reference>
-    <Reference Include="video.player.host">
-      <HintPath>video.player.host.exe</HintPath>
+    <Reference Include="video.player.host, Version=1.0.453.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\video.player.host.exe</HintPath>
     </Reference>
-    <Reference Include="video.player.media">
-      <HintPath>video.player.media.dll</HintPath>
+    <Reference Include="video.player.media, Version=1.0.453.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\video.player.media.dll</HintPath>
     </Reference>
-    <Reference Include="video.player.net">
-      <HintPath>video.player.net.dll</HintPath>
+    <Reference Include="video.player.net, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\video.player.net.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -365,12 +384,12 @@
     <None Include="utils.linq.dll" />
     <None Include="utils.wpf.dll" />
     <None Include="utils.xml.dll" />
-    <Content Include="vccorlib110.dll">
+    <None Include="vccorlib110.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="vccorlib110d.dll">
+    </None>
+    <None Include="vccorlib110d.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <None Include="video.player.host.exe" />
     <None Include="video.player.media.dll" />
     <None Include="video.player.net.dll" />
