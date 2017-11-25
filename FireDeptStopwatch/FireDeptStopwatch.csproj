@@ -204,10 +204,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\utils.xml.dll</HintPath>
     </Reference>
-    <Reference Include="video.player.host, Version=1.0.453.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\video.player.host.exe</HintPath>
-    </Reference>
     <Reference Include="video.player.media, Version=1.0.453.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\video.player.media.dll</HintPath>
@@ -304,9 +300,6 @@
     <None Include="Data\results.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="video.player.host.exe.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -390,7 +383,6 @@
     <None Include="vccorlib110d.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="video.player.host.exe" />
     <None Include="video.player.media.dll" />
     <None Include="video.player.net.dll" />
     <None Include="Resources\webcam-nok.png" />
@@ -439,7 +431,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\VideoPlayerHost\VideoPlayerHost.csproj">
+      <Project>{d3870c13-2de6-47f3-bf4d-4b9a104b5607}</Project>
+      <Name>VideoPlayerHost</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

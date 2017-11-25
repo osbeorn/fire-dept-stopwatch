@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireDeptStopwatch", "FireDeptStopwatch\FireDeptStopwatch.csproj", "{89B472C8-133F-4D24-BA01-F8F9C54B2ADB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishToAwsS3", "PublishToAwsS3\PublishToAwsS3.csproj", "{C900F572-42C8-43B6-9146-F1AC570AED7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlayerHost", "VideoPlayerHost\VideoPlayerHost.csproj", "{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{C900F572-42C8-43B6-9146-F1AC570AED7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C900F572-42C8-43B6-9146-F1AC570AED7A}.Release|x86.ActiveCfg = Release|x86
 		{C900F572-42C8-43B6-9146-F1AC570AED7A}.Release|x86.Build.0 = Release|x86
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3870C13-2DE6-47F3-BF4D-4B9A104B5607}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
