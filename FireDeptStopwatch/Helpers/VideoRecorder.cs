@@ -20,13 +20,14 @@ using onvif.services;
 using System.IO;
 using Accord.Video.FFMPEG;
 using System.Net;
+using FireDeptStopwatch.Forms;
+using System.Configuration;
 
 namespace FireDeptStopwatch.Helpers
 {
     public class VideoRecorder : IPlaybackController
     {
         private Guid instanceId;
-        private string folderName;
 
         private NetworkCredential credentials;
 
@@ -34,20 +35,22 @@ namespace FireDeptStopwatch.Helpers
         private VideoBuffer buffer;
         private IPlaybackSession playbackSession;
 
-        private Size videoSize;
+        private Size videoSize = new Size(720, 576); // default size
 
         private Dispatcher dispatcher;
 
         private CompositeDisposable disposables = new CompositeDisposable();
 
         private bool isRecording;
+        private TimerResult result;
+
         private Queue<Bitmap> bitmaps;
 
         public EventHandler OnConnect;
 
         public VideoRecorder(CameraInfo cameraInfo)
         {
-            instanceId = new Guid();
+            instanceId = Guid.NewGuid();
             bitmaps = new Queue<Bitmap>();
 
             Connect(cameraInfo);
@@ -64,10 +67,8 @@ namespace FireDeptStopwatch.Helpers
             
         }
 
-        public void StartRecording(string folderName)
+        public void StartRecording()
         {
-            this.folderName = folderName;
-
             bitmaps = new Queue<Bitmap>();
             
             isRecording = true;
@@ -75,8 +76,10 @@ namespace FireDeptStopwatch.Helpers
             ThreadPool.QueueUserWorkItem(SaveBitmaps, null);
         }
 
-        public void StopRecording()
+        public void StopRecording(TimerResult result)
         {
+            this.result = result;
+
             isRecording = false;
         }
 
@@ -185,7 +188,7 @@ namespace FireDeptStopwatch.Helpers
             TimeSpan renderInterval;
             try
             {
-                int fps = 30;
+                int fps = 25;
                 fps = (fps <= 0 || fps > 100) ? 100 : fps;
                 renderInterval = TimeSpan.FromMilliseconds(1000 / fps);
             }
@@ -283,10 +286,12 @@ namespace FireDeptStopwatch.Helpers
             //    }
             //}
 
+            var videoName = "video_" + instanceId + ".avi";
+            var sourcePath = Path.Combine(Path.GetTempPath(), videoName);
+
             using (var writer = new VideoFileWriter())
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                writer.Open(Path.Combine(path, "video.mp4"), 720, 576, 25, VideoCodec.H264);
+                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.MPEG4);
 
                 while (bitmaps != null)
                 {
@@ -295,7 +300,7 @@ namespace FireDeptStopwatch.Helpers
                         bitmaps.Clear();
                         bitmaps = null;
                     }
-                    else if (bitmaps.Count > 0 && isRecording)
+                    else if (bitmaps.Count > 0)
                     {
                         var bitmap = bitmaps.Dequeue();
                         writer.WriteVideoFrame(bitmap);
@@ -305,6 +310,11 @@ namespace FireDeptStopwatch.Helpers
 
                 writer.Close();
             }
+
+            var targetPath = Path.Combine(ConfigurationManager.AppSettings["videosFolder"], result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
+
+            Directory.CreateDirectory(targetPath);
+            File.Move(sourcePath, Path.Combine(targetPath, videoName));
         }
 
         //private void SaveRecording(string filePath)

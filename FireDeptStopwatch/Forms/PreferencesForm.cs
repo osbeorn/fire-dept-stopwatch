@@ -14,9 +14,6 @@ namespace FireDeptStopwatch.Forms
 
         private bool recordVideos;
         private List<CameraInfo> cameras;
-        private List<string> streamUrls;
-
-        //private Vlc.DotNet.Core.VlcMediaPlayer vlcPlayer;
 
         public PreferencesForm()
         {
@@ -39,13 +36,12 @@ namespace FireDeptStopwatch.Forms
 
             recordVideos = parent.GetRecordVideos();
             recordVideosCheckBox.Checked = recordVideos;
-
+            videosFolderTextBox.Text = parent.GetVideosFolder();
             cameras = parent.GetCameras();
             foreach (var camera in cameras)
             {
                 cameraUrlsListBox.Items.Add(camera);
             }
-            streamUrls = parent.GetStreamUris();
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -56,8 +52,8 @@ namespace FireDeptStopwatch.Forms
             config.AppSettings.Settings["recordSplitTimes"].Value = recordSplitTimesCheckBox.Checked.ToString();
             config.AppSettings.Settings["country"].Value = countriesComboBox.SelectedValue.ToString();
             config.AppSettings.Settings["recordVideos"].Value = recordVideosCheckBox.Checked.ToString();
+            config.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
             config.AppSettings.Settings["cameras"].Value = CameraInfoListToDelimitedString(cameras);
-            config.AppSettings.Settings["streamUrls"].Value = StringListToDelimitedString(streamUrls);
             config.Save(ConfigurationSaveMode.Modified);
 
             ConfigurationManager.RefreshSection("appSettings");
@@ -67,8 +63,8 @@ namespace FireDeptStopwatch.Forms
             parent.SetRecordSplitTimes(recordSplitTimesCheckBox.Checked);
             parent.SetCountry((CountryCode) countriesComboBox.SelectedValue);
             parent.SetRecordVideos(recordVideosCheckBox.Checked);
+            parent.SetVideosFolder(videosFolderTextBox.Text);
             parent.SetCameras(cameras);
-            parent.SetStreamUrls(streamUrls);
 
             DialogResult = DialogResult.OK;
             Close();
@@ -115,9 +111,8 @@ namespace FireDeptStopwatch.Forms
                 }
 
                 cameras.Add(cameraInfo);
-                streamUrls.Add(streamUri);
 
-                cameraUrlsListBox.Items.Add(cameraInfo.Url);
+                cameraUrlsListBox.Items.Add(cameraInfo);
                 cameraUrlsListBox.Update();
             }
         }
@@ -134,7 +129,7 @@ namespace FireDeptStopwatch.Forms
                         var selectedResult = cameraUrlsListBox.SelectedItem as CameraInfo;
                         if (selectedResult != null)
                         {
-                            new CameraDisplayForm(selectedResult, streamUrls[0]).Show();
+                            new CameraDisplayForm(selectedResult).Show();
                         }
                     }
                 }
@@ -162,6 +157,14 @@ namespace FireDeptStopwatch.Forms
                     cameras.Remove(selectedItems[i] as CameraInfo);
                     cameraUrlsListBox.Items.Remove(selectedItems[i]);
                 }
+            }
+        }
+
+        private void VideosFolderSelectButton_Click(object sender, EventArgs e)
+        {
+            if (videosFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                videosFolderTextBox.Text = videosFolderBrowserDialog.SelectedPath;
             }
         }
     }

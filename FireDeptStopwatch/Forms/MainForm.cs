@@ -38,8 +38,8 @@ namespace FireDeptStopwatch.Forms
         private bool recordSplitTimes;
         private CountryCode country;
         private bool recording;
+        private string videosFolder;
         private List<CameraInfo> cameras;
-        private List<string> streamUrls;
 
         private List<VideoRecorder> videoRecorders;
 
@@ -110,6 +110,16 @@ namespace FireDeptStopwatch.Forms
             this.webcamStatusPictureBox.Visible = this.recording;
         }
 
+        public string GetVideosFolder()
+        {
+            return videosFolder;
+        }
+
+        public void SetVideosFolder(string videosFolder)
+        {
+            this.videosFolder = videosFolder;
+        }
+
         public List<CameraInfo> GetCameras()
         {
             return cameras;
@@ -118,16 +128,6 @@ namespace FireDeptStopwatch.Forms
         public void SetCameras(List<CameraInfo> cameraUrls)
         {
             this.cameras = cameraUrls;
-        }
-
-        public List<string> GetStreamUris()
-        {
-            return streamUrls;
-        }
-
-        public void SetStreamUrls(List<string> streamUris)
-        {
-            this.streamUrls = streamUris;
         }
 
         private void InitializeComponents()
@@ -323,8 +323,6 @@ namespace FireDeptStopwatch.Forms
                 }
             }
 
-            StopVideoRecorders();
-
             lineupCounter = 11;
             lineupTimer.Start();
         }
@@ -478,20 +476,20 @@ namespace FireDeptStopwatch.Forms
                 videoRecorders.ForEach(
                     vr =>
                     {
-                        vr.StartRecording(start.ToString("yyyyMMdd_hhmmss"));
+                        vr.StartRecording();
                     }
                 );
             }
         }
 
-        private void StopVideoRecorders()
+        private void StopVideoRecorders(TimerResult result)
         {
             if (recording)
             {
                 videoRecorders.ForEach(
                     vr =>
                     {
-                        vr.StopRecording();
+                        vr.StopRecording(result);
                     }
                 );
             }
@@ -652,8 +650,8 @@ namespace FireDeptStopwatch.Forms
             recordSplitTimes = Boolean.Parse(ConfigurationManager.AppSettings["recordSplitTimes"]);
             country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
             recording = Boolean.Parse(ConfigurationManager.AppSettings["recordVideos"]);
+            videosFolder = ConfigurationManager.AppSettings["videosFolder"];
             cameras = DelimitedStringToCameraInfoList(ConfigurationManager.AppSettings["cameras"]);
-            streamUrls = DelimitedStringToStringList(ConfigurationManager.AppSettings["streamUrls"]);
 
             videoRecorders = new List<VideoRecorder>();
             for (var i = 0; i < cameras.Count; i++)
@@ -700,6 +698,8 @@ namespace FireDeptStopwatch.Forms
                 };
                 if (splitTimes != null && splitTimes.Count > 0)
                     timerResult.SplitTimes = new List<SplitTimeResult>(splitTimes);
+
+                StopVideoRecorders(timerResult);
 
                 UnmuteApplications();
 

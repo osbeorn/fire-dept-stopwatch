@@ -39,9 +39,13 @@
             this.countriesComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.videosFolderSelectButton = new System.Windows.Forms.Button();
+            this.videosFolderTextBox = new System.Windows.Forms.TextBox();
             this.addCameraButton = new System.Windows.Forms.Button();
             this.cameraUrlsListBox = new System.Windows.Forms.ListBox();
             this.recordVideosCheckBox = new System.Windows.Forms.CheckBox();
+            this.videosFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,7 +74,7 @@
             0,
             0});
             this.preparationTimeNumericUpDown.Name = "preparationTimeNumericUpDown";
-            this.preparationTimeNumericUpDown.Size = new System.Drawing.Size(139, 20);
+            this.preparationTimeNumericUpDown.Size = new System.Drawing.Size(216, 20);
             this.preparationTimeNumericUpDown.TabIndex = 1;
             this.preparationTimeNumericUpDown.Value = new decimal(new int[] {
             1,
@@ -80,7 +84,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(71, 335);
+            this.confirmButton.Location = new System.Drawing.Point(107, 363);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 2;
@@ -91,7 +95,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(152, 335);
+            this.cancelButton.Location = new System.Drawing.Point(188, 363);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
@@ -101,7 +105,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(240, 21);
+            this.label2.Location = new System.Drawing.Point(317, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 13);
             this.label2.TabIndex = 4;
@@ -129,7 +133,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 126);
+            this.groupBox1.Size = new System.Drawing.Size(346, 126);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Splošno";
@@ -150,7 +154,7 @@
             this.countriesComboBox.FormattingEnabled = true;
             this.countriesComboBox.Location = new System.Drawing.Point(95, 91);
             this.countriesComboBox.Name = "countriesComboBox";
-            this.countriesComboBox.Size = new System.Drawing.Size(168, 21);
+            this.countriesComboBox.Size = new System.Drawing.Size(245, 21);
             this.countriesComboBox.TabIndex = 8;
             // 
             // label3
@@ -164,19 +168,49 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.videosFolderSelectButton);
+            this.groupBox2.Controls.Add(this.videosFolderTextBox);
             this.groupBox2.Controls.Add(this.addCameraButton);
             this.groupBox2.Controls.Add(this.cameraUrlsListBox);
             this.groupBox2.Controls.Add(this.recordVideosCheckBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 144);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(269, 185);
+            this.groupBox2.Size = new System.Drawing.Size(346, 213);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Snemanje";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Posnetki:";
+            // 
+            // videosFolderSelectButton
+            // 
+            this.videosFolderSelectButton.Location = new System.Drawing.Point(315, 41);
+            this.videosFolderSelectButton.Name = "videosFolderSelectButton";
+            this.videosFolderSelectButton.Size = new System.Drawing.Size(25, 22);
+            this.videosFolderSelectButton.TabIndex = 11;
+            this.videosFolderSelectButton.Text = "...";
+            this.videosFolderSelectButton.UseVisualStyleBackColor = true;
+            this.videosFolderSelectButton.Click += new System.EventHandler(this.VideosFolderSelectButton_Click);
+            // 
+            // videosFolderTextBox
+            // 
+            this.videosFolderTextBox.Location = new System.Drawing.Point(95, 42);
+            this.videosFolderTextBox.Name = "videosFolderTextBox";
+            this.videosFolderTextBox.ReadOnly = true;
+            this.videosFolderTextBox.Size = new System.Drawing.Size(220, 20);
+            this.videosFolderTextBox.TabIndex = 10;
+            // 
             // addCameraButton
             // 
-            this.addCameraButton.Location = new System.Drawing.Point(176, 156);
+            this.addCameraButton.Location = new System.Drawing.Point(253, 183);
             this.addCameraButton.Name = "addCameraButton";
             this.addCameraButton.Size = new System.Drawing.Size(87, 23);
             this.addCameraButton.TabIndex = 9;
@@ -187,9 +221,9 @@
             // cameraUrlsListBox
             // 
             this.cameraUrlsListBox.FormattingEnabled = true;
-            this.cameraUrlsListBox.Location = new System.Drawing.Point(6, 42);
+            this.cameraUrlsListBox.Location = new System.Drawing.Point(6, 69);
             this.cameraUrlsListBox.Name = "cameraUrlsListBox";
-            this.cameraUrlsListBox.Size = new System.Drawing.Size(257, 108);
+            this.cameraUrlsListBox.Size = new System.Drawing.Size(334, 108);
             this.cameraUrlsListBox.TabIndex = 8;
             this.cameraUrlsListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CameraUrlsListBox_KeyUp);
             this.cameraUrlsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CameraUrlsListBox_MouseDown);
@@ -211,7 +245,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(293, 370);
+            this.ClientSize = new System.Drawing.Size(370, 398);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -248,5 +282,9 @@
         private System.Windows.Forms.CheckBox recordVideosCheckBox;
         private System.Windows.Forms.ListBox cameraUrlsListBox;
         private System.Windows.Forms.Button addCameraButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button videosFolderSelectButton;
+        private System.Windows.Forms.TextBox videosFolderTextBox;
+        private System.Windows.Forms.FolderBrowserDialog videosFolderBrowserDialog;
     }
 }

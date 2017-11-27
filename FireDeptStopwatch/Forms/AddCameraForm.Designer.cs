@@ -43,7 +43,7 @@
             this.urlTextBox.Location = new System.Drawing.Point(69, 12);
             this.urlTextBox.Name = "urlTextBox";
             this.urlTextBox.Size = new System.Drawing.Size(258, 20);
-            this.urlTextBox.TabIndex = 0;
+            this.urlTextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -51,7 +51,7 @@
             this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "URL:";
             // 
             // confirmButton
@@ -59,7 +59,7 @@
             this.confirmButton.Location = new System.Drawing.Point(91, 72);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
-            this.confirmButton.TabIndex = 2;
+            this.confirmButton.TabIndex = 6;
             this.confirmButton.Text = "Potrdi";
             this.confirmButton.UseVisualStyleBackColor = true;
             this.confirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
@@ -70,7 +70,7 @@
             this.cancelButton.Location = new System.Drawing.Point(172, 73);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 3;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Prekliči";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -80,7 +80,7 @@
             this.label2.Location = new System.Drawing.Point(12, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 4;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Up. ime:";
             // 
             // label3
@@ -89,7 +89,7 @@
             this.label3.Location = new System.Drawing.Point(181, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 5;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Geslo:";
             // 
             // userTextBox
@@ -97,14 +97,14 @@
             this.userTextBox.Location = new System.Drawing.Point(69, 38);
             this.userTextBox.Name = "userTextBox";
             this.userTextBox.Size = new System.Drawing.Size(103, 20);
-            this.userTextBox.TabIndex = 6;
+            this.userTextBox.TabIndex = 3;
             // 
             // passwordTextBox
             // 
             this.passwordTextBox.Location = new System.Drawing.Point(224, 38);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(103, 20);
-            this.passwordTextBox.TabIndex = 7;
+            this.passwordTextBox.TabIndex = 5;
             // 
             // AddCameraForm
             // 

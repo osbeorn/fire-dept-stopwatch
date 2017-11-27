@@ -53,7 +53,7 @@ namespace FireDeptStopwatch.Forms
 
         Space2DDescription panTiltSpace;
 
-        public CameraDisplayForm(CameraInfo camera, string streamUrl)
+        public CameraDisplayForm(CameraInfo camera)
         {
             InitializeComponent();
 
@@ -114,6 +114,7 @@ namespace FireDeptStopwatch.Forms
                         this.session = session;
 
                         GetProfiles(session);
+                        //GetImagingSettings(session);
                     },
                     err => {
                     }
@@ -144,6 +145,29 @@ namespace FireDeptStopwatch.Forms
                 )
             );
         }
+
+        //private void GetImagingSettings(INvtSession session)
+        //{
+        //    disposables.Add(
+        //        session
+        //        .GetImagingSettings("")
+        //        .ObserveOnCurrentDispatcher()
+        //        .Subscribe(
+        //            profs => {
+        //                if (profile != null)
+        //                {
+        //                    profileToken = profile.token;
+        //                    nodeToken = profile.ptzConfiguration.nodeToken;
+
+        //                    GetPtzConfiguration(session, profile);
+        //                    GetStreamUri(session, profile);
+        //                }
+        //            },
+        //            err => {
+        //            }
+        //        )
+        //    );
+        //}
 
         private void GetPtzConfiguration(INvtSession session, Profile profile)
         {
