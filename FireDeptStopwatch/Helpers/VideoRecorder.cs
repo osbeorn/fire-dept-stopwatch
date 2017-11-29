@@ -41,7 +41,9 @@ namespace FireDeptStopwatch.Helpers
 
         private CompositeDisposable disposables = new CompositeDisposable();
 
-        private bool isRecording;
+        private bool IsConnected { get; set; }
+        private bool IsRecording { get; set; }
+
         private TimerResult result;
 
         private Queue<Bitmap> bitmaps;
@@ -71,7 +73,7 @@ namespace FireDeptStopwatch.Helpers
         {
             bitmaps = new Queue<Bitmap>();
             
-            isRecording = true;
+            IsRecording = true;
 
             ThreadPool.QueueUserWorkItem(SaveBitmaps, null);
         }
@@ -80,7 +82,7 @@ namespace FireDeptStopwatch.Helpers
         {
             this.result = result;
 
-            isRecording = false;
+            IsRecording = false;
         }
 
         private void Connect(CameraInfo cameraInfo)
@@ -155,6 +157,8 @@ namespace FireDeptStopwatch.Helpers
 
         private void InitializePlayer(string videoUri, NetworkCredential account, Size size = default(Size))
         {
+            IsConnected = true;
+
             OnConnect(this, null);
 
             dispatcher = Dispatcher.CurrentDispatcher;
@@ -247,7 +251,7 @@ namespace FireDeptStopwatch.Helpers
         private static extern void CopyMemory(IntPtr dest, IntPtr src, int count);
         private void DrawFrame(VideoBuffer videoBuffer)
         {
-            if (isRecording)
+            if (IsRecording && IsConnected)
             {
                 Bitmap bitmap = new Bitmap(videoBuffer.width, videoBuffer.height);
                 BitmapData bitmapData = null;
@@ -286,6 +290,11 @@ namespace FireDeptStopwatch.Helpers
             //    }
             //}
 
+            if (!IsConnected)
+            {
+                return;
+            }
+
             var videoName = "video_" + instanceId + ".avi";
             var sourcePath = Path.Combine(Path.GetTempPath(), videoName);
 
@@ -295,7 +304,7 @@ namespace FireDeptStopwatch.Helpers
 
                 while (bitmaps != null)
                 {
-                    if (bitmaps.Count == 0 && !isRecording)
+                    if (bitmaps.Count == 0 && !IsRecording)
                     {
                         bitmaps.Clear();
                         bitmaps = null;

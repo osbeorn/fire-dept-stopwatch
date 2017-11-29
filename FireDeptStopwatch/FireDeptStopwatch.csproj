@@ -359,6 +359,7 @@
     <Content Include="postproc-52.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\ssv_startno_povelje_AT.wav" />
     <Content Include="swresample-0.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -189,7 +189,7 @@ namespace FireDeptStopwatch.Forms
             switch (country)
             {
                 case CountryCode.AT:
-                    // TODO
+                    await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_AT, true));
                     break;
                 case CountryCode.HR:
                     await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_HR, true));
