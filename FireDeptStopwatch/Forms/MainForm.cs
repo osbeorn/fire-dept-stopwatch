@@ -647,7 +647,25 @@ namespace FireDeptStopwatch.Forms
             recordSplitTimes = Boolean.Parse(ConfigurationManager.AppSettings["recordSplitTimes"]);
             country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
             recording = Boolean.Parse(ConfigurationManager.AppSettings["recordVideos"]);
+
             //videosFolder = ConfigurationManager.AppSettings["videosFolder"];
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                var targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
+                Directory.CreateDirectory(targetPath);
+
+                targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings");
+                Directory.CreateDirectory(targetPath);
+            }
+            else
+            {
+                var targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
+                Directory.CreateDirectory(targetPath);
+
+                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
+                Directory.CreateDirectory(targetPath);
+            }
+
             cameras = DelimitedStringToCameraInfoList(ConfigurationManager.AppSettings["cameras"]);
 
             videoRecorders = new List<VideoRecorder>();

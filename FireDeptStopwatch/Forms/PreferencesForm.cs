@@ -189,8 +189,6 @@ namespace FireDeptStopwatch.Forms
                 targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
             }
 
-            Directory.CreateDirectory(targetPath);
-
             Process.Start(targetPath);
         }
     }

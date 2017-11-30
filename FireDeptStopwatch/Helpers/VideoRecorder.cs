@@ -309,7 +309,6 @@ namespace FireDeptStopwatch.Helpers
             {
                 sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TempRecordings");
             }
-            Directory.CreateDirectory(sourcePath);
 
             sourcePath = Path.Combine(sourcePath, sourceVideoName);
 
