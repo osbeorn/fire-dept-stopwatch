@@ -298,7 +298,7 @@ namespace FireDeptStopwatch.Helpers
                 return;
             }
 
-            var sourceVideoName = Guid.NewGuid().ToString() + ".avi.tmp";
+            var sourceVideoName = Guid.NewGuid().ToString() + ".avi";
             var targetVideoName = "video_" + instanceId + ".avi";
 
             string sourcePath;
@@ -313,32 +313,26 @@ namespace FireDeptStopwatch.Helpers
 
             sourcePath = Path.Combine(sourcePath, sourceVideoName);
 
-            try
+            using (var writer = new VideoFileWriter())
             {
-                using (var writer = new VideoFileWriter())
+                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.MPEG4);
+
+                while (bitmaps != null)
                 {
-                    writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.MPEG4);
-
-                    while (bitmaps != null)
+                    if (bitmaps.Count == 0 && !IsRecording)
                     {
-                        if (bitmaps.Count == 0 && !IsRecording)
-                        {
-                            bitmaps.Clear();
-                            bitmaps = null;
-                        }
-                        else if (bitmaps.Count > 0)
-                        {
-                            var bitmap = bitmaps.Dequeue();
-                            writer.WriteVideoFrame(bitmap);
-                            bitmap.Dispose();
-                        }
+                        bitmaps.Clear();
+                        bitmaps = null;
                     }
-
-                    writer.Close();
+                    else if (bitmaps.Count > 0)
+                    {
+                        var bitmap = bitmaps.Dequeue();
+                        writer.WriteVideoFrame(bitmap);
+                        bitmap.Dispose();
+                    }
                 }
-            } catch (FileNotFoundException e)
-            {
-                MessageBox.Show(e.FileName + "\n\n" + e.Message);
+
+                writer.Close();
             }
 
             string targetPath;
