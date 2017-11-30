@@ -24,6 +24,7 @@ using FireDeptStopwatch.Forms;
 using System.Configuration;
 using System.Diagnostics;
 using System.Deployment.Application;
+using System.Windows.Forms;
 
 namespace FireDeptStopwatch.Helpers
 {
@@ -312,26 +313,32 @@ namespace FireDeptStopwatch.Helpers
 
             sourcePath = Path.Combine(sourcePath, sourceVideoName);
 
-            using (var writer = new VideoFileWriter())
+            try
             {
-                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.MPEG4);
-
-                while (bitmaps != null)
+                using (var writer = new VideoFileWriter())
                 {
-                    if (bitmaps.Count == 0 && !IsRecording)
-                    {
-                        bitmaps.Clear();
-                        bitmaps = null;
-                    }
-                    else if (bitmaps.Count > 0)
-                    {
-                        var bitmap = bitmaps.Dequeue();
-                        writer.WriteVideoFrame(bitmap);
-                        bitmap.Dispose();
-                    }
-                }
+                    writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.MPEG4);
 
-                writer.Close();
+                    while (bitmaps != null)
+                    {
+                        if (bitmaps.Count == 0 && !IsRecording)
+                        {
+                            bitmaps.Clear();
+                            bitmaps = null;
+                        }
+                        else if (bitmaps.Count > 0)
+                        {
+                            var bitmap = bitmaps.Dequeue();
+                            writer.WriteVideoFrame(bitmap);
+                            bitmap.Dispose();
+                        }
+                    }
+
+                    writer.Close();
+                }
+            } catch (FileNotFoundException e)
+            {
+                MessageBox.Show(e.FileName + "\n\n" + e.Message);
             }
 
             string targetPath;
