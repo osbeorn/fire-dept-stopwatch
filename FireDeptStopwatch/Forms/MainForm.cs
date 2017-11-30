@@ -659,7 +659,7 @@ namespace FireDeptStopwatch.Forms
             }
             else
             {
-                var targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
+                var targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TempRecordings");
                 Directory.CreateDirectory(targetPath);
 
                 targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
