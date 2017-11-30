@@ -33,6 +33,13 @@
             this.stopwatchTimer = new System.Windows.Forms.Timer(this.components);
             this.lineupTimer = new System.Windows.Forms.Timer(this.components);
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.logoPanel = new System.Windows.Forms.Panel();
+            this.webcamStatusPictureBox = new System.Windows.Forms.PictureBox();
+            this.preparationLabel = new System.Windows.Forms.Label();
+            this.lineupLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.stopwatchLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.preparationButton = new System.Windows.Forms.Button();
             this.resultListGroupBox = new System.Windows.Forms.GroupBox();
             this.deleteAllResultsButton = new System.Windows.Forms.Button();
@@ -41,7 +48,7 @@
             this.resetButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.preparationTimer = new System.Windows.Forms.Timer(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,19 +59,12 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoPanel = new System.Windows.Forms.Panel();
-            this.webcamStatusPictureBox = new System.Windows.Forms.PictureBox();
-            this.preparationLabel = new System.Windows.Forms.Label();
-            this.lineupLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.stopwatchLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
-            this.resultListGroupBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.resultsContextMenuStrip.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webcamStatusPictureBox)).BeginInit();
+            this.resultListGroupBox.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
+            this.resultsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // stopwatchTimer
@@ -90,6 +90,84 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(728, 457);
             this.mainPanel.TabIndex = 1;
+            // 
+            // logoPanel
+            // 
+            this.logoPanel.BackgroundImage = global::FireDeptStopwatch.Properties.Resources.logo_background;
+            this.logoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.logoPanel.Controls.Add(this.webcamStatusPictureBox);
+            this.logoPanel.Controls.Add(this.preparationLabel);
+            this.logoPanel.Controls.Add(this.lineupLabel);
+            this.logoPanel.Controls.Add(this.label2);
+            this.logoPanel.Controls.Add(this.stopwatchLabel);
+            this.logoPanel.Controls.Add(this.label1);
+            this.logoPanel.Location = new System.Drawing.Point(221, 3);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Size = new System.Drawing.Size(504, 400);
+            this.logoPanel.TabIndex = 6;
+            // 
+            // webcamStatusPictureBox
+            // 
+            this.webcamStatusPictureBox.Image = global::FireDeptStopwatch.Properties.Resources.webcam_nok;
+            this.webcamStatusPictureBox.Location = new System.Drawing.Point(461, 3);
+            this.webcamStatusPictureBox.Name = "webcamStatusPictureBox";
+            this.webcamStatusPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.webcamStatusPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.webcamStatusPictureBox.TabIndex = 6;
+            this.webcamStatusPictureBox.TabStop = false;
+            // 
+            // preparationLabel
+            // 
+            this.preparationLabel.AutoSize = true;
+            this.preparationLabel.BackColor = System.Drawing.Color.Transparent;
+            this.preparationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.preparationLabel.Location = new System.Drawing.Point(372, 88);
+            this.preparationLabel.Name = "preparationLabel";
+            this.preparationLabel.Size = new System.Drawing.Size(41, 44);
+            this.preparationLabel.TabIndex = 5;
+            this.preparationLabel.Text = "0";
+            // 
+            // lineupLabel
+            // 
+            this.lineupLabel.AutoSize = true;
+            this.lineupLabel.BackColor = System.Drawing.Color.Transparent;
+            this.lineupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lineupLabel.Location = new System.Drawing.Point(372, 274);
+            this.lineupLabel.Name = "lineupLabel";
+            this.lineupLabel.Size = new System.Drawing.Size(41, 44);
+            this.lineupLabel.TabIndex = 1;
+            this.lineupLabel.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(15, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(351, 44);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Priprava orodja: ";
+            // 
+            // stopwatchLabel
+            // 
+            this.stopwatchLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stopwatchLabel.BackColor = System.Drawing.Color.Transparent;
+            this.stopwatchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.stopwatchLabel.Location = new System.Drawing.Point(7, 156);
+            this.stopwatchLabel.Name = "stopwatchLabel";
+            this.stopwatchLabel.Size = new System.Drawing.Size(488, 93);
+            this.stopwatchLabel.TabIndex = 0;
+            this.stopwatchLabel.Text = "00:00:0000";
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(15, 274);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(351, 44);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Končna postavitev: ";
             // 
             // preparationButton
             // 
@@ -175,19 +253,19 @@
             this.preparationTimer.Interval = 1000;
             this.preparationTimer.Tick += new System.EventHandler(this.PreparationTimer_Tick);
             // 
-            // menuStrip1
+            // mainMenuStrip
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(255)))), ((int)(((byte)(149)))));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(255)))), ((int)(((byte)(149)))));
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.analysisToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(728, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "mainMenuStrip";
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(728, 24);
+            this.mainMenuStrip.TabIndex = 6;
+            this.mainMenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -264,95 +342,17 @@
             this.editResultToolStripMenuItem.Text = "Uredi";
             this.editResultToolStripMenuItem.Click += new System.EventHandler(this.EditResultToolStripMenuItem_Click);
             // 
-            // logoPanel
-            // 
-            this.logoPanel.BackgroundImage = global::FireDeptStopwatch.Properties.Resources.logo_background;
-            this.logoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.logoPanel.Controls.Add(this.webcamStatusPictureBox);
-            this.logoPanel.Controls.Add(this.preparationLabel);
-            this.logoPanel.Controls.Add(this.lineupLabel);
-            this.logoPanel.Controls.Add(this.label2);
-            this.logoPanel.Controls.Add(this.stopwatchLabel);
-            this.logoPanel.Controls.Add(this.label1);
-            this.logoPanel.Location = new System.Drawing.Point(221, 3);
-            this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Size = new System.Drawing.Size(504, 400);
-            this.logoPanel.TabIndex = 6;
-            // 
-            // webcamStatusPictureBox
-            // 
-            this.webcamStatusPictureBox.Image = global::FireDeptStopwatch.Properties.Resources.webcam_nok;
-            this.webcamStatusPictureBox.Location = new System.Drawing.Point(461, 3);
-            this.webcamStatusPictureBox.Name = "webcamStatusPictureBox";
-            this.webcamStatusPictureBox.Size = new System.Drawing.Size(40, 40);
-            this.webcamStatusPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.webcamStatusPictureBox.TabIndex = 6;
-            this.webcamStatusPictureBox.TabStop = false;
-            // 
-            // preparationLabel
-            // 
-            this.preparationLabel.AutoSize = true;
-            this.preparationLabel.BackColor = System.Drawing.Color.Transparent;
-            this.preparationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.preparationLabel.Location = new System.Drawing.Point(372, 88);
-            this.preparationLabel.Name = "preparationLabel";
-            this.preparationLabel.Size = new System.Drawing.Size(41, 44);
-            this.preparationLabel.TabIndex = 5;
-            this.preparationLabel.Text = "0";
-            // 
-            // lineupLabel
-            // 
-            this.lineupLabel.AutoSize = true;
-            this.lineupLabel.BackColor = System.Drawing.Color.Transparent;
-            this.lineupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lineupLabel.Location = new System.Drawing.Point(372, 274);
-            this.lineupLabel.Name = "lineupLabel";
-            this.lineupLabel.Size = new System.Drawing.Size(41, 44);
-            this.lineupLabel.TabIndex = 1;
-            this.lineupLabel.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(15, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(351, 44);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Priprava orodja: ";
-            // 
-            // stopwatchLabel
-            // 
-            this.stopwatchLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stopwatchLabel.BackColor = System.Drawing.Color.Transparent;
-            this.stopwatchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.stopwatchLabel.Location = new System.Drawing.Point(7, 156);
-            this.stopwatchLabel.Name = "stopwatchLabel";
-            this.stopwatchLabel.Size = new System.Drawing.Size(488, 93);
-            this.stopwatchLabel.TabIndex = 0;
-            this.stopwatchLabel.Text = "00:00:0000";
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(15, 274);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(351, 44);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Končna postavitev: ";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 481);
             this.Controls.Add(this.mainPanel);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mainMenuStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.mainMenuStrip;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -361,13 +361,13 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Move += new System.EventHandler(this.MainForm_Move);
             this.mainPanel.ResumeLayout(false);
-            this.resultListGroupBox.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.resultsContextMenuStrip.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             this.logoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webcamStatusPictureBox)).EndInit();
+            this.resultListGroupBox.ResumeLayout(false);
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
+            this.resultsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,7 +391,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label preparationLabel;
         private System.Windows.Forms.Timer preparationTimer;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;

@@ -3,6 +3,8 @@ using FireDeptStopwatch.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Deployment.Application;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -36,7 +38,17 @@ namespace FireDeptStopwatch.Forms
 
             recordVideos = parent.GetRecordVideos();
             recordVideosCheckBox.Checked = recordVideos;
-            videosFolderTextBox.Text = parent.GetVideosFolder();
+
+            //videosFolderTextBox.Text = parent.GetVideosFolder();
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                videosFolderTextBox.Text = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings");
+            }
+            else
+            {
+                videosFolderTextBox.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
+            }
+
             cameras = parent.GetCameras();
             foreach (var camera in cameras)
             {
@@ -52,7 +64,7 @@ namespace FireDeptStopwatch.Forms
             config.AppSettings.Settings["recordSplitTimes"].Value = recordSplitTimesCheckBox.Checked.ToString();
             config.AppSettings.Settings["country"].Value = countriesComboBox.SelectedValue.ToString();
             config.AppSettings.Settings["recordVideos"].Value = recordVideosCheckBox.Checked.ToString();
-            config.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
+            //config.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
             config.AppSettings.Settings["cameras"].Value = CameraInfoListToDelimitedString(cameras);
             config.Save(ConfigurationSaveMode.Modified);
 
@@ -63,7 +75,7 @@ namespace FireDeptStopwatch.Forms
             parent.SetRecordSplitTimes(recordSplitTimesCheckBox.Checked);
             parent.SetCountry((CountryCode) countriesComboBox.SelectedValue);
             parent.SetRecordVideos(recordVideosCheckBox.Checked);
-            parent.SetVideosFolder(videosFolderTextBox.Text);
+            //parent.SetVideosFolder(videosFolderTextBox.Text);
             parent.SetCameras(cameras);
 
             DialogResult = DialogResult.OK;
@@ -162,10 +174,24 @@ namespace FireDeptStopwatch.Forms
 
         private void VideosFolderSelectButton_Click(object sender, EventArgs e)
         {
-            if (videosFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            //if (videosFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    videosFolderTextBox.Text = videosFolderBrowserDialog.SelectedPath;
+            //}
+
+            string targetPath;
+            if (ApplicationDeployment.IsNetworkDeployed)
             {
-                videosFolderTextBox.Text = videosFolderBrowserDialog.SelectedPath;
+                targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings");
             }
+            else
+            {
+                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
+            }
+
+            Directory.CreateDirectory(targetPath);
+
+            Process.Start(targetPath);
         }
     }
 }

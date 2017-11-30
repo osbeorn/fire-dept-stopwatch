@@ -14,6 +14,7 @@ using System.Diagnostics;
 using AudioSwitcher.AudioApi.CoreAudio;
 using AudioSwitcher.AudioApi.Session;
 using FireDeptStopwatch.Helpers;
+using System.Deployment.Application;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -38,7 +39,7 @@ namespace FireDeptStopwatch.Forms
         private bool recordSplitTimes;
         private CountryCode country;
         private bool recording;
-        private string videosFolder;
+        //private string videosFolder;
         private List<CameraInfo> cameras;
 
         private List<VideoRecorder> videoRecorders;
@@ -110,15 +111,15 @@ namespace FireDeptStopwatch.Forms
             this.webcamStatusPictureBox.Visible = this.recording;
         }
 
-        public string GetVideosFolder()
-        {
-            return videosFolder;
-        }
+        //public string GetVideosFolder()
+        //{
+        //    return videosFolder;
+        //}
 
-        public void SetVideosFolder(string videosFolder)
-        {
-            this.videosFolder = videosFolder;
-        }
+        //public void SetVideosFolder(string videosFolder)
+        //{
+        //    this.videosFolder = videosFolder;
+        //}
 
         public List<CameraInfo> GetCameras()
         {
@@ -351,25 +352,8 @@ namespace FireDeptStopwatch.Forms
 
         private void SaveResults()
         {
-            if (Debugger.IsAttached)
+            if (ApplicationDeployment.IsNetworkDeployed)
             {
-                // project file for debugging
-                try
-                {
-                    using (var stream = File.Open("Data/results.bin", FileMode.Create))
-                    {
-                        BinaryFormatter bin = new BinaryFormatter();
-                        bin.Serialize(stream, resultList);
-                    }
-                }
-                catch (IOException)
-                {
-                    // do nothing
-                }
-            }
-            else
-            {
-                // isolated storage
                 try
                 {
                     using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
@@ -382,6 +366,21 @@ namespace FireDeptStopwatch.Forms
                     }
                 }
                 catch (Exception)
+                {
+                    // do nothing
+                }
+            }
+            else
+            {
+                try
+                {
+                    using (var stream = File.Open("Data/results.bin", FileMode.Create))
+                    {
+                        BinaryFormatter bin = new BinaryFormatter();
+                        bin.Serialize(stream, resultList);
+                    }
+                }
+                catch (IOException)
                 {
                     // do nothing
                 }
@@ -597,31 +596,8 @@ namespace FireDeptStopwatch.Forms
         {
             //deviceHandler = new RawInputDevices(this.Handle);
 
-            if (Debugger.IsAttached)
+            if (ApplicationDeployment.IsNetworkDeployed)
             {
-                // project file for debugging
-                try
-                {
-                    using (var stream = File.Open("Data/results.bin", FileMode.Open))
-                    {
-                        var binaryFormatter = new BinaryFormatter();
-                        resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
-                        resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
-
-                        foreach (var result in resultList)
-                        {
-                            resultsListBox.Items.Add(result);
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    resultList = new List<TimerResult>();
-                }
-            }
-            else
-            {
-                // isolated storage
                 try
                 {
                     using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
@@ -644,13 +620,34 @@ namespace FireDeptStopwatch.Forms
                     resultList = new List<TimerResult>();
                 }
             }
+            else
+            {
+                try
+                {
+                    using (var stream = File.Open("Data/results.bin", FileMode.Open))
+                    {
+                        var binaryFormatter = new BinaryFormatter();
+                        resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
+                        resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+
+                        foreach (var result in resultList)
+                        {
+                            resultsListBox.Items.Add(result);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    resultList = new List<TimerResult>();
+                }
+            }
 
             preparationTime = Int32.Parse(ConfigurationManager.AppSettings["preparationTime"]);
             inputPenalties = Boolean.Parse(ConfigurationManager.AppSettings["inputPenalties"]);
             recordSplitTimes = Boolean.Parse(ConfigurationManager.AppSettings["recordSplitTimes"]);
             country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
             recording = Boolean.Parse(ConfigurationManager.AppSettings["recordVideos"]);
-            videosFolder = ConfigurationManager.AppSettings["videosFolder"];
+            //videosFolder = ConfigurationManager.AppSettings["videosFolder"];
             cameras = DelimitedStringToCameraInfoList(ConfigurationManager.AppSettings["cameras"]);
 
             videoRecorders = new List<VideoRecorder>();

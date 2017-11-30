@@ -186,9 +186,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 46);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Posnetki:";
+            this.label4.Text = "Posnetki";
             // 
             // videosFolderSelectButton
             // 
