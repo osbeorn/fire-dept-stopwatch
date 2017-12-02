@@ -261,7 +261,7 @@ namespace FireDeptStopwatch.Helpers
 
                 try
                 {
-                    bitmapData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+                    bitmapData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
 
                     using (var md = videoBuffer.Lock())
                     {
@@ -302,20 +302,20 @@ namespace FireDeptStopwatch.Helpers
             var targetVideoName = "video_" + instanceId + ".avi";
 
             string sourcePath;
-            if (ApplicationDeployment.IsNetworkDeployed)
+            if (Debugger.IsAttached)
             {
-                sourcePath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
+                sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TempRecordings");
             }
             else
             {
-                sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TempRecordings");
+                sourcePath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
             }
 
             sourcePath = Path.Combine(sourcePath, sourceVideoName);
 
             using (var writer = new VideoFileWriter())
             {
-                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.MPEG4);
+                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.FFV1);
 
                 while (bitmaps != null)
                 {
@@ -336,13 +336,13 @@ namespace FireDeptStopwatch.Helpers
             }
 
             string targetPath;
-            if (ApplicationDeployment.IsNetworkDeployed)
+            if (Debugger.IsAttached)
             {
-                targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
+                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
             }
             else
             {
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
+                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch", "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
             }
 
             Directory.CreateDirectory(targetPath);

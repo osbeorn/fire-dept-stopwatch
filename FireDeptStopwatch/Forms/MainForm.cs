@@ -352,20 +352,17 @@ namespace FireDeptStopwatch.Forms
 
         private void SaveResults()
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
+            if (Debugger.IsAttached)
             {
                 try
                 {
-                    using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
+                    using (var stream = File.Open(Path.Combine("Data", "results.bin"), FileMode.Create))
                     {
-                        using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
-                        {
-                            BinaryFormatter bin = new BinaryFormatter();
-                            bin.Serialize(stream, resultList);
-                        }
+                        BinaryFormatter bin = new BinaryFormatter();
+                        bin.Serialize(stream, resultList);
                     }
                 }
-                catch (Exception)
+                catch (IOException)
                 {
                     // do nothing
                 }
@@ -374,13 +371,13 @@ namespace FireDeptStopwatch.Forms
             {
                 try
                 {
-                    using (var stream = File.Open("Data/results.bin", FileMode.Create))
+                    using (var stream = File.Open(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch", "Data", "results.bin"), FileMode.Create))
                     {
                         BinaryFormatter bin = new BinaryFormatter();
                         bin.Serialize(stream, resultList);
                     }
                 }
-                catch (IOException)
+                catch (Exception)
                 {
                     // do nothing
                 }

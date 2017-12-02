@@ -180,13 +180,13 @@ namespace FireDeptStopwatch.Forms
             //}
 
             string targetPath;
-            if (ApplicationDeployment.IsNetworkDeployed)
+            if (Debugger.IsAttached)
             {
-                targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings");
+                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
             }
             else
             {
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
+                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch", "Recordings");
             }
 
             Process.Start(targetPath);
