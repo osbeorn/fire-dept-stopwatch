@@ -327,6 +327,11 @@
     <None Include="Resources\ssv_zakljucek_2.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="avcodec-57.dll" />
+    <Content Include="avdevice-57.dll" />
+    <Content Include="avfilter-6.dll" />
+    <Content Include="avformat-57.dll" />
+    <Content Include="avutil-55.dll" />
     <Content Include="favicon.ico" />
     <Content Include="avcodec-54.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -355,6 +360,7 @@
     <Content Include="msvcr110d.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="swscale-4.dll" />
     <None Include="onvif.discovery.dll" />
     <None Include="onvif.services.dll" />
     <None Include="onvif.session.dll" />
@@ -363,9 +369,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\ssv_startno_povelje_AT.wav" />
+    <Content Include="postproc-54.dll" />
     <Content Include="swresample-0.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="swresample-2.dll" />
     <Content Include="swscale-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
