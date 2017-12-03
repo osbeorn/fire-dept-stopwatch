@@ -1,60 +1,179 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.1" Modules="professional" RootPath="." Language="en_GB" Id="{0E14634D-C1B7-4B60-966B-C69A6B2AC45F}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.1" Modules="professional" RootPath="." Language="en" Id="{DCF27128-AB2E-4C74-B197-4A492CF07D13}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;ActSyncAppComponent"/>
+    <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION"/>
+    <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.5" ValueLocId="-"/>
+    <ROW Property="AI_REQUIRED_DOTNET_VERSION" MultiBuildValue="DefaultBuild:4.5" ValueLocId="-"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
-    <ROW Property="ARPCONTACT" Value="Benjamin Kastelic (kastelic.benjamin@gmail.com)"/>
+    <ROW Property="ARPCONTACT" Value="Benjamin Kastelic &lt;kastelic.benjamin@gmail.com&gt;"/>
+    <ROW Property="ARPHELPLINK" Value="https://github.com/osbeorn/fire-dept-stopwatch/issues"/>
     <ROW Property="ARPPRODUCTICON" Value="favicon.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://github.com/osbeorn/fire-dept-stopwatch/issues"/>
     <ROW Property="Manufacturer" Value="Benjamin Kastelic"/>
-    <ROW Property="ProductCode" Value="2057:{2591BFEA-A4E5-4E4A-B654-1BBCDC273F37} " Type="16"/>
-    <ROW Property="ProductLanguage" Value="2057"/>
-    <ROW Property="ProductName" Value="SSV štoparica"/>
+    <ROW Property="ProductCode" Value="1033:{4A1B3E2C-261A-4CC8-A187-8B3C32B113D2} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="FireDeptStopwatch"/>
     <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
-    <ROW Property="UpgradeCode" Value="{A8797E04-9B4F-444D-9354-71F4479B6AC3}"/>
+    <ROW Property="UpgradeCode" Value="{86DD3A54-8B84-4DB9-B3BF-AD73F577C030}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows XP SP3 x86, Windows Server 2003 SP2 x86, Windows Vista x86, Windows Server 2008 x86" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64" MultiBuildValue="DefaultBuild:Windows XP SP2 x64, Windows Server 2003 SP2 x64, Windows Vista x64, Windows Server 2008 x64, Windows Server 2008 R2 x64, Windows Server 2012 x64, Windows Server 2012 R2 x64, Windows Server 2016 x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP SP2 x64, Windows Server 2003 SP2 x64, Windows Vista x64, Windows Server 2008 x64, Windows Server 2008 R2 x64, Windows Server 2012 x64, Windows Server 2012 R2 x64, Windows Server 2016 x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:Windows XP SP3 x86, Windows Server 2003 SP2 x86, Windows Vista x86, Windows Server 2008 x86" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="FireDeptStopwatch_Dir" Directory_Parent="LocalAppDataFolder" DefaultDir="FIREDE~1|FireDeptStopwatch"/>
-    <ROW Directory="LocalAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="LOCALA~1|LocalAppDataFolder" IsPseudoRoot="1"/>
+    <ROW Directory="Data_Dir" Directory_Parent="APPDIR" DefaultDir="Data"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
     <ROW Directory="SSVtoparica_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="SSVŠTO~1|SSV štoparica"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="FireDeptStopwatch" ComponentId="{45F551EA-373D-4BA6-906D-5976759B3A83}" Directory_="FireDeptStopwatch_Dir" Attributes="0"/>
-    <ROW Component="ProductInformation" ComponentId="{62555A56-A0D3-46EA-9422-9228D953A982}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SSVtoparica" ComponentId="{09E4D652-6D26-4649-AF3D-BAB07C642B6F}" Directory_="SSVtoparica_Dir" Attributes="0"/>
-    <ROW Component="updater.exe" ComponentId="{E9CAE904-AA1A-4643-8CC4-34B5ABCE5A22}" Directory_="APPDIR" Attributes="0" KeyPath="updater.exe"/>
+    <ROW Component="Accord.Video.FFMPEG.dll" ComponentId="{65DB646F-AEA3-43C8-83E7-FBA9E6027590}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.Video.FFMPEG.dll"/>
+    <ROW Component="Accord.Video.dll" ComponentId="{A9236696-931C-4A29-A1EC-DDF72B215862}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.Video.dll"/>
+    <ROW Component="Accord.dll" ComponentId="{23E356C4-7139-4E33-B28D-372C6B6388AE}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.dll"/>
+    <ROW Component="Accord.dll.config" ComponentId="{048E4D0D-74E6-45F0-9C2D-97B68E8FF50A}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.dll.config" Type="0"/>
+    <ROW Component="AudioSwitcher.AudioApi.CoreAudio.dll" ComponentId="{ACA040D0-AFC1-4ED5-9063-0EB3EFDDC8CF}" Directory_="APPDIR" Attributes="0" KeyPath="AudioSwitcher.AudioApi.CoreAudio.dll"/>
+    <ROW Component="AudioSwitcher.AudioApi.dll" ComponentId="{5463AC4A-3648-4BA7-89EA-9CF23E9B80DC}" Directory_="APPDIR" Attributes="0" KeyPath="AudioSwitcher.AudioApi.dll"/>
+    <ROW Component="FSharp.Core.dll" ComponentId="{6745C16E-A010-4CEE-8CEF-C4D53E4250EF}" Directory_="APPDIR" Attributes="0" KeyPath="FSharp.Core.dll"/>
+    <ROW Component="FireDeptStopwatch.exe" ComponentId="{1912CB8D-3624-45A8-AA69-DC0D5C5D4F5E}" Directory_="APPDIR" Attributes="0" KeyPath="FireDeptStopwatch.exe"/>
+    <ROW Component="Gma.System.MouseKeyHook.dll" ComponentId="{F11789F8-45AF-4BF5-AFBF-F593DBDB53A0}" Directory_="APPDIR" Attributes="0" KeyPath="Gma.System.MouseKeyHook.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{8CCE9007-03BE-4FA6-BD5B-2917A199B6D3}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SSVtoparica" ComponentId="{B843A16E-8E17-4CE4-AB15-15209F87F9C3}" Directory_="SSVtoparica_Dir" Attributes="0"/>
+    <ROW Component="System.Reactive.Core.dll" ComponentId="{6C783E97-8512-44D4-BD90-768486111B78}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reactive.Core.dll"/>
+    <ROW Component="System.Reactive.Interfaces.dll" ComponentId="{26E255DF-42A7-4FD7-BBED-3E758F6B5782}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reactive.Interfaces.dll"/>
+    <ROW Component="System.Reactive.Linq.dll" ComponentId="{E9F9FF0D-8B2D-42EB-88DA-7AD979BC7427}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reactive.Linq.dll"/>
+    <ROW Component="avcodec54.dll" ComponentId="{92E3A5AC-4157-4FAA-8385-662F62E05F21}" Directory_="APPDIR" Attributes="0" KeyPath="avcodec54.dll"/>
+    <ROW Component="avcodec57.dll" ComponentId="{0B02ADCA-8664-4837-B135-04E74FA3A5EB}" Directory_="APPDIR" Attributes="0" KeyPath="avcodec57.dll"/>
+    <ROW Component="avdevice54.dll" ComponentId="{5D8F9236-85C1-4618-8DB7-3B3EC3FB6040}" Directory_="APPDIR" Attributes="0" KeyPath="avdevice54.dll"/>
+    <ROW Component="avdevice57.dll" ComponentId="{B1976FB4-62AE-4290-B299-2AF9333FDB51}" Directory_="APPDIR" Attributes="0" KeyPath="avdevice57.dll"/>
+    <ROW Component="avfilter2.dll" ComponentId="{7DB434AA-8875-40A2-837C-368EE6F137FC}" Directory_="APPDIR" Attributes="0" KeyPath="avfilter2.dll"/>
+    <ROW Component="avfilter6.dll" ComponentId="{51F193E8-995A-47DC-9E41-0E624046C8A0}" Directory_="APPDIR" Attributes="0" KeyPath="avfilter6.dll"/>
+    <ROW Component="avformat54.dll" ComponentId="{731FE7BB-484F-4E3E-8500-11A2CBBA2998}" Directory_="APPDIR" Attributes="0" KeyPath="avformat54.dll"/>
+    <ROW Component="avformat57.dll" ComponentId="{379ACBE0-338F-4C99-BA54-702621CE37D9}" Directory_="APPDIR" Attributes="0" KeyPath="avformat57.dll"/>
+    <ROW Component="avutil51.dll" ComponentId="{9EC6BF8B-DC30-48A6-B3E8-7C9876FF1EA7}" Directory_="APPDIR" Attributes="0" KeyPath="avutil51.dll"/>
+    <ROW Component="avutil55.dll" ComponentId="{7D474D2D-757C-45AC-A4DB-AA62EBD06F07}" Directory_="APPDIR" Attributes="0" KeyPath="avutil55.dll"/>
+    <ROW Component="msvcp110.dll" ComponentId="{FB3D8C96-93A8-4C56-A746-1FFCAA9190A5}" Directory_="APPDIR" Attributes="0" KeyPath="msvcp110.dll"/>
+    <ROW Component="msvcp110d.dll" ComponentId="{5E8150B2-65DB-49C3-9B75-40D453E1D603}" Directory_="APPDIR" Attributes="0" KeyPath="msvcp110d.dll"/>
+    <ROW Component="msvcr110.dll" ComponentId="{4D24500B-0D31-43C8-9B88-3893F9562ABD}" Directory_="APPDIR" Attributes="0" KeyPath="msvcr110.dll"/>
+    <ROW Component="msvcr110d.dll" ComponentId="{AE427002-F03D-432F-A47E-55656C46F84A}" Directory_="APPDIR" Attributes="0" KeyPath="msvcr110d.dll"/>
+    <ROW Component="onvif.discovery.dll" ComponentId="{8AADE8E1-FA33-44BD-AE5B-9E13B580360D}" Directory_="APPDIR" Attributes="0" KeyPath="onvif.discovery.dll"/>
+    <ROW Component="onvif.services.dll" ComponentId="{E29FFB59-0B26-4993-8596-BC9CE888713F}" Directory_="APPDIR" Attributes="0" KeyPath="onvif.services.dll"/>
+    <ROW Component="onvif.session.dll" ComponentId="{6996368C-4053-4F10-A8CF-9868FF155AC3}" Directory_="APPDIR" Attributes="0" KeyPath="onvif.session.dll"/>
+    <ROW Component="onvif.utils.dll" ComponentId="{834B4FC8-186B-4D9A-8472-E7C1BF5E51AF}" Directory_="APPDIR" Attributes="0" KeyPath="onvif.utils.dll"/>
+    <ROW Component="postproc52.dll" ComponentId="{6C573A74-1D5C-4CB5-A04A-05213C4E2ADB}" Directory_="APPDIR" Attributes="0" KeyPath="postproc52.dll"/>
+    <ROW Component="postproc54.dll" ComponentId="{33CF7F0F-70B4-45E0-9452-C298E2CEA259}" Directory_="APPDIR" Attributes="0" KeyPath="postproc54.dll"/>
+    <ROW Component="results.bin" ComponentId="{DD7C388C-925E-4380-972B-A67437C8FA3D}" Directory_="Data_Dir" Attributes="0" KeyPath="results.bin" Type="0"/>
+    <ROW Component="swresample0.dll" ComponentId="{D1673F3F-C8EF-49DC-B525-8319804865E1}" Directory_="APPDIR" Attributes="0" KeyPath="swresample0.dll"/>
+    <ROW Component="swresample2.dll" ComponentId="{75D5F7F1-49FE-4557-9C46-663DEBE14F62}" Directory_="APPDIR" Attributes="0" KeyPath="swresample2.dll"/>
+    <ROW Component="swscale2.dll" ComponentId="{532FCBE4-0651-40B4-9408-DAFD1174B8E9}" Directory_="APPDIR" Attributes="0" KeyPath="swscale2.dll"/>
+    <ROW Component="swscale4.dll" ComponentId="{4049F4DC-ECA3-4F32-A523-6E49B3315A57}" Directory_="APPDIR" Attributes="0" KeyPath="swscale4.dll"/>
+    <ROW Component="updater.exe" ComponentId="{D2E9431B-DC9E-40CE-B28E-F94B9A7A4E71}" Directory_="APPDIR" Attributes="0" KeyPath="updater.exe"/>
+    <ROW Component="utils.activities.dll" ComponentId="{C6229B35-425A-4FC6-A558-FD6833BF92EE}" Directory_="APPDIR" Attributes="0" KeyPath="utils.activities.dll"/>
+    <ROW Component="utils.async.dll" ComponentId="{9B10367A-787C-4F1C-8763-39D43F4D9BBD}" Directory_="APPDIR" Attributes="0" KeyPath="utils.async.dll"/>
+    <ROW Component="utils.bootstrapping.dll" ComponentId="{CB54CE0F-174E-4323-AEDB-DFD4247EF920}" Directory_="APPDIR" Attributes="0" KeyPath="utils.bootstrapping.dll"/>
+    <ROW Component="utils.common.dll" ComponentId="{E2940C1C-50A6-4E7B-85DA-7165BB470A0C}" Directory_="APPDIR" Attributes="0" KeyPath="utils.common.dll"/>
+    <ROW Component="utils.diagnostics.dll" ComponentId="{7BACDBD5-84C4-4BE4-8EF2-A4130BCE2F57}" Directory_="APPDIR" Attributes="0" KeyPath="utils.diagnostics.dll"/>
+    <ROW Component="utils.fsharp.dll" ComponentId="{2F03381D-3810-4134-9357-922A9D528AD8}" Directory_="APPDIR" Attributes="0" KeyPath="utils.fsharp.dll"/>
+    <ROW Component="utils.linq.dll" ComponentId="{3FAAAE9D-CB7F-4BE1-86A9-BA7219A82333}" Directory_="APPDIR" Attributes="0" KeyPath="utils.linq.dll"/>
+    <ROW Component="utils.wpf.dll" ComponentId="{527AAB69-122A-4B5F-8E64-542A932BEEFE}" Directory_="APPDIR" Attributes="0" KeyPath="utils.wpf.dll"/>
+    <ROW Component="utils.xml.dll" ComponentId="{4268555D-8E92-4FBF-BEC9-DB025EF08F42}" Directory_="APPDIR" Attributes="0" KeyPath="utils.xml.dll"/>
+    <ROW Component="vccorlib110.dll" ComponentId="{0263BADF-742E-4D61-BC50-256640B64BEE}" Directory_="APPDIR" Attributes="0" KeyPath="vccorlib110.dll"/>
+    <ROW Component="vccorlib110d.dll" ComponentId="{3C4A4962-3685-43D8-82E0-5AB7512EDE6B}" Directory_="APPDIR" Attributes="0" KeyPath="vccorlib110d.dll"/>
+    <ROW Component="video.player.host.exe" ComponentId="{A9EA7F6C-3A80-4417-97E5-6EDA8340D5B3}" Directory_="APPDIR" Attributes="0" KeyPath="video.player.host.exe"/>
+    <ROW Component="video.player.media.dll" ComponentId="{9CE0E789-7C0D-416A-BE03-1747AA040866}" Directory_="APPDIR" Attributes="0" KeyPath="video.player.media.dll"/>
+    <ROW Component="video.player.net.dll" ComponentId="{C6A37966-819A-4D23-B853-505CC886A617}" Directory_="APPDIR" Attributes="0" KeyPath="video.player.net.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="FireDeptStopwatch ProductInformation SSVtoparica updater.exe"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="Accord.Video.FFMPEG.dll Accord.Video.dll Accord.dll Accord.dll.config AudioSwitcher.AudioApi.CoreAudio.dll AudioSwitcher.AudioApi.dll FSharp.Core.dll FireDeptStopwatch.exe Gma.System.MouseKeyHook.dll ProductInformation SSVtoparica System.Reactive.Core.dll System.Reactive.Interfaces.dll System.Reactive.Linq.dll avcodec54.dll avcodec57.dll avdevice54.dll avdevice57.dll avfilter2.dll avfilter6.dll avformat54.dll avformat57.dll avutil51.dll avutil55.dll msvcp110.dll msvcp110d.dll msvcr110.dll msvcr110d.dll onvif.discovery.dll onvif.services.dll onvif.session.dll onvif.utils.dll postproc52.dll postproc54.dll results.bin swresample0.dll swresample2.dll swscale2.dll swscale4.dll updater.exe utils.activities.dll utils.async.dll utils.bootstrapping.dll utils.common.dll utils.diagnostics.dll utils.fsharp.dll utils.linq.dll utils.wpf.dll utils.xml.dll vccorlib110.dll vccorlib110d.dll video.player.host.exe video.player.media.dll video.player.net.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="updater.exe" Component_="updater.exe" FileName="updater.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="&lt;AI_STUBS&gt;updater.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="Accord.Video.FFMPEG.dll" Component_="Accord.Video.FFMPEG.dll" FileName="ACCORD~2.DLL|Accord.Video.FFMPEG.dll" Attributes="0" SourcePath="bin\x86\Release\Accord.Video.FFMPEG.dll" SelfReg="false" NextFile="Accord.Video.FFMPEG.xml"/>
+    <ROW File="Accord.Video.FFMPEG.xml" Component_="Accord.dll.config" FileName="ACCORD~1.XML|Accord.Video.FFMPEG.xml" Attributes="0" SourcePath="bin\x86\Release\Accord.Video.FFMPEG.xml" SelfReg="false" NextFile="Accord.Video.xml"/>
+    <ROW File="Accord.Video.dll" Component_="Accord.Video.dll" FileName="ACCORD~1.DLL|Accord.Video.dll" Attributes="0" SourcePath="bin\x86\Release\Accord.Video.dll" SelfReg="false" NextFile="Accord.Video.FFMPEG.dll"/>
+    <ROW File="Accord.Video.xml" Component_="Accord.dll.config" FileName="ACCORD~2.XML|Accord.Video.xml" Attributes="0" SourcePath="bin\x86\Release\Accord.Video.xml" SelfReg="false" NextFile="Accord.xml"/>
+    <ROW File="Accord.dll" Component_="Accord.dll" FileName="Accord.dll" Attributes="0" SourcePath="bin\x86\Release\Accord.dll" SelfReg="false" NextFile="Accord.dll.config"/>
+    <ROW File="Accord.dll.config" Component_="Accord.dll.config" FileName="ACCORD~1.CON|Accord.dll.config" Attributes="0" SourcePath="bin\x86\Release\Accord.dll.config" SelfReg="false" NextFile="Accord.Video.dll"/>
+    <ROW File="Accord.xml" Component_="Accord.dll.config" FileName="Accord.xml" Attributes="0" SourcePath="bin\x86\Release\Accord.xml" SelfReg="false" NextFile="AudioSwitcher.AudioApi.CoreAudio.dll"/>
+    <ROW File="AudioSwitcher.AudioApi.CoreAudio.dll" Component_="AudioSwitcher.AudioApi.CoreAudio.dll" FileName="AUDIOS~1.DLL|AudioSwitcher.AudioApi.CoreAudio.dll" Attributes="0" SourcePath="bin\x86\Release\AudioSwitcher.AudioApi.CoreAudio.dll" SelfReg="false" NextFile="AudioSwitcher.AudioApi.dll"/>
+    <ROW File="AudioSwitcher.AudioApi.dll" Component_="AudioSwitcher.AudioApi.dll" FileName="AUDIOS~2.DLL|AudioSwitcher.AudioApi.dll" Attributes="0" SourcePath="bin\x86\Release\AudioSwitcher.AudioApi.dll" SelfReg="false" NextFile="avcodec54.dll"/>
+    <ROW File="FSharp.Core.dll" Component_="FSharp.Core.dll" FileName="FSHARP~1.DLL|FSharp.Core.dll" Attributes="0" SourcePath="bin\x86\Release\FSharp.Core.dll" SelfReg="false" NextFile="FSharp.Core.xml"/>
+    <ROW File="FSharp.Core.xml" Component_="Accord.dll.config" FileName="FSHARP~1.XML|FSharp.Core.xml" Attributes="0" SourcePath="bin\x86\Release\FSharp.Core.xml" SelfReg="false" NextFile="Gma.System.MouseKeyHook.dll"/>
+    <ROW File="FireDeptStopwatch.exe" Component_="FireDeptStopwatch.exe" FileName="FIREDE~1.EXE|FireDeptStopwatch.exe" Attributes="0" SourcePath="bin\x86\Release\FireDeptStopwatch.exe" SelfReg="false" NextFile="FireDeptStopwatch.exe.config" DigSign="true"/>
+    <ROW File="FireDeptStopwatch.exe.config" Component_="Accord.dll.config" FileName="FIREDE~1.CON|FireDeptStopwatch.exe.config" Attributes="0" SourcePath="bin\x86\Release\FireDeptStopwatch.exe.config" SelfReg="false" NextFile="FireDeptStopwatch.pdb"/>
+    <ROW File="FireDeptStopwatch.pdb" Component_="FireDeptStopwatch.exe" FileName="FIREDE~1.PDB|FireDeptStopwatch.pdb" Attributes="0" SourcePath="bin\x86\Release\FireDeptStopwatch.pdb" SelfReg="false" NextFile="FSharp.Core.dll"/>
+    <ROW File="Gma.System.MouseKeyHook.dll" Component_="Gma.System.MouseKeyHook.dll" FileName="GMASYS~1.DLL|Gma.System.MouseKeyHook.dll" Attributes="0" SourcePath="bin\x86\Release\Gma.System.MouseKeyHook.dll" SelfReg="false" NextFile="msvcp110.dll"/>
+    <ROW File="System.Reactive.Core.dll" Component_="System.Reactive.Core.dll" FileName="SYSTEM~1.DLL|System.Reactive.Core.dll" Attributes="0" SourcePath="bin\x86\Release\System.Reactive.Core.dll" SelfReg="false" NextFile="System.Reactive.Interfaces.dll"/>
+    <ROW File="System.Reactive.Interfaces.dll" Component_="System.Reactive.Interfaces.dll" FileName="SYSTEM~2.DLL|System.Reactive.Interfaces.dll" Attributes="0" SourcePath="bin\x86\Release\System.Reactive.Interfaces.dll" SelfReg="false" NextFile="System.Reactive.Linq.dll"/>
+    <ROW File="System.Reactive.Linq.dll" Component_="System.Reactive.Linq.dll" FileName="SYSTEM~3.DLL|System.Reactive.Linq.dll" Attributes="0" SourcePath="bin\x86\Release\System.Reactive.Linq.dll" SelfReg="false" NextFile="utils.activities.dll"/>
+    <ROW File="avcodec54.dll" Component_="avcodec54.dll" FileName="AVCODE~1.DLL|avcodec-54.dll" Attributes="0" SourcePath="bin\x86\Release\avcodec-54.dll" SelfReg="false" NextFile="avcodec57.dll"/>
+    <ROW File="avcodec57.dll" Component_="avcodec57.dll" FileName="AVCODE~2.DLL|avcodec-57.dll" Attributes="0" SourcePath="bin\x86\Release\avcodec-57.dll" SelfReg="false" NextFile="avdevice54.dll"/>
+    <ROW File="avdevice54.dll" Component_="avdevice54.dll" FileName="AVDEVI~1.DLL|avdevice-54.dll" Attributes="0" SourcePath="bin\x86\Release\avdevice-54.dll" SelfReg="false" NextFile="avdevice57.dll"/>
+    <ROW File="avdevice57.dll" Component_="avdevice57.dll" FileName="AVDEVI~2.DLL|avdevice-57.dll" Attributes="0" SourcePath="bin\x86\Release\avdevice-57.dll" SelfReg="false" NextFile="avfilter2.dll"/>
+    <ROW File="avfilter2.dll" Component_="avfilter2.dll" FileName="AVFILT~1.DLL|avfilter-2.dll" Attributes="0" SourcePath="bin\x86\Release\avfilter-2.dll" SelfReg="false" NextFile="avfilter6.dll"/>
+    <ROW File="avfilter6.dll" Component_="avfilter6.dll" FileName="AVFILT~2.DLL|avfilter-6.dll" Attributes="0" SourcePath="bin\x86\Release\avfilter-6.dll" SelfReg="false" NextFile="avformat54.dll"/>
+    <ROW File="avformat54.dll" Component_="avformat54.dll" FileName="AVFORM~1.DLL|avformat-54.dll" Attributes="0" SourcePath="bin\x86\Release\avformat-54.dll" SelfReg="false" NextFile="avformat57.dll"/>
+    <ROW File="avformat57.dll" Component_="avformat57.dll" FileName="AVFORM~2.DLL|avformat-57.dll" Attributes="0" SourcePath="bin\x86\Release\avformat-57.dll" SelfReg="false" NextFile="avutil51.dll"/>
+    <ROW File="avutil51.dll" Component_="avutil51.dll" FileName="AVUTIL~1.DLL|avutil-51.dll" Attributes="0" SourcePath="bin\x86\Release\avutil-51.dll" SelfReg="false" NextFile="avutil55.dll"/>
+    <ROW File="avutil55.dll" Component_="avutil55.dll" FileName="AVUTIL~2.DLL|avutil-55.dll" Attributes="0" SourcePath="bin\x86\Release\avutil-55.dll" SelfReg="false" NextFile="FireDeptStopwatch.exe"/>
+    <ROW File="msvcp110.dll" Component_="msvcp110.dll" FileName="msvcp110.dll" Attributes="0" SourcePath="bin\x86\Release\msvcp110.dll" SelfReg="false" NextFile="msvcp110d.dll"/>
+    <ROW File="msvcp110d.dll" Component_="msvcp110d.dll" FileName="MSVCP1~1.DLL|msvcp110d.dll" Attributes="0" SourcePath="bin\x86\Release\msvcp110d.dll" SelfReg="false" NextFile="msvcr110.dll"/>
+    <ROW File="msvcr110.dll" Component_="msvcr110.dll" FileName="msvcr110.dll" Attributes="0" SourcePath="bin\x86\Release\msvcr110.dll" SelfReg="false" NextFile="msvcr110d.dll"/>
+    <ROW File="msvcr110d.dll" Component_="msvcr110d.dll" FileName="MSVCR1~1.DLL|msvcr110d.dll" Attributes="0" SourcePath="bin\x86\Release\msvcr110d.dll" SelfReg="false" NextFile="onvif.discovery.dll"/>
+    <ROW File="onvif.discovery.dll" Component_="onvif.discovery.dll" FileName="ONVIFD~1.DLL|onvif.discovery.dll" Attributes="0" SourcePath="bin\x86\Release\onvif.discovery.dll" SelfReg="false" NextFile="onvif.services.dll"/>
+    <ROW File="onvif.services.dll" Component_="onvif.services.dll" FileName="ONVIFS~1.DLL|onvif.services.dll" Attributes="0" SourcePath="bin\x86\Release\onvif.services.dll" SelfReg="false" NextFile="onvif.session.dll"/>
+    <ROW File="onvif.session.dll" Component_="onvif.session.dll" FileName="ONVIFS~2.DLL|onvif.session.dll" Attributes="0" SourcePath="bin\x86\Release\onvif.session.dll" SelfReg="false" NextFile="onvif.utils.dll"/>
+    <ROW File="onvif.utils.dll" Component_="onvif.utils.dll" FileName="ONVIFU~1.DLL|onvif.utils.dll" Attributes="0" SourcePath="bin\x86\Release\onvif.utils.dll" SelfReg="false" NextFile="postproc52.dll"/>
+    <ROW File="postproc52.dll" Component_="postproc52.dll" FileName="POSTPR~1.DLL|postproc-52.dll" Attributes="0" SourcePath="bin\x86\Release\postproc-52.dll" SelfReg="false" NextFile="postproc54.dll"/>
+    <ROW File="postproc54.dll" Component_="postproc54.dll" FileName="POSTPR~2.DLL|postproc-54.dll" Attributes="0" SourcePath="bin\x86\Release\postproc-54.dll" SelfReg="false" NextFile="swresample0.dll"/>
+    <ROW File="results.bin" Component_="results.bin" FileName="results.bin" Attributes="0" SourcePath="bin\x86\Release\Data\results.bin" SelfReg="false"/>
+    <ROW File="swresample0.dll" Component_="swresample0.dll" FileName="SWRESA~1.DLL|swresample-0.dll" Attributes="0" SourcePath="bin\x86\Release\swresample-0.dll" SelfReg="false" NextFile="swresample2.dll"/>
+    <ROW File="swresample2.dll" Component_="swresample2.dll" FileName="SWRESA~2.DLL|swresample-2.dll" Attributes="0" SourcePath="bin\x86\Release\swresample-2.dll" SelfReg="false" NextFile="swscale2.dll"/>
+    <ROW File="swscale2.dll" Component_="swscale2.dll" FileName="SWSCAL~1.DLL|swscale-2.dll" Attributes="0" SourcePath="bin\x86\Release\swscale-2.dll" SelfReg="false" NextFile="swscale4.dll"/>
+    <ROW File="swscale4.dll" Component_="swscale4.dll" FileName="SWSCAL~2.DLL|swscale-4.dll" Attributes="0" SourcePath="bin\x86\Release\swscale-4.dll" SelfReg="false" NextFile="System.Reactive.Core.dll"/>
+    <ROW File="updater.exe" Component_="updater.exe" FileName="updater.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="&lt;AI_STUBS&gt;updater.exe" SelfReg="false" NextFile="Accord.dll" DigSign="true"/>
+    <ROW File="utils.activities.dll" Component_="utils.activities.dll" FileName="UTILSA~1.DLL|utils.activities.dll" Attributes="0" SourcePath="bin\x86\Release\utils.activities.dll" SelfReg="false" NextFile="utils.async.dll"/>
+    <ROW File="utils.async.dll" Component_="utils.async.dll" FileName="UTILSA~2.DLL|utils.async.dll" Attributes="0" SourcePath="bin\x86\Release\utils.async.dll" SelfReg="false" NextFile="utils.bootstrapping.dll"/>
+    <ROW File="utils.bootstrapping.dll" Component_="utils.bootstrapping.dll" FileName="UTILSB~1.DLL|utils.bootstrapping.dll" Attributes="0" SourcePath="bin\x86\Release\utils.bootstrapping.dll" SelfReg="false" NextFile="utils.common.dll"/>
+    <ROW File="utils.common.dll" Component_="utils.common.dll" FileName="UTILSC~1.DLL|utils.common.dll" Attributes="0" SourcePath="bin\x86\Release\utils.common.dll" SelfReg="false" NextFile="utils.diagnostics.dll"/>
+    <ROW File="utils.diagnostics.dll" Component_="utils.diagnostics.dll" FileName="UTILSD~1.DLL|utils.diagnostics.dll" Attributes="0" SourcePath="bin\x86\Release\utils.diagnostics.dll" SelfReg="false" NextFile="utils.fsharp.dll"/>
+    <ROW File="utils.fsharp.dll" Component_="utils.fsharp.dll" FileName="UTILSF~1.DLL|utils.fsharp.dll" Attributes="0" SourcePath="bin\x86\Release\utils.fsharp.dll" SelfReg="false" NextFile="utils.linq.dll"/>
+    <ROW File="utils.linq.dll" Component_="utils.linq.dll" FileName="UTILSL~1.DLL|utils.linq.dll" Attributes="0" SourcePath="bin\x86\Release\utils.linq.dll" SelfReg="false" NextFile="utils.wpf.dll"/>
+    <ROW File="utils.wpf.dll" Component_="utils.wpf.dll" FileName="UTILSW~1.DLL|utils.wpf.dll" Attributes="0" SourcePath="bin\x86\Release\utils.wpf.dll" SelfReg="false" NextFile="utils.xml.dll"/>
+    <ROW File="utils.xml.dll" Component_="utils.xml.dll" FileName="UTILSX~1.DLL|utils.xml.dll" Attributes="0" SourcePath="bin\x86\Release\utils.xml.dll" SelfReg="false" NextFile="vccorlib110.dll"/>
+    <ROW File="vccorlib110.dll" Component_="vccorlib110.dll" FileName="VCCORL~1.DLL|vccorlib110.dll" Attributes="0" SourcePath="bin\x86\Release\vccorlib110.dll" SelfReg="false" NextFile="vccorlib110d.dll"/>
+    <ROW File="vccorlib110d.dll" Component_="vccorlib110d.dll" FileName="VCCORL~2.DLL|vccorlib110d.dll" Attributes="0" SourcePath="bin\x86\Release\vccorlib110d.dll" SelfReg="false" NextFile="video.player.host.exe"/>
+    <ROW File="video.player.host.exe" Component_="video.player.host.exe" FileName="VIDEOP~1.EXE|video.player.host.exe" Attributes="0" SourcePath="bin\x86\Release\video.player.host.exe" SelfReg="false" NextFile="video.player.host.pdb" DigSign="true"/>
+    <ROW File="video.player.host.pdb" Component_="video.player.host.exe" FileName="VIDEOP~1.PDB|video.player.host.pdb" Attributes="0" SourcePath="bin\x86\Release\video.player.host.pdb" SelfReg="false" NextFile="video.player.media.dll"/>
+    <ROW File="video.player.media.dll" Component_="video.player.media.dll" FileName="VIDEOP~1.DLL|video.player.media.dll" Attributes="0" SourcePath="bin\x86\Release\video.player.media.dll" SelfReg="false" NextFile="video.player.net.dll"/>
+    <ROW File="video.player.net.dll" Component_="video.player.net.dll" FileName="VIDEOP~2.DLL|video.player.net.dll" Attributes="0" SourcePath="bin\x86\Release\video.player.net.dll" SelfReg="false" NextFile="results.bin"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFileName="FireDeptStopwatch" Languages="en_GB" InstallationType="4" UseLargeSchema="true"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
-    <ROW Path="&lt;AI_DICTS&gt;ui_en_GB.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
@@ -75,6 +194,7 @@
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
@@ -103,10 +223,10 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="SSVtoparica_Dir" Component_="SSVtoparica" ManualDelete="false"/>
-    <ROW Directory_="FireDeptStopwatch_Dir" Component_="FireDeptStopwatch" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
@@ -116,8 +236,8 @@
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_UPDATER_UNINSTALL" Type="82" Source="updater.exe" Target="/clean silent"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]FireDeptStopwatch"/>
-    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]" MultiBuildTarget="DefaultBuild:[ProgramMenuFolder]FireDeptStopwatch"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder][ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
@@ -127,10 +247,10 @@
     <ROW IniFile="AppDir" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="AppDir" Value="[APPDIR]" Action="0" Component_="updater.exe"/>
     <ROW IniFile="ApplicationName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationName" Value="[ProductName]" Action="0" Component_="updater.exe"/>
     <ROW IniFile="ApplicationVersion" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationVersion" Value="[ProductVersion]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="CheckFrequency" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CheckFrequency" Value="1" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="CheckFrequency" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CheckFrequency" Value="2" Action="0" Component_="updater.exe"/>
     <ROW IniFile="CompanyName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CompanyName" Value="[Manufacturer]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="DefaultCommandLine" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DefaultCommandLine" Value="/silentall" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="DownloadsFolder" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DownloadsFolder" Value="[CommonAppDataFolder][Manufacturer]\[ProductName]\updates\" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="DefaultCommandLine" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DefaultCommandLine" Value="/checknow" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="DownloadsFolder" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DownloadsFolder" Value="[CommonAppDataFolder][ProductName]\updates\" Action="0" Component_="updater.exe"/>
     <ROW IniFile="Flags" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="Flags" Value="PerMachine|ShowConfigOptionsButton" Action="0" Component_="updater.exe"/>
     <ROW IniFile="ID" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ID" Value="[UpgradeCode]" Action="0" Component_="updater.exe"/>
     <ROW IniFile="URL" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="URL" Value="http://www.example.com/download/updates.txt" Action="0" Component_="updater.exe"/>
@@ -142,6 +262,7 @@
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
     <ROW Action="AI_UPDATER_UNINSTALL" Condition="($updater.exe = 2) AND (?updater.exe = 3) AND NOT (UPGRADINGPRODUCTCODE)" Sequence="1551"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
@@ -149,16 +270,24 @@
     <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
-    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] can not be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] can not be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 502) OR (ServicePackLevel &lt;&gt; 2) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 502) OR (ServicePackLevel &lt;&gt; 2) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 603) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 1000) OR (ServicePackLevel &lt;&gt; 0) OR (MsiNTProductType = 1)) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="( Version9X OR VersionNT64 OR ( VersionNT AND ((VersionNT &lt;&gt; 501) OR (ServicePackLevel &lt;&gt; 3)) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel &lt;&gt; 2)) AND ((VersionNT &lt;&gt; 600) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT &lt;&gt; 600) OR (MsiNTProductType = 1)) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="VersionNT" Description="[ProductName] can not be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="AI_DETECTED_DOTNET_VERSION &gt;= AI_REQUIRED_DOTNET_VERSION" Description="[ProductName] cannot be installed on systems with .NET Framework version lower than [AI_REQUIRED_DOTNET_DISPLAY]." DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="SSVtoparica" Directory_="DesktopFolder" Name="SSVŠTO~1|SSV štoparica" Component_="FireDeptStopwatch.exe" Target="[#FireDeptStopwatch.exe]" Hotkey="0" Icon_="favicon.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="SSVtoparica_1" Directory_="SSVtoparica_Dir" Name="SSVŠTO~1|SSV štoparica" Component_="FireDeptStopwatch.exe" Target="[#FireDeptStopwatch.exe]" Hotkey="0" Icon_="favicon.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
