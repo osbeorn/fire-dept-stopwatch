@@ -135,8 +135,6 @@ namespace FireDeptStopwatch.Forms
         {
             //Application.AddMessageFilter(this);
 
-            //PrepareDataFile();
-
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
 
             splitTimes = new List<SplitTimeResult>();
@@ -151,17 +149,6 @@ namespace FireDeptStopwatch.Forms
 
             audioController = new CoreAudioController();
             mutedSessions = new List<string>();
-        }
-
-        private void PrepareDataFile()
-        {
-            using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (var fs = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
-                {
-                    // do nothing
-                }
-            }
         }
 
         private void PlaySound(UnmanagedMemoryStream sound, bool sync)
@@ -593,77 +580,54 @@ namespace FireDeptStopwatch.Forms
         {
             //deviceHandler = new RawInputDevices(this.Handle);
 
-            if (ApplicationDeployment.IsNetworkDeployed)
+            string appDataFolder;
+            if (Debugger.IsAttached)
             {
-                try
-                {
-                    using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
-                    {
-                        using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
-                        {
-                            var binaryFormatter = new BinaryFormatter();
-                            resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
-                            resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
-
-                            foreach (var result in resultList)
-                            {
-                                resultsListBox.Items.Add(result);
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    resultList = new List<TimerResult>();
-                }
+                appDataFolder = String.Empty;
             }
             else
             {
-                try
-                {
-                    using (var stream = File.Open("Data/results.bin", FileMode.Open))
-                    {
-                        var binaryFormatter = new BinaryFormatter();
-                        resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
-                        resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+                appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch");
+            }
 
-                        foreach (var result in resultList)
-                        {
-                            resultsListBox.Items.Add(result);
-                        }
+            try
+            {
+                using (var stream = File.Open(Path.Combine(appDataFolder, "Data", "results.bin"), FileMode.Open))
+                {
+                    var binaryFormatter = new BinaryFormatter();
+                    resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
+                    resultList.Sort((x, y) => y.DateTime.CompareTo(x.DateTime));
+
+                    foreach (var result in resultList)
+                    {
+                        resultsListBox.Items.Add(result);
                     }
                 }
-                catch (Exception)
-                {
-                    resultList = new List<TimerResult>();
-                }
             }
-
-            preparationTime = Int32.Parse(ConfigurationManager.AppSettings["preparationTime"]);
-            inputPenalties = Boolean.Parse(ConfigurationManager.AppSettings["inputPenalties"]);
-            recordSplitTimes = Boolean.Parse(ConfigurationManager.AppSettings["recordSplitTimes"]);
-            country = (CountryCode) Enum.Parse(typeof(CountryCode), ConfigurationManager.AppSettings["country"]);
-            recording = Boolean.Parse(ConfigurationManager.AppSettings["recordVideos"]);
-
-            //videosFolder = ConfigurationManager.AppSettings["videosFolder"];
-            if (ApplicationDeployment.IsNetworkDeployed)
+            catch (Exception)
             {
-                var targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
-                Directory.CreateDirectory(targetPath);
-
-                targetPath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings");
-                Directory.CreateDirectory(targetPath);
-            }
-            else
-            {
-                var targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TempRecordings");
-                Directory.CreateDirectory(targetPath);
-
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
-                Directory.CreateDirectory(targetPath);
+                resultList = new List<TimerResult>();
             }
 
-            cameras = DelimitedStringToCameraInfoList(ConfigurationManager.AppSettings["cameras"]);
+            ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap {
+                ExeConfigFilename = Path.Combine(appDataFolder, "FireDeptStopwatch.config")
+            };
+            Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None);
+
+            preparationTime = Int32.Parse(configuration.AppSettings.Settings["preparationTime"].Value);
+            inputPenalties = Boolean.Parse(configuration.AppSettings.Settings["inputPenalties"].Value);
+            recordSplitTimes = Boolean.Parse(configuration.AppSettings.Settings["recordSplitTimes"].Value);
+            country = (CountryCode) Enum.Parse(typeof(CountryCode), configuration.AppSettings.Settings["country"].Value);
+            recording = Boolean.Parse(configuration.AppSettings.Settings["recordVideos"].Value);
+
+            //videosFolder = configuration.AppSettings.Settings["videosFolder"].Value;
+            var targetPath = Path.Combine(appDataFolder, "TempRecordings");
+            Directory.CreateDirectory(targetPath);
+
+            targetPath = Path.Combine(appDataFolder, "Recordings");
+            Directory.CreateDirectory(targetPath);
+
+            cameras = DelimitedStringToCameraInfoList(configuration.AppSettings.Settings["cameras"].Value);
 
             videoRecorders = new List<VideoRecorder>();
             for (var i = 0; i < cameras.Count; i++)

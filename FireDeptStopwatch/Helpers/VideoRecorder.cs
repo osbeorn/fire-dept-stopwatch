@@ -298,20 +298,20 @@ namespace FireDeptStopwatch.Helpers
                 return;
             }
 
-            var sourceVideoName = Guid.NewGuid().ToString() + ".avi";
-            var targetVideoName = "video_" + instanceId + ".avi";
-
-            string sourcePath;
+            string appDataFolder;
             if (Debugger.IsAttached)
             {
-                sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TempRecordings");
+                appDataFolder = String.Empty;
             }
             else
             {
-                sourcePath = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "TempRecordings");
+                appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch");
             }
 
-            sourcePath = Path.Combine(sourcePath, sourceVideoName);
+            var sourceVideoName = Guid.NewGuid().ToString() + ".avi";
+            var targetVideoName = "video_" + instanceId + ".avi";
+
+            var sourcePath = Path.Combine(appDataFolder, "TempRecordings", sourceVideoName);
 
             using (var writer = new VideoFileWriter())
             {
@@ -335,17 +335,9 @@ namespace FireDeptStopwatch.Helpers
                 writer.Close();
             }
 
-            string targetPath;
-            if (Debugger.IsAttached)
-            {
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
-            }
-            else
-            {
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch", "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
-            }
-
+            string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
             Directory.CreateDirectory(targetPath);
+
             File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
         }
 

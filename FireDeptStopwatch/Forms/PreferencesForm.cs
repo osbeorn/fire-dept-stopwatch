@@ -14,6 +14,9 @@ namespace FireDeptStopwatch.Forms
     {
         private MainForm parent;
 
+        private Configuration configuration;
+        private string appDataFolder;
+
         private bool recordVideos;
         private List<CameraInfo> cameras;
 
@@ -25,6 +28,21 @@ namespace FireDeptStopwatch.Forms
         public void InitializeComponents(MainForm parent)
         {
             this.parent = parent;
+
+            if (Debugger.IsAttached)
+            {
+                appDataFolder = String.Empty;
+            }
+            else
+            {
+                appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch");
+            }
+
+            ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = Path.Combine(appDataFolder, "FireDeptStopwatch.config")
+            };
+            configuration = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None);
 
             preparationTimeNumericUpDown.Value = parent.GetPreparationTime();
 
@@ -40,14 +58,7 @@ namespace FireDeptStopwatch.Forms
             recordVideosCheckBox.Checked = recordVideos;
 
             //videosFolderTextBox.Text = parent.GetVideosFolder();
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-                videosFolderTextBox.Text = Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Recordings");
-            }
-            else
-            {
-                videosFolderTextBox.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
-            }
+            videosFolderTextBox.Text = Path.Combine(appDataFolder, "Recordings");
 
             cameras = parent.GetCameras();
             foreach (var camera in cameras)
@@ -58,15 +69,14 @@ namespace FireDeptStopwatch.Forms
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["preparationTime"].Value = ((int)(preparationTimeNumericUpDown.Value * 60)).ToString();
-            config.AppSettings.Settings["inputPenalties"].Value = inputPenaltiesCheckBox.Checked.ToString();
-            config.AppSettings.Settings["recordSplitTimes"].Value = recordSplitTimesCheckBox.Checked.ToString();
-            config.AppSettings.Settings["country"].Value = countriesComboBox.SelectedValue.ToString();
-            config.AppSettings.Settings["recordVideos"].Value = recordVideosCheckBox.Checked.ToString();
-            //config.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
-            config.AppSettings.Settings["cameras"].Value = CameraInfoListToDelimitedString(cameras);
-            config.Save(ConfigurationSaveMode.Modified);
+            configuration.AppSettings.Settings["preparationTime"].Value = ((int)(preparationTimeNumericUpDown.Value * 60)).ToString();
+            configuration.AppSettings.Settings["inputPenalties"].Value = inputPenaltiesCheckBox.Checked.ToString();
+            configuration.AppSettings.Settings["recordSplitTimes"].Value = recordSplitTimesCheckBox.Checked.ToString();
+            configuration.AppSettings.Settings["country"].Value = countriesComboBox.SelectedValue.ToString();
+            configuration.AppSettings.Settings["recordVideos"].Value = recordVideosCheckBox.Checked.ToString();
+            //configuration.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
+            configuration.AppSettings.Settings["cameras"].Value = CameraInfoListToDelimitedString(cameras);
+            configuration.Save(ConfigurationSaveMode.Modified);
 
             ConfigurationManager.RefreshSection("appSettings");
 
@@ -178,18 +188,8 @@ namespace FireDeptStopwatch.Forms
             //{
             //    videosFolderTextBox.Text = videosFolderBrowserDialog.SelectedPath;
             //}
-
-            string targetPath;
-            if (Debugger.IsAttached)
-            {
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Recordings");
-            }
-            else
-            {
-                targetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch", "Recordings");
-            }
-
-            Process.Start(targetPath);
+           
+            Process.Start(Path.Combine(appDataFolder, "Recordings"));
         }
     }
 }
