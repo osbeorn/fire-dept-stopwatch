@@ -55,7 +55,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SplitTimesForm";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Vmesni časi";
