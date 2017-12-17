@@ -3,6 +3,11 @@
 # fireDeptStopwatch
 A stopwatch used for our training sessions in our local fire department SSV team.
 
+## Sponsors
+
+### Advanced Installer
+The Windows Installer is made with [Advanced Installer](http://www.advancedinstaller.com/) on an open source license. Advanced Installer allowed us to create a feature complete installer in a user friendly environment with minimal effort.
+
 ## License
 
 MIT License
