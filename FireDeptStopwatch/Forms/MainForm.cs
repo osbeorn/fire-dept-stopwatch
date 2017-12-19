@@ -480,9 +480,12 @@ namespace FireDeptStopwatch.Forms
 
         private void ShowSplitTimesForm()
         {
-            splitTimesForm = new SplitTimesForm();
-            splitTimesForm.Location = new Point(this.Location.X + this.Bounds.Width, this.Location.Y);
-            splitTimesForm.Show();
+            if (splitTimesForm == null)
+            {
+                splitTimesForm = new SplitTimesForm();
+                splitTimesForm.Location = new Point(this.Location.X + this.Bounds.Width, this.Location.Y);
+                splitTimesForm.Show();
+            }
         }
 
         private void HideSplitTimesForm()
