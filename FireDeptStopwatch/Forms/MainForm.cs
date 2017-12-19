@@ -593,9 +593,12 @@ namespace FireDeptStopwatch.Forms
                 appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FireDeptStopwatch");
             }
 
+            var targetPath = Path.Combine(appDataFolder, "Data");
+            Directory.CreateDirectory(targetPath);
+
             try
             {
-                using (var stream = File.Open(Path.Combine(appDataFolder, "Data", "results.bin"), FileMode.Open))
+                using (var stream = File.Open(Path.Combine(appDataFolder, "Data", "results.bin"), FileMode.OpenOrCreate))
                 {
                     var binaryFormatter = new BinaryFormatter();
                     resultList = (List<TimerResult>)binaryFormatter.Deserialize(stream);
@@ -624,7 +627,7 @@ namespace FireDeptStopwatch.Forms
             recording = Boolean.Parse(configuration.AppSettings.Settings["recordVideos"].Value);
 
             //videosFolder = configuration.AppSettings.Settings["videosFolder"].Value;
-            var targetPath = Path.Combine(appDataFolder, "TempRecordings");
+            targetPath = Path.Combine(appDataFolder, "TempRecordings");
             Directory.CreateDirectory(targetPath);
 
             targetPath = Path.Combine(appDataFolder, "Recordings");
