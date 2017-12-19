@@ -335,7 +335,7 @@ namespace FireDeptStopwatch.Helpers
                 writer.Close();
             }
 
-            string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
+            string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
             Directory.CreateDirectory(targetPath);
 
             File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
