@@ -278,21 +278,11 @@ namespace FireDeptStopwatch.Helpers
                 }
 
                 bitmaps.Enqueue(bitmap);
-                //bitmaps.Add(bitmap);
             }
         }
 
         private void SaveBitmaps(object state)
         {
-            //using (var appScope = IsolatedStorageFile.GetUserStoreForApplication())
-            //{
-            //    using (var stream = new IsolatedStorageFileStream("results.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite, appScope))
-            //    {
-            //        BinaryFormatter bin = new BinaryFormatter();
-            //        bin.Serialize(stream, resultList);
-            //    }
-            //}
-
             if (!IsConnected)
             {
                 return;
@@ -315,7 +305,7 @@ namespace FireDeptStopwatch.Helpers
 
             using (var writer = new VideoFileWriter())
             {
-                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.FFV1);
+                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.Default);
 
                 while (bitmaps != null)
                 {
@@ -340,51 +330,5 @@ namespace FireDeptStopwatch.Helpers
 
             File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
         }
-
-        //private void SaveRecording(string filePath)
-        //{
-        //    //while (bitmaps.Count > 0)
-        //    //{
-        //    //    continue;
-        //    //}
-
-        //    //var bitmapCheck = Image.FromFile("D:\\Users\\Benjamin\\Desktop\\screenshots\\" + instanceId + "\\0.png") as Bitmap;
-        //    //if (bitmapCheck == null)
-        //    //{
-        //    //    return;
-        //    //}
-
-        //    //using (var writer = new VideoFileWriter())
-        //    //{
-        //    //    writer.Open("D:\\Users\\Benjamin\\Desktop\\video.mp4", bitmapCheck.Width, bitmapCheck.Height, 25, VideoCodec.MPEG4);
-        //    //    foreach (var bitmap in Directory.GetFiles("D:\\Users\\Benjamin\\Desktop\\screenshots\\" + instanceId, "*.png").OrderBy(name => name))
-        //    //    {
-        //    //        if (bitmap != null)
-        //    //        {
-        //    //            writer.WriteVideoFrame(Image.FromFile(bitmap) as Bitmap);
-        //    //            File.Delete(bitmap);
-        //    //        }
-        //    //    }
-        //    //    writer.Close();
-        //    //}
-
-        //    if (bitmaps == null || bitmaps.Count == 0)
-        //    {
-        //        return;
-        //    }
-
-        //    using (var writer = new VideoFileWriter())
-        //    {
-        //        writer.Open("D:\\Users\\Benjamin\\Desktop\\video.mp4", bitmaps[0].Width, bitmaps[0].Height, 25, VideoCodec.MPEG4);
-        //        foreach (var bitmap in bitmaps)
-        //        {
-        //            writer.WriteVideoFrame(bitmap);
-        //        }
-        //        writer.Close();
-        //    }
-
-        //    bitmaps.ForEach(b => b.Dispose());
-        //    bitmaps.Clear();
-        //}
     }
 }
