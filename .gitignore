@@ -9,6 +9,8 @@
 FireDeptStopwatch/deploy/
 FireDeptStopwatch/FireDeptStopwatch-cache/
 FireDeptStopwatch/FireDeptStopwatch-SetupFiles/
+FireDeptStopwatch/FireDeptStopwatchUpdate-cache/
+FireDeptStopwatch/FireDeptStopwatchUpdate-SetupFiles/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

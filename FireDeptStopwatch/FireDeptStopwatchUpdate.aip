@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.1" Modules="update" RootPath="." Language="en" Id="{D8D664E9-9FF0-490E-B8BE-7E28ACA4997B}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="TilesComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;aiu-ue.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;aiu-ue_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
+    <ROW Section="Update" Key="Name" Value="FireDeptStopwatch"/>
+    <ROW Section="Update" Key="ProductVersion" Value="1.0.1" ValueLocId="-"/>
+    <ROW Section="Update" Key="URL" Value="https://s3.eu-central-1.amazonaws.com/ssv-stoparica-test/FireDeptStopwatch.msi" ValueLocId="-"/>
+    <ROW Section="Update" Key="Size" Value="D:\Users\Benjamin\Downloads\FireDeptStopwatch.msi" ValueLocId="-"/>
+    <ROW Section="Update" Key="ReleaseDate" Value="19524" ValueLocId="-"/>
+    <ROW Section="Update" Key="MD5" Value="D:\Users\Benjamin\Downloads\FireDeptStopwatch.msi" ValueLocId="-"/>
+    <ROW Section="Update" Key="ServerFileName" Value="FireDeptStopwatch.msi" ValueLocId="-"/>
+    <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Benjamin Kastelic\FireDeptStopwatch\Version" ValueLocId="-"/>
+    <ROW Section="Update" Key="Version" Value="1.0.1" ValueLocId="-"/>
+    <ATTRIBUTE name="OutputFileName" value=".txt"/>
+  </COMPONENT>
+</DOCUMENT>
