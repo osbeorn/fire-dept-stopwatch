@@ -65,6 +65,8 @@ namespace FireDeptStopwatch.Forms
             {
                 cameraUrlsListBox.Items.Add(camera);
             }
+
+            endLineupCheckBox.Checked = parent.GetEndLineup();
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -76,6 +78,7 @@ namespace FireDeptStopwatch.Forms
             configuration.AppSettings.Settings["recordVideos"].Value = recordVideosCheckBox.Checked.ToString();
             //configuration.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
             configuration.AppSettings.Settings["cameras"].Value = CameraInfoListToDelimitedString(cameras);
+            configuration.AppSettings.Settings["endLineup"].Value = endLineupCheckBox.Checked.ToString();
             configuration.Save(ConfigurationSaveMode.Modified);
 
             ConfigurationManager.RefreshSection("appSettings");
@@ -87,6 +90,7 @@ namespace FireDeptStopwatch.Forms
             parent.SetRecordVideos(recordVideosCheckBox.Checked);
             //parent.SetVideosFolder(videosFolderTextBox.Text);
             parent.SetCameras(cameras);
+            parent.SetEndLineup(endLineupCheckBox.Checked);
 
             DialogResult = DialogResult.OK;
             Close();

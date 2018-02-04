@@ -31,6 +31,8 @@ namespace FireDeptStopwatch.Forms
         private List<TimerResult> resultList;
         private IKeyboardMouseEvents globalHook;
 
+        private SoundPlayer player;
+
         private int lineupCounter;
         private int preparationCounter;
 
@@ -41,6 +43,7 @@ namespace FireDeptStopwatch.Forms
         private bool recording;
         //private string videosFolder;
         private List<CameraInfo> cameras;
+        private bool endPositioning;
 
         private List<VideoRecorder> videoRecorders;
 
@@ -131,6 +134,16 @@ namespace FireDeptStopwatch.Forms
             this.cameras = cameraUrls;
         }
 
+        public bool GetEndLineup()
+        {
+            return endPositioning;
+        }
+
+        public void SetEndLineup(bool endPositioning)
+        {
+            this.endPositioning = endPositioning;
+        }
+
         private void InitializeComponents()
         {
             //Application.AddMessageFilter(this);
@@ -153,7 +166,7 @@ namespace FireDeptStopwatch.Forms
 
         private void PlaySound(UnmanagedMemoryStream sound, bool sync)
         {
-            var player = new SoundPlayer(sound);
+            player = new SoundPlayer(sound);
             if (sync)
                 player.PlaySync();
             else
@@ -172,7 +185,6 @@ namespace FireDeptStopwatch.Forms
             StartVideoRecorders();
 
             stopwatchLabel.Text = new TimeSpan().ToString(@"mm\:ss\.ffff");
-            resetButton.Enabled = false;
 
             switch (country)
             {
@@ -210,6 +222,11 @@ namespace FireDeptStopwatch.Forms
 
             lineupTimer.Stop();
             lineupLabel.Text = "0";
+
+            if (player != null)
+            {
+                player.Stop();
+            }
 
             UnmuteApplications();
 
@@ -272,17 +289,22 @@ namespace FireDeptStopwatch.Forms
                 ),
                 new KeyValuePair<UnmanagedMemoryStream, double>(
                     Properties.Resources.ssv_zakljucek_1, 1.0d/12.0d
-                ),
+                )
             };
 
             stopwatchTimer.Stop();
 
+            var twelveAndHalfSecs = new TimeSpan(0, 0, 0, 12, 500);
             var twelveSecs = new TimeSpan(0, 0, 12);
             var thirteenSecs = new TimeSpan(0, 0, 13);
             var fourteenSecs = new TimeSpan(0, 0, 14);
             var fifteenSecs = new TimeSpan(0, 0, 15);
 
-            if (diff >= twelveSecs && diff < thirteenSecs)
+            if (diff <= twelveAndHalfSecs)
+            {
+                PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sok, false);
+            }
+            else if (diff > twelveAndHalfSecs && diff < thirteenSecs)
             {
                 PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sparta, false);
             }
@@ -634,6 +656,8 @@ namespace FireDeptStopwatch.Forms
             Directory.CreateDirectory(targetPath);
 
             cameras = DelimitedStringToCameraInfoList(configuration.AppSettings.Settings["cameras"].Value);
+
+            endPositioning = Boolean.Parse(configuration.AppSettings.Settings["endLineup"].Value);
 
             videoRecorders = new List<VideoRecorder>();
             for (var i = 0; i < cameras.Count; i++)
