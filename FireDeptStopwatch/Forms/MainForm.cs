@@ -757,7 +757,7 @@ namespace FireDeptStopwatch.Forms
             SaveResults();
         }
 
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ResultListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (resultsListBox.SelectedItems.Count > 0)
                 deleteResultButton.Enabled = true;
@@ -895,7 +895,12 @@ namespace FireDeptStopwatch.Forms
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SSV štoparica\n\n© 2016-2017 Benjamin Kastelic & PGD Zagradec pri Grosupljem", "O programu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("SSV štoparica\n\n© 2016-2018 Benjamin Kastelic & PGD Zagradec pri Grosupljem", "O programu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("updater.exe", "/checknow");
         }
 
         #endregion

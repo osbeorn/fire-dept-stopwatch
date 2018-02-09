@@ -238,7 +238,7 @@ namespace FireDeptStopwatch.Helpers
                     {
                         //swallow exception
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
 
                     }
@@ -268,7 +268,7 @@ namespace FireDeptStopwatch.Helpers
                         CopyMemory(bitmapData.Scan0, md.value.scan0Ptr, buffer.stride * buffer.height);
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
                 }

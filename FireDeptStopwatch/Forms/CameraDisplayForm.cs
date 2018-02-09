@@ -339,7 +339,7 @@ namespace FireDeptStopwatch.Forms
                     CopyMemory(bitmapData.Scan0, md.value.scan0Ptr, this.videoBuffer.stride * this.videoBuffer.height);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //errBox.Text = err.Message;
             }
