@@ -250,8 +250,6 @@ namespace FireDeptStopwatch.Helpers
             }, cancellationToken);
         }
 
-        [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
-        private static extern void CopyMemory(IntPtr dest, IntPtr src, int count);
         private void DrawFrame(VideoBuffer videoBuffer)
         {
             if (IsRecording && IsConnected)
@@ -265,7 +263,7 @@ namespace FireDeptStopwatch.Helpers
 
                     using (var md = videoBuffer.Lock())
                     {
-                        CopyMemory(bitmapData.Scan0, md.value.scan0Ptr, buffer.stride * buffer.height);
+                        NativeMethods.CopyMemory(bitmapData.Scan0, md.value.scan0Ptr, buffer.stride * buffer.height);
                     }
                 }
                 catch (Exception)
@@ -321,8 +319,6 @@ namespace FireDeptStopwatch.Helpers
                         bitmap.Dispose();
                     }
                 }
-
-                writer.Close();
             }
 
             string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));

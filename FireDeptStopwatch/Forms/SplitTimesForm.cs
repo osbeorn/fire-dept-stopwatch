@@ -8,9 +8,6 @@ namespace FireDeptStopwatch.Forms
 {
     public partial class SplitTimesForm : Form
     {
-        [DllImport("user32.dll")]
-        private extern static IntPtr SetActiveWindow(IntPtr handle);
-
         private MainForm parent;
         private List<SplitTimeResult> splitTimes;
 
@@ -43,7 +40,7 @@ namespace FireDeptStopwatch.Forms
                 //        else
                 //        {
                 //            // could not find sender, just in-activate it.
-                //            SetActiveWindow(IntPtr.Zero);
+                //            NativeMethods.SetActiveWindow(IntPtr.Zero);
                 //        }
                 //    }
                 //    break;

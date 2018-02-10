@@ -22,6 +22,7 @@ using System.Drawing.Imaging;
 using System.Diagnostics;
 using System.Windows.Threading;
 using FireDeptStopwatch.Classes;
+using FireDeptStopwatch.Helpers;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -324,8 +325,6 @@ namespace FireDeptStopwatch.Forms
         {
         }
 
-        [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
-        public static extern void CopyMemory(IntPtr dest, IntPtr src, int count);
         private void DrawFrame(VideoBuffer videoBuffer/*, PlaybackStatistics statistics*/)
         {
             Bitmap bitmap = image as Bitmap;
@@ -336,7 +335,7 @@ namespace FireDeptStopwatch.Forms
 
                 using (var md = videoBuffer.Lock())
                 {
-                    CopyMemory(bitmapData.Scan0, md.value.scan0Ptr, this.videoBuffer.stride * this.videoBuffer.height);
+                    NativeMethods.CopyMemory(bitmapData.Scan0, md.value.scan0Ptr, this.videoBuffer.stride * this.videoBuffer.height);
                 }
             }
             catch (Exception)
@@ -526,7 +525,6 @@ namespace FireDeptStopwatch.Forms
             playerDisposables.Dispose();
             disposables.Dispose();
 
-            Dispose();
             Close();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FireDeptStopwatch.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -12,14 +13,6 @@ namespace FireDeptStopwatch.Classes
     {
         private const int RID_INPUT = 0x10000003;
         private const int RIDEV_INPUTSINK = 0x00000100;
-
-        [DllImport("user32.dll", SetLastError = true)]
-        extern static uint GetRawInputDeviceInfo(IntPtr hDevice, uint uiCommand, IntPtr pData, ref uint pcbSize);
-        [DllImport("User32.dll")]
-        extern static uint GetRawInputData(IntPtr hRawInput, uint uiCommand, IntPtr pData, ref uint pcbSize, uint cbSizeHeader);
-        [DllImport("User32.dll")]
-        extern static bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
-
 
         [Flags()]
         public enum RawMouseFlags : ushort {
@@ -185,7 +178,7 @@ namespace FireDeptStopwatch.Classes
         public int GetDeviceID(Message message) {
             uint dwSize = 0;
 
-            GetRawInputData(
+            NativeMethods.GetRawInputData(
                 message.LParam,
                 RID_INPUT,
                 IntPtr.Zero,
@@ -195,7 +188,7 @@ namespace FireDeptStopwatch.Classes
 
             IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
 
-            GetRawInputData(
+            NativeMethods.GetRawInputData(
                 message.LParam,
                 RID_INPUT,
                 buffer,
@@ -226,7 +219,7 @@ namespace FireDeptStopwatch.Classes
             rid[0].dwFlags = RIDEV_INPUTSINK;
             rid[0].hwndTarget = hwnd;
 
-            if (!RegisterRawInputDevices(rid, (uint)rid.Length, (uint)Marshal.SizeOf(rid[0]))) {
+            if (!NativeMethods.RegisterRawInputDevices(rid, (uint)rid.Length, (uint)Marshal.SizeOf(rid[0]))) {
                 throw new ApplicationException("Failed to register raw input device(s).");
             }
         }

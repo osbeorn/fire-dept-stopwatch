@@ -238,6 +238,7 @@
       <DependentUpon>SplitTimesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CameraHelper.cs" />
+    <Compile Include="Helpers\NativeMethods.cs" />
     <Compile Include="Helpers\VideoRecorder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
