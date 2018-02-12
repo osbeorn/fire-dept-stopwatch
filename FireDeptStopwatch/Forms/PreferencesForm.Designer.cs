@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.inputPenaltiesCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.endLineupCheckBox = new System.Windows.Forms.CheckBox();
             this.recordSplitTimesCheckBox = new System.Windows.Forms.CheckBox();
             this.countriesComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.cameraUrlsListBox = new System.Windows.Forms.ListBox();
             this.recordVideosCheckBox = new System.Windows.Forms.CheckBox();
             this.videosFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.endLineupCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -109,7 +109,7 @@
             this.label2.Location = new System.Drawing.Point(317, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 13);
-            this.label2.TabIndex = 4;
+            this.label2.TabIndex = 2;
             this.label2.Text = "min";
             // 
             // inputPenaltiesCheckBox
@@ -119,7 +119,7 @@
             this.inputPenaltiesCheckBox.Name = "inputPenaltiesCheckBox";
             this.inputPenaltiesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.inputPenaltiesCheckBox.Size = new System.Drawing.Size(125, 17);
-            this.inputPenaltiesCheckBox.TabIndex = 6;
+            this.inputPenaltiesCheckBox.TabIndex = 3;
             this.inputPenaltiesCheckBox.Text = "Vnos kazenskih točk";
             this.inputPenaltiesCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -136,9 +136,21 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(346, 143);
-            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Splošno";
+            // 
+            // endLineupCheckBox
+            // 
+            this.endLineupCheckBox.AutoSize = true;
+            this.endLineupCheckBox.Enabled = false;
+            this.endLineupCheckBox.Location = new System.Drawing.Point(9, 91);
+            this.endLineupCheckBox.Name = "endLineupCheckBox";
+            this.endLineupCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.endLineupCheckBox.Size = new System.Drawing.Size(115, 17);
+            this.endLineupCheckBox.TabIndex = 5;
+            this.endLineupCheckBox.Text = "Končna postavitev";
+            this.endLineupCheckBox.UseVisualStyleBackColor = true;
             // 
             // recordSplitTimesCheckBox
             // 
@@ -147,7 +159,7 @@
             this.recordSplitTimesCheckBox.Name = "recordSplitTimesCheckBox";
             this.recordSplitTimesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.recordSplitTimesCheckBox.Size = new System.Drawing.Size(146, 17);
-            this.recordSplitTimesCheckBox.TabIndex = 9;
+            this.recordSplitTimesCheckBox.TabIndex = 4;
             this.recordSplitTimesCheckBox.Text = "Beleženje vmesnih časov";
             this.recordSplitTimesCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -157,7 +169,7 @@
             this.countriesComboBox.Location = new System.Drawing.Point(95, 114);
             this.countriesComboBox.Name = "countriesComboBox";
             this.countriesComboBox.Size = new System.Drawing.Size(245, 21);
-            this.countriesComboBox.TabIndex = 8;
+            this.countriesComboBox.TabIndex = 7;
             // 
             // label3
             // 
@@ -165,7 +177,7 @@
             this.label3.Location = new System.Drawing.Point(6, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 7;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Država:";
             // 
             // groupBox2
@@ -179,7 +191,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 159);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(346, 213);
-            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Snemanje";
             // 
@@ -189,7 +201,7 @@
             this.label4.Location = new System.Drawing.Point(6, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
-            this.label4.TabIndex = 12;
+            this.label4.TabIndex = 1;
             this.label4.Text = "Posnetki";
             // 
             // videosFolderSelectButton
@@ -197,7 +209,7 @@
             this.videosFolderSelectButton.Location = new System.Drawing.Point(315, 41);
             this.videosFolderSelectButton.Name = "videosFolderSelectButton";
             this.videosFolderSelectButton.Size = new System.Drawing.Size(25, 22);
-            this.videosFolderSelectButton.TabIndex = 11;
+            this.videosFolderSelectButton.TabIndex = 3;
             this.videosFolderSelectButton.Text = "...";
             this.videosFolderSelectButton.UseVisualStyleBackColor = true;
             this.videosFolderSelectButton.Click += new System.EventHandler(this.VideosFolderSelectButton_Click);
@@ -208,14 +220,14 @@
             this.videosFolderTextBox.Name = "videosFolderTextBox";
             this.videosFolderTextBox.ReadOnly = true;
             this.videosFolderTextBox.Size = new System.Drawing.Size(220, 20);
-            this.videosFolderTextBox.TabIndex = 10;
+            this.videosFolderTextBox.TabIndex = 2;
             // 
             // addCameraButton
             // 
             this.addCameraButton.Location = new System.Drawing.Point(253, 183);
             this.addCameraButton.Name = "addCameraButton";
             this.addCameraButton.Size = new System.Drawing.Size(87, 23);
-            this.addCameraButton.TabIndex = 9;
+            this.addCameraButton.TabIndex = 5;
             this.addCameraButton.Text = "Dodaj kamero";
             this.addCameraButton.UseVisualStyleBackColor = true;
             this.addCameraButton.Click += new System.EventHandler(this.AddCameraButton_Click);
@@ -226,7 +238,7 @@
             this.cameraUrlsListBox.Location = new System.Drawing.Point(6, 69);
             this.cameraUrlsListBox.Name = "cameraUrlsListBox";
             this.cameraUrlsListBox.Size = new System.Drawing.Size(334, 108);
-            this.cameraUrlsListBox.TabIndex = 8;
+            this.cameraUrlsListBox.TabIndex = 4;
             this.cameraUrlsListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CameraUrlsListBox_KeyUp);
             this.cameraUrlsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CameraUrlsListBox_MouseDown);
             // 
@@ -237,20 +249,9 @@
             this.recordVideosCheckBox.Name = "recordVideosCheckBox";
             this.recordVideosCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.recordVideosCheckBox.Size = new System.Drawing.Size(84, 17);
-            this.recordVideosCheckBox.TabIndex = 7;
+            this.recordVideosCheckBox.TabIndex = 0;
             this.recordVideosCheckBox.Text = "Omogočeno";
             this.recordVideosCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // endLineupCheckBox
-            // 
-            this.endLineupCheckBox.AutoSize = true;
-            this.endLineupCheckBox.Location = new System.Drawing.Point(9, 91);
-            this.endLineupCheckBox.Name = "endLineupCheckBox";
-            this.endLineupCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.endLineupCheckBox.Size = new System.Drawing.Size(115, 17);
-            this.endLineupCheckBox.TabIndex = 10;
-            this.endLineupCheckBox.Text = "Končna postavitev";
-            this.endLineupCheckBox.UseVisualStyleBackColor = true;
             // 
             // PreferencesForm
             // 

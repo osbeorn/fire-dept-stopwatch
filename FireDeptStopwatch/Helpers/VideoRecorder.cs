@@ -34,6 +34,8 @@ namespace FireDeptStopwatch.Helpers
 
         private NetworkCredential credentials;
 
+        private CameraInfo cameraInfo;
+
         private HostedPlayer player;
         private VideoBuffer buffer;
         private IPlaybackSession playbackSession;
@@ -55,10 +57,12 @@ namespace FireDeptStopwatch.Helpers
 
         public VideoRecorder(CameraInfo cameraInfo)
         {
+            this.cameraInfo = cameraInfo;
+
             instanceId = Guid.NewGuid();
             bitmaps = new Queue<Bitmap>();
 
-            Connect(cameraInfo);
+            GetVideoSize(cameraInfo);
         }
 
         public bool Initialized(IPlaybackSession playbackSession)
@@ -74,9 +78,10 @@ namespace FireDeptStopwatch.Helpers
 
         public void StartRecording()
         {
-            bitmaps = new Queue<Bitmap>();
-            
+            bitmaps = new Queue<Bitmap>();            
             IsRecording = true;
+
+            Connect(cameraInfo);
 
             ThreadPool.QueueUserWorkItem(SaveBitmaps, null);
         }
@@ -85,7 +90,79 @@ namespace FireDeptStopwatch.Helpers
         {
             this.result = result;
 
+            IsConnected = false;
             IsRecording = false;
+        }
+
+        private void GetVideoSize(CameraInfo cameraInfo)
+        {
+            if (!string.IsNullOrEmpty(cameraInfo.User))
+            {
+                credentials = new NetworkCredential(cameraInfo.User, cameraInfo.Password);
+            }
+
+            var cameraUrl = CameraHelper.BuildCameraUrl(cameraInfo.Url);
+
+            var factory = new NvtSessionFactory(credentials);
+            disposables.Add(
+                factory
+                .CreateSession(new Uri[] { new Uri(cameraUrl) })
+                .ObserveOnCurrentDispatcher()
+                .Subscribe(
+                    session => {
+                        GetVideoSize(session);
+                    },
+                    err => {
+                    }
+                )
+            );
+        }
+
+        private void GetVideoSize(INvtSession session)
+        {
+            OnConnect(this, null);
+
+            disposables.Add(
+                session
+                .GetProfiles()
+                .ObserveOnCurrentDispatcher()
+                .Subscribe(
+                    profs => {
+                        var profile = profs.FirstOrDefault();
+                        if (profile != null)
+                        {
+                            GetVideoSize(session, profile);
+                        }
+                    },
+                    err => {
+                    }
+                )
+            );
+        }
+
+        private void GetVideoSize(INvtSession session, Profile profile)
+        {
+            var streamSetup = new StreamSetup()
+            {
+                stream = StreamType.rtpUnicast,
+                transport = new Transport()
+                {
+                    protocol = TransportProtocol.tcp
+                }
+            };
+
+            disposables.Add(
+                session
+                .GetStreamUri(streamSetup, profile.token)
+                .ObserveOnCurrentDispatcher()
+                .Subscribe(
+                    muri => {
+                        videoSize = new Size(profile.videoEncoderConfiguration.resolution.width, profile.videoEncoderConfiguration.resolution.height);
+                    },
+                    err => {
+                    }
+                )
+            );
         }
 
         private void Connect(CameraInfo cameraInfo)
@@ -161,8 +238,6 @@ namespace FireDeptStopwatch.Helpers
         private void InitializePlayer(string videoUri, NetworkCredential account, Size size = default(Size))
         {
             IsConnected = true;
-
-            OnConnect(this, null);
 
             dispatcher = Dispatcher.CurrentDispatcher;
 
@@ -281,9 +356,9 @@ namespace FireDeptStopwatch.Helpers
 
         private void SaveBitmaps(object state)
         {
-            if (!IsConnected)
+            while (!IsConnected)
             {
-                return;
+                ;
             }
 
             string appDataFolder;

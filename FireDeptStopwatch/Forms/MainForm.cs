@@ -43,7 +43,7 @@ namespace FireDeptStopwatch.Forms
         private bool recording;
         //private string videosFolder;
         private List<CameraInfo> cameras;
-        private bool endPositioning;
+        private bool endLineup;
 
         private List<VideoRecorder> videoRecorders;
 
@@ -136,12 +136,12 @@ namespace FireDeptStopwatch.Forms
 
         public bool GetEndLineup()
         {
-            return endPositioning;
+            return endLineup;
         }
 
-        public void SetEndLineup(bool endPositioning)
+        public void SetEndLineup(bool endLineup)
         {
-            this.endPositioning = endPositioning;
+            this.endLineup = endLineup;
         }
 
         private void InitializeComponents()
@@ -300,11 +300,11 @@ namespace FireDeptStopwatch.Forms
             var fourteenSecs = new TimeSpan(0, 0, 14);
             var fifteenSecs = new TimeSpan(0, 0, 15);
 
-            if (diff <= twelveAndHalfSecs)
+            if (diff >= twelveSecs && diff < twelveAndHalfSecs)
             {
                 PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sok, false);
             }
-            else if (diff > twelveAndHalfSecs && diff < thirteenSecs)
+            else if (diff >= twelveAndHalfSecs && diff < thirteenSecs)
             {
                 PlaySound(Properties.Resources.ssv_zakljucek_1_alt_sparta, false);
             }
@@ -657,7 +657,7 @@ namespace FireDeptStopwatch.Forms
 
             cameras = DelimitedStringToCameraInfoList(configuration.AppSettings.Settings["cameras"].Value);
 
-            endPositioning = Boolean.Parse(configuration.AppSettings.Settings["endLineup"].Value);
+            endLineup = Boolean.Parse(configuration.AppSettings.Settings["endLineup"].Value);
 
             videoRecorders = new List<VideoRecorder>();
             for (var i = 0; i < cameras.Count; i++)

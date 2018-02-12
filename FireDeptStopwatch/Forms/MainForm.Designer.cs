@@ -105,7 +105,7 @@
             this.logoPanel.Location = new System.Drawing.Point(221, 3);
             this.logoPanel.Name = "logoPanel";
             this.logoPanel.Size = new System.Drawing.Size(504, 400);
-            this.logoPanel.TabIndex = 6;
+            this.logoPanel.TabIndex = 1;
             // 
             // webcamStatusPictureBox
             // 
@@ -125,7 +125,7 @@
             this.preparationLabel.Location = new System.Drawing.Point(372, 88);
             this.preparationLabel.Name = "preparationLabel";
             this.preparationLabel.Size = new System.Drawing.Size(41, 44);
-            this.preparationLabel.TabIndex = 5;
+            this.preparationLabel.TabIndex = 1;
             this.preparationLabel.Text = "0";
             // 
             // lineupLabel
@@ -136,7 +136,7 @@
             this.lineupLabel.Location = new System.Drawing.Point(372, 274);
             this.lineupLabel.Name = "lineupLabel";
             this.lineupLabel.Size = new System.Drawing.Size(41, 44);
-            this.lineupLabel.TabIndex = 1;
+            this.lineupLabel.TabIndex = 4;
             this.lineupLabel.Text = "0";
             // 
             // label2
@@ -146,7 +146,7 @@
             this.label2.Location = new System.Drawing.Point(15, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(351, 44);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Priprava orodja: ";
             // 
             // stopwatchLabel
@@ -157,7 +157,7 @@
             this.stopwatchLabel.Location = new System.Drawing.Point(7, 156);
             this.stopwatchLabel.Name = "stopwatchLabel";
             this.stopwatchLabel.Size = new System.Drawing.Size(488, 93);
-            this.stopwatchLabel.TabIndex = 0;
+            this.stopwatchLabel.TabIndex = 2;
             this.stopwatchLabel.Text = "00:00:0000";
             // 
             // label1
@@ -167,7 +167,7 @@
             this.label1.Location = new System.Drawing.Point(15, 274);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(351, 44);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Končna postavitev: ";
             // 
             // preparationButton
@@ -175,7 +175,7 @@
             this.preparationButton.Location = new System.Drawing.Point(342, 410);
             this.preparationButton.Name = "preparationButton";
             this.preparationButton.Size = new System.Drawing.Size(86, 35);
-            this.preparationButton.TabIndex = 4;
+            this.preparationButton.TabIndex = 2;
             this.preparationButton.Text = "Priprava orodja";
             this.preparationButton.UseVisualStyleBackColor = true;
             this.preparationButton.Click += new System.EventHandler(this.PreparationButton_Click);
@@ -234,7 +234,7 @@
             this.resetButton.Location = new System.Drawing.Point(515, 410);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 35);
-            this.resetButton.TabIndex = 1;
+            this.resetButton.TabIndex = 4;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
@@ -245,7 +245,7 @@
             this.startButton.Location = new System.Drawing.Point(434, 410);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 35);
-            this.startButton.TabIndex = 0;
+            this.startButton.TabIndex = 3;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.StartButton_Click);
@@ -266,7 +266,7 @@
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(728, 24);
-            this.mainMenuStrip.TabIndex = 6;
+            this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
