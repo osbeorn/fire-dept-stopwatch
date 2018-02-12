@@ -60,6 +60,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resultsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mainPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webcamStatusPictureBox)).BeginInit();
@@ -226,6 +227,7 @@
             this.resultsListBox.SelectedIndexChanged += new System.EventHandler(this.ResultListBox_SelectedIndexChanged);
             this.resultsListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ResultsListBox_KeyUp);
             this.resultsListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResultsListBox_MouseDown);
+            this.resultsListBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResultsListBox_MouseMove);
             // 
             // resetButton
             // 
@@ -415,6 +417,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.PictureBox webcamStatusPictureBox;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolTip resultsToolTip;
     }
 }
 

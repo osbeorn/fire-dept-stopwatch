@@ -903,6 +903,20 @@ namespace FireDeptStopwatch.Forms
             Process.Start("updater.exe", "/checknow");
         }
 
+        private void ResultsListBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            var index = resultsListBox.IndexFromPoint(e.Location);
+            if (index >= 0 && index < resultsListBox.Items.Count)
+            {
+                var item = resultsListBox.Items[index] as TimerResult;
+                resultsToolTip.SetToolTip(resultsListBox, item.ToLongString());
+            }
+            else
+            {
+                resultsToolTip.SetToolTip(resultsListBox, String.Empty);
+            }
+        }
+
         #endregion
     }
 }

@@ -34,5 +34,10 @@ namespace FireDeptStopwatch.Classes
         {
             return string.Format("{0} - {1}", DateTime.ToString("dd.MM.yyyy"), GetEndResult().ToString(@"mm\:ss\.ffff"));
         }
+
+        public string ToLongString()
+        {
+            return string.Format("{0} - {1}", DateTime.ToString("dd.MM.yyyy HH:mm"), GetEndResult().ToString(@"mm\:ss\.ffff"));
+        }
     }
 }
