@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace FireDeptStopwatch
 {
-    static class Program
+    public static class Program
     {
         static Mutex mutex = new Mutex(true, "{2963d2b2-e086-4db1-b4d2-9782dfe2d132}");
 

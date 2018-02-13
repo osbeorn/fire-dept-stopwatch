@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.1" Modules="professional" RootPath="." Language="en" Id="{DCF27128-AB2E-4C74-B197-4A492CF07D13}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.2" Modules="professional" RootPath="." Language="en" Id="{DCF27128-AB2E-4C74-B197-4A492CF07D13}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent"/>
   </COMPONENT>
@@ -19,7 +19,7 @@
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://github.com/osbeorn/fire-dept-stopwatch/issues"/>
     <ROW Property="Manufacturer" Value="Benjamin Kastelic"/>
-    <ROW Property="ProductCode" Value="1033:{4A1B3E2C-261A-4CC8-A187-8B3C32B113D2} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{4A1B3E2C-261A-4CC8-A187-8B3C32B113D2} 1060:{53327DE8-91A4-4876-BE71-C2E4DA2C8231} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="FireDeptStopwatch"/>
     <ROW Property="ProductVersion" Value="1.0.2" Type="32"/>
@@ -179,11 +179,12 @@
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en;sl" LangOpt="1" InstallationType="4" UseLargeSchema="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_sl.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
     <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="0" SignTool="0" UseSha256="1" Thumbprint="d24390ed9dedc86e5b0d831fcd9d8a6a20c3dbb5 Subject: Benjamin Kastelic&#10;Issuer: sigen-ca&#10;Valid from 03/18/2013 to 03/18/2018"/>

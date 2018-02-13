@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.1" Modules="update" RootPath="." Language="en" Id="{D8D664E9-9FF0-490E-B8BE-7E28ACA4997B}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="14.5.1" version="14.5.2" Modules="update" RootPath="." Language="en" Id="{D8D664E9-9FF0-490E-B8BE-7E28ACA4997B}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="TilesComponent"/>
   </COMPONENT>
