@@ -44,10 +44,11 @@ namespace FireDeptStopwatch.Helpers
 
         private Dispatcher dispatcher;
 
-        private CompositeDisposable disposables = new CompositeDisposable();
+        private CompositeDisposable disposables;
 
         private bool IsConnected { get; set; }
         private bool IsRecording { get; set; }
+        private bool IsReset { get; set; }
 
         private TimerResult result;
 
@@ -60,7 +61,9 @@ namespace FireDeptStopwatch.Helpers
             this.cameraInfo = cameraInfo;
 
             instanceId = Guid.NewGuid();
+
             bitmaps = new Queue<Bitmap>();
+            disposables = new CompositeDisposable();
 
             GetVideoSize(cameraInfo);
         }
@@ -78,8 +81,11 @@ namespace FireDeptStopwatch.Helpers
 
         public void StartRecording()
         {
-            bitmaps = new Queue<Bitmap>();            
+            bitmaps = new Queue<Bitmap>();        
+            disposables = new CompositeDisposable();
+
             IsRecording = true;
+            IsReset = false;
 
             Connect(cameraInfo);
 
@@ -92,6 +98,13 @@ namespace FireDeptStopwatch.Helpers
 
             IsConnected = false;
             IsRecording = false;
+        }
+
+        public void StopRecording()
+        {
+            IsConnected = false;
+            IsRecording = false;
+            IsReset = true;
         }
 
         private void GetVideoSize(CameraInfo cameraInfo)
@@ -358,7 +371,13 @@ namespace FireDeptStopwatch.Helpers
         {
             while (!IsConnected)
             {
-                ;
+                if (IsReset)
+                {
+                    disposables.Dispose();
+                    return;
+                }
+
+                Thread.Sleep(TimeSpan.FromMilliseconds(500));
             }
 
             string appDataFolder;
@@ -396,10 +415,15 @@ namespace FireDeptStopwatch.Helpers
                 }
             }
 
-            string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
-            Directory.CreateDirectory(targetPath);
+            if (!IsReset)
+            {
+                string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
+                Directory.CreateDirectory(targetPath);
 
-            File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
+                File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
+            }
+
+            disposables.Dispose();
         }
     }
 }

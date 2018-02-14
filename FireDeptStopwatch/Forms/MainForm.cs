@@ -205,6 +205,8 @@ namespace FireDeptStopwatch.Forms
             startButton.Enabled = false;
             preparationButton.Enabled = false;
 
+            MoveMouse();
+
             ClearSplitTimes();
 
             MuteApplications();
@@ -255,9 +257,17 @@ namespace FireDeptStopwatch.Forms
                 player.Stop();
             }
 
+            TerminateVideoRecorders();
+
             UnmuteApplications();
 
             ClearSplitTimes();
+        }
+
+        private void MoveMouse()
+        {
+            Point target = new Point((Left + Right) / 2, (Top + Bottom) / 2);
+            Cursor.Position = target;
         }
 
         private void ClearSplitTimes()
@@ -271,7 +281,6 @@ namespace FireDeptStopwatch.Forms
             {
                 splitTimesForm.ClearSplitTimes();
             }
-
         }
 
         private void EndTimerAndLogResult()
@@ -522,6 +531,19 @@ namespace FireDeptStopwatch.Forms
                     vr =>
                     {
                         vr.StopRecording(result);
+                    }
+                );
+            }
+        }
+
+        private void TerminateVideoRecorders()
+        {
+            if (recording)
+            {
+                videoRecorders.ForEach(
+                    vr =>
+                    {
+                        vr.StopRecording();
                     }
                 );
             }
