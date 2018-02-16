@@ -19,10 +19,10 @@
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://github.com/osbeorn/fire-dept-stopwatch/issues"/>
     <ROW Property="Manufacturer" Value="Benjamin Kastelic"/>
-    <ROW Property="ProductCode" Value="1033:{4A1B3E2C-261A-4CC8-A187-8B3C32B113D2} 1060:{53327DE8-91A4-4876-BE71-C2E4DA2C8231} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{DACD9544-5E70-42C1-8ADD-063EAA94E1EF} 1060:{286B432F-3676-4CA1-9CF4-D22958462138} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="FireDeptStopwatch"/>
-    <ROW Property="ProductVersion" Value="1.0.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{86DD3A54-8B84-4DB9-B3BF-AD73F577C030}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -49,7 +49,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{9239842A-FE3C-4363-AA2E-494F9FC9C9E1}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{B4B9DE90-A0F5-44F0-8DBE-7CFBBB9DCB62}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="Accord.Video.FFMPEG.dll" ComponentId="{65DB646F-AEA3-43C8-83E7-FBA9E6027590}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.Video.FFMPEG.dll"/>
     <ROW Component="Accord.Video.dll" ComponentId="{A9236696-931C-4A29-A1EC-DDF72B215862}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.Video.dll"/>
     <ROW Component="Accord.dll" ComponentId="{23E356C4-7139-4E33-B28D-372C6B6388AE}" Directory_="APPDIR" Attributes="0" KeyPath="Accord.dll"/>
