@@ -713,6 +713,9 @@ namespace FireDeptStopwatch.Forms
             {
                 var videoRecorder = new VideoRecorder(cameras[i]);
                 videoRecorder.OnConnect += OnVideoCameraConnect;
+                videoRecorder.OnStart += OnVideoCameraStart;
+                videoRecorder.OnConvertStart += OnVideoCameraConvertStart;
+                videoRecorder.OnConvertEnd += OnVideoCameraConvertEnd;
                 videoRecorders.Add(videoRecorder);
             }
 
@@ -725,6 +728,21 @@ namespace FireDeptStopwatch.Forms
         }
 
         private void OnVideoCameraConnect(object sender, EventArgs e)
+        {
+            webcamStatusPictureBox.Image = FireDeptStopwatch.Properties.Resources.webcam_ok;
+        }
+
+        private void OnVideoCameraStart(object sender, EventArgs e)
+        {
+            webcamStatusPictureBox.Image = FireDeptStopwatch.Properties.Resources.webcam_busy_1;
+        }
+
+        private void OnVideoCameraConvertStart(object sender, EventArgs e)
+        {
+            webcamStatusPictureBox.Image = FireDeptStopwatch.Properties.Resources.webcam_busy_2;
+        }
+
+        private void OnVideoCameraConvertEnd(object sender, EventArgs e)
         {
             webcamStatusPictureBox.Image = FireDeptStopwatch.Properties.Resources.webcam_ok;
         }

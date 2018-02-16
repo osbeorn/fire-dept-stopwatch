@@ -55,6 +55,9 @@ namespace FireDeptStopwatch.Helpers
         private Queue<Bitmap> bitmaps;
 
         public EventHandler OnConnect;
+        public EventHandler OnStart;
+        public EventHandler OnConvertStart;
+        public EventHandler OnConvertEnd;
 
         public VideoRecorder(CameraInfo cameraInfo)
         {
@@ -86,6 +89,8 @@ namespace FireDeptStopwatch.Helpers
 
             IsRecording = true;
             IsReset = false;
+
+            OnStart(this, null);
 
             Connect(cameraInfo);
 
@@ -133,8 +138,6 @@ namespace FireDeptStopwatch.Helpers
 
         private void GetVideoSize(INvtSession session)
         {
-            OnConnect(this, null);
-
             disposables.Add(
                 session
                 .GetProfiles()
@@ -170,6 +173,7 @@ namespace FireDeptStopwatch.Helpers
                 .ObserveOnCurrentDispatcher()
                 .Subscribe(
                     muri => {
+                        OnConnect(this, null);
                         videoSize = new Size(profile.videoEncoderConfiguration.resolution.width, profile.videoEncoderConfiguration.resolution.height);
                     },
                     err => {
@@ -397,7 +401,7 @@ namespace FireDeptStopwatch.Helpers
 
             using (var writer = new VideoFileWriter())
             {
-                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.Default);
+                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.Raw);
 
                 while (bitmaps != null)
                 {
@@ -417,11 +421,37 @@ namespace FireDeptStopwatch.Helpers
 
             if (!IsReset)
             {
+                OnConvertStart(this, null);
+
                 string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
                 Directory.CreateDirectory(targetPath);
 
-                File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
+                targetPath = Path.Combine(targetPath, targetVideoName);
+
+                using (var reader = new VideoFileReader())
+                using (var writer = new VideoFileWriter())
+                {
+                    reader.Open(sourcePath);
+                    writer.Open(targetPath, reader.Width, reader.Height, reader.FrameRate, VideoCodec.FFV1);
+
+                    while (true)
+                    {
+                        var bitmap = reader.ReadVideoFrame();
+                        if (bitmap == null)
+                        {
+                            break;
+                        }
+
+                        writer.WriteVideoFrame(bitmap);
+
+                        bitmap.Dispose();
+                    }
+                }
             }
+
+            OnConvertEnd(this, null);
+
+            File.Delete(sourcePath);
 
             disposables.Dispose();
         }

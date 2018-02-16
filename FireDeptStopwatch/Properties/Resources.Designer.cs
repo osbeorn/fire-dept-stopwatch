@@ -281,6 +281,26 @@ namespace FireDeptStopwatch.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap webcam_busy_1 {
+            get {
+                object obj = ResourceManager.GetObject("webcam_busy_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap webcam_busy_2 {
+            get {
+                object obj = ResourceManager.GetObject("webcam_busy_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap webcam_nok {
             get {
                 object obj = ResourceManager.GetObject("webcam_nok", resourceCulture);
