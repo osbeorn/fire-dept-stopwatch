@@ -26,7 +26,6 @@
     <ROW Section="Update #2" Key="ProductVersion" Value="1.1.0" ValueLocId="-"/>
     <ROW Section="Update #2" Key="URL" Value="https://s3.eu-central-1.amazonaws.com/ssv-stoparica-test/FireDeptStopwatch.msi" ValueLocId="-"/>
     <ROW Section="Update #2" Key="Size" Value="FireDeptStopwatch-SetupFiles\FireDeptStopwatch.msi" ValueLocId="-"/>
-    <ROW Section="Update #2" Key="MD5" Value="FireDeptStopwatch-SetupFiles\FireDeptStopwatch.msi" ValueLocId="-"/>
     <ROW Section="Update #2" Key="ServerFileName" Value="FireDeptStopwatch.msi" ValueLocId="-"/>
     <ROW Section="Update #2" Key="RegistryKey" Value="HKUD\Software\Benjamin Kastelic\FireDeptStopwatch\Version" ValueLocId="-"/>
     <ROW Section="Update #2" Key="Version" Value="1.1.0" ValueLocId="-"/>
