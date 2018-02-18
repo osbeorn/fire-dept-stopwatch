@@ -41,6 +41,7 @@ namespace FireDeptStopwatch.Helpers
         private IPlaybackSession playbackSession;
 
         private Size videoSize = new Size(720, 576); // default size
+        private int frameRate = 25; // default frame rate
 
         private Dispatcher dispatcher;
 
@@ -174,7 +175,9 @@ namespace FireDeptStopwatch.Helpers
                 .Subscribe(
                     muri => {
                         OnConnect(this, null);
+
                         videoSize = new Size(profile.videoEncoderConfiguration.resolution.width, profile.videoEncoderConfiguration.resolution.height);
+                        frameRate = profile.videoEncoderConfiguration.rateControl.frameRateLimit;
                     },
                     err => {
                     }
@@ -243,7 +246,6 @@ namespace FireDeptStopwatch.Helpers
                 .ObserveOnCurrentDispatcher()
                 .Subscribe(
                     muri => {
-                        videoSize = new Size(profile.videoEncoderConfiguration.resolution.width, profile.videoEncoderConfiguration.resolution.height);
                         InitializePlayer(muri.uri.ToString(), credentials, videoSize);
                     },
                     err => {
@@ -401,7 +403,12 @@ namespace FireDeptStopwatch.Helpers
 
             using (var writer = new VideoFileWriter())
             {
-                writer.Open(sourcePath, videoSize.Width, videoSize.Height, 25, VideoCodec.Raw);
+                writer.Width = videoSize.Width;
+                writer.Height = videoSize.Height;
+                writer.FrameRate = frameRate;
+                writer.VideoCodec = VideoCodec.FfvHuff;
+
+                writer.Open(sourcePath);
 
                 while (bitmaps != null)
                 {
@@ -426,32 +433,50 @@ namespace FireDeptStopwatch.Helpers
                 string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
                 Directory.CreateDirectory(targetPath);
 
-                targetPath = Path.Combine(targetPath, targetVideoName);
+                File.Move(sourcePath, Path.Combine(targetPath, targetVideoName));
 
-                using (var reader = new VideoFileReader())
-                using (var writer = new VideoFileWriter())
-                {
-                    reader.Open(sourcePath);
-                    writer.Open(targetPath, reader.Width, reader.Height, reader.FrameRate, VideoCodec.FFV1);
-
-                    while (true)
-                    {
-                        var bitmap = reader.ReadVideoFrame();
-                        if (bitmap == null)
-                        {
-                            break;
-                        }
-
-                        writer.WriteVideoFrame(bitmap);
-
-                        bitmap.Dispose();
-                    }
-                }
+                OnConvertEnd(this, null);
             }
 
-            OnConvertEnd(this, null);
+            //if (!IsReset)
+            //{
+            //    OnConvertStart(this, null);
 
-            File.Delete(sourcePath);
+            //    string targetPath = Path.Combine(appDataFolder, "Recordings", result.DateTime.ToString(@"dd\.MM\.yyyy-HH\.mm\.ss") + "-" + result.Result.ToString(@"mm\.ss\.ffff"));
+            //    Directory.CreateDirectory(targetPath);
+
+            //    targetPath = Path.Combine(targetPath, targetVideoName);
+
+            //    using (var reader = new VideoFileReader())
+            //    using (var writer = new VideoFileWriter())
+            //    {
+            //        reader.Open(sourcePath);
+
+            //        writer.Width = reader.Width;
+            //        writer.Height = reader.Height;
+            //        writer.FrameRate = reader.FrameRate;
+            //        writer.VideoCodec = VideoCodec.FfvHuff;
+
+            //        writer.Open(targetPath);
+
+            //        while (true)
+            //        {
+            //            var bitmap = reader.ReadVideoFrame();
+            //            if (bitmap == null)
+            //            {
+            //                break;
+            //            }
+
+            //            writer.WriteVideoFrame(bitmap);
+
+            //            bitmap.Dispose();
+            //        }
+            //    }
+            //}
+
+            //OnConvertEnd(this, null);
+
+            //File.Delete(sourcePath);
 
             disposables.Dispose();
         }
