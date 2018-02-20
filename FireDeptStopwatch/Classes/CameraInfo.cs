@@ -32,6 +32,9 @@ namespace FireDeptStopwatch.Classes
         public string User { get; set; }
         public string Password { get; set; }
 
+        // other properties
+        public bool HdRecording { get; set; }
+
         public override string ToString()
         {
             if (User != null && Password != null)

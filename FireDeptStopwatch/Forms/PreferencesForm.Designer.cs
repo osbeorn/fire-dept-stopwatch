@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.preparationTimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.confirmButton = new System.Windows.Forms.Button();
@@ -47,6 +48,8 @@
             this.cameraUrlsListBox = new System.Windows.Forms.ListBox();
             this.recordVideosCheckBox = new System.Windows.Forms.CheckBox();
             this.videosFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.hdRecordingCheckBox = new System.Windows.Forms.CheckBox();
+            this.controlsToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.preparationTimeNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,7 +88,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(107, 378);
+            this.confirmButton.Location = new System.Drawing.Point(107, 398);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 2;
@@ -96,7 +99,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(188, 378);
+            this.cancelButton.Location = new System.Drawing.Point(188, 398);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
@@ -182,6 +185,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.hdRecordingCheckBox);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.videosFolderSelectButton);
             this.groupBox2.Controls.Add(this.videosFolderTextBox);
@@ -190,7 +194,7 @@
             this.groupBox2.Controls.Add(this.recordVideosCheckBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 159);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(346, 213);
+            this.groupBox2.Size = new System.Drawing.Size(346, 233);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Snemanje";
@@ -198,7 +202,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 46);
+            this.label4.Location = new System.Drawing.Point(6, 65);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 1;
@@ -206,7 +210,7 @@
             // 
             // videosFolderSelectButton
             // 
-            this.videosFolderSelectButton.Location = new System.Drawing.Point(315, 41);
+            this.videosFolderSelectButton.Location = new System.Drawing.Point(315, 61);
             this.videosFolderSelectButton.Name = "videosFolderSelectButton";
             this.videosFolderSelectButton.Size = new System.Drawing.Size(25, 22);
             this.videosFolderSelectButton.TabIndex = 3;
@@ -216,7 +220,7 @@
             // 
             // videosFolderTextBox
             // 
-            this.videosFolderTextBox.Location = new System.Drawing.Point(95, 42);
+            this.videosFolderTextBox.Location = new System.Drawing.Point(95, 62);
             this.videosFolderTextBox.Name = "videosFolderTextBox";
             this.videosFolderTextBox.ReadOnly = true;
             this.videosFolderTextBox.Size = new System.Drawing.Size(220, 20);
@@ -224,7 +228,7 @@
             // 
             // addCameraButton
             // 
-            this.addCameraButton.Location = new System.Drawing.Point(253, 183);
+            this.addCameraButton.Location = new System.Drawing.Point(253, 203);
             this.addCameraButton.Name = "addCameraButton";
             this.addCameraButton.Size = new System.Drawing.Size(87, 23);
             this.addCameraButton.TabIndex = 5;
@@ -235,7 +239,7 @@
             // cameraUrlsListBox
             // 
             this.cameraUrlsListBox.FormattingEnabled = true;
-            this.cameraUrlsListBox.Location = new System.Drawing.Point(6, 69);
+            this.cameraUrlsListBox.Location = new System.Drawing.Point(6, 89);
             this.cameraUrlsListBox.Name = "cameraUrlsListBox";
             this.cameraUrlsListBox.Size = new System.Drawing.Size(334, 108);
             this.cameraUrlsListBox.TabIndex = 4;
@@ -253,13 +257,25 @@
             this.recordVideosCheckBox.Text = "Omogočeno";
             this.recordVideosCheckBox.UseVisualStyleBackColor = true;
             // 
+            // hdRecordingCheckBox
+            // 
+            this.hdRecordingCheckBox.AutoSize = true;
+            this.hdRecordingCheckBox.Location = new System.Drawing.Point(9, 42);
+            this.hdRecordingCheckBox.Name = "hdRecordingCheckBox";
+            this.hdRecordingCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.hdRecordingCheckBox.Size = new System.Drawing.Size(71, 17);
+            this.hdRecordingCheckBox.TabIndex = 6;
+            this.hdRecordingCheckBox.Text = "HD način";
+            this.controlsToolTip.SetToolTip(this.hdRecordingCheckBox, "Sprememba bo upoštevana šele ob naslednjem zagonu aplikacije!");
+            this.hdRecordingCheckBox.UseVisualStyleBackColor = true;
+            // 
             // PreferencesForm
             // 
             this.AcceptButton = this.confirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(370, 412);
+            this.ClientSize = new System.Drawing.Size(370, 433);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -301,5 +317,7 @@
         private System.Windows.Forms.TextBox videosFolderTextBox;
         private System.Windows.Forms.FolderBrowserDialog videosFolderBrowserDialog;
         private System.Windows.Forms.CheckBox endLineupCheckBox;
+        private System.Windows.Forms.CheckBox hdRecordingCheckBox;
+        private System.Windows.Forms.ToolTip controlsToolTip;
     }
 }

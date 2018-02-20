@@ -41,6 +41,7 @@ namespace FireDeptStopwatch.Forms
         private bool recordSplitTimes;
         private CountryCode country;
         private bool recording;
+        private bool hdRecording;
         //private string videosFolder;
         private List<CameraInfo> cameras;
         private bool endLineup;
@@ -112,6 +113,16 @@ namespace FireDeptStopwatch.Forms
             this.recording = recording;
 
             this.webcamStatusPictureBox.Visible = this.recording;
+        }
+
+        public bool GetHdRecording()
+        {
+            return hdRecording;
+        }
+
+        public void SetHdRecording(bool hdRecording)
+        {
+            this.hdRecording = hdRecording;
         }
 
         //public string GetVideosFolder()
@@ -696,6 +707,7 @@ namespace FireDeptStopwatch.Forms
             recordSplitTimes = Boolean.Parse(configuration.AppSettings.Settings["recordSplitTimes"].Value);
             country = (CountryCode) Enum.Parse(typeof(CountryCode), configuration.AppSettings.Settings["country"].Value);
             recording = Boolean.Parse(configuration.AppSettings.Settings["recordVideos"].Value);
+            hdRecording = Boolean.Parse(configuration.AppSettings.Settings["hdRecording"].Value);
 
             //videosFolder = configuration.AppSettings.Settings["videosFolder"].Value;
             targetPath = Path.Combine(appDataFolder, "TempRecordings");
@@ -711,11 +723,15 @@ namespace FireDeptStopwatch.Forms
             videoRecorders = new List<VideoRecorder>();
             for (var i = 0; i < cameras.Count; i++)
             {
+                cameras[i].HdRecording = hdRecording;
+
                 var videoRecorder = new VideoRecorder(cameras[i]);
+
                 videoRecorder.OnConnect += OnVideoCameraConnect;
                 videoRecorder.OnStart += OnVideoCameraStart;
                 videoRecorder.OnConvertStart += OnVideoCameraConvertStart;
                 videoRecorder.OnConvertEnd += OnVideoCameraConvertEnd;
+
                 videoRecorders.Add(videoRecorder);
             }
 

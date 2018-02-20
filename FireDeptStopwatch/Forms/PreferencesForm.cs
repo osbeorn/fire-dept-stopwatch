@@ -54,8 +54,8 @@ namespace FireDeptStopwatch.Forms
             countriesComboBox.DataSource = Country.GetList();
             countriesComboBox.SelectedValue = parent.GetCountry();
 
-            recordVideos = parent.GetRecordVideos();
-            recordVideosCheckBox.Checked = recordVideos;
+            recordVideosCheckBox.Checked = parent.GetRecordVideos();
+            hdRecordingCheckBox.Checked = parent.GetHdRecording();
 
             //videosFolderTextBox.Text = parent.GetVideosFolder();
             videosFolderTextBox.Text = Path.Combine(appDataFolder, "Recordings");
@@ -76,6 +76,7 @@ namespace FireDeptStopwatch.Forms
             configuration.AppSettings.Settings["recordSplitTimes"].Value = recordSplitTimesCheckBox.Checked.ToString();
             configuration.AppSettings.Settings["country"].Value = countriesComboBox.SelectedValue.ToString();
             configuration.AppSettings.Settings["recordVideos"].Value = recordVideosCheckBox.Checked.ToString();
+            configuration.AppSettings.Settings["hdRecording"].Value = hdRecordingCheckBox.Checked.ToString();
             //configuration.AppSettings.Settings["videosFolder"].Value = videosFolderTextBox.Text;
             configuration.AppSettings.Settings["cameras"].Value = CameraInfoListToDelimitedString(cameras);
             configuration.AppSettings.Settings["endLineup"].Value = endLineupCheckBox.Checked.ToString();
@@ -88,6 +89,7 @@ namespace FireDeptStopwatch.Forms
             parent.SetRecordSplitTimes(recordSplitTimesCheckBox.Checked);
             parent.SetCountry((CountryCode) countriesComboBox.SelectedValue);
             parent.SetRecordVideos(recordVideosCheckBox.Checked);
+            parent.SetHdRecording(hdRecordingCheckBox.Checked);
             //parent.SetVideosFolder(videosFolderTextBox.Text);
             parent.SetCameras(cameras);
             parent.SetEndLineup(endLineupCheckBox.Checked);

@@ -406,7 +406,7 @@ namespace FireDeptStopwatch.Helpers
                 writer.Width = videoSize.Width;
                 writer.Height = videoSize.Height;
                 writer.FrameRate = frameRate;
-                writer.VideoCodec = VideoCodec.FfvHuff;
+                writer.VideoCodec = cameraInfo.HdRecording ? VideoCodec.FfvHuff : VideoCodec.Default;
 
                 writer.Open(sourcePath);
 
