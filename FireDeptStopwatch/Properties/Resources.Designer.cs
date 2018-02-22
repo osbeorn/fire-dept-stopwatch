@@ -61,6 +61,15 @@ namespace FireDeptStopwatch.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BuildVersion {
+            get {
+                return ResourceManager.GetString("BuildVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap loader {

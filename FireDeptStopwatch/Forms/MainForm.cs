@@ -983,7 +983,8 @@ namespace FireDeptStopwatch.Forms
 
         private void CheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("updater.exe", "/checknow");
+            var buildVersion = Properties.Resources.BuildVersion;
+            MessageBox.Show(buildVersion, "Verzija");
         }
 
         private void ResultsListBox_MouseMove(object sender, MouseEventArgs e)

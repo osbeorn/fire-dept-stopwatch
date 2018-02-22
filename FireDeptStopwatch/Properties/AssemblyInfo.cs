@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FireDeptStopwatch")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Prostovoljno gasilsko društvo Zagradec pri Grosupljem")]
+[assembly: AssemblyCompany("Benjamin Kastelic & PGD Zagradec pri Grosupljem")]
 [assembly: AssemblyProduct("SSV štoparica")]
-[assembly: AssemblyCopyright("Copyright © 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
