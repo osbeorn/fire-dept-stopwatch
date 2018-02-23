@@ -15,6 +15,8 @@ using AudioSwitcher.AudioApi.CoreAudio;
 using AudioSwitcher.AudioApi.Session;
 using FireDeptStopwatch.Helpers;
 using System.Deployment.Application;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace FireDeptStopwatch.Forms
 {
@@ -45,6 +47,8 @@ namespace FireDeptStopwatch.Forms
         //private string videosFolder;
         private List<CameraInfo> cameras;
         private bool endLineup;
+        private string updateCheckUrl;
+        private string updateDownloadUrl;
 
         private List<VideoRecorder> videoRecorders;
 
@@ -709,6 +713,9 @@ namespace FireDeptStopwatch.Forms
             recording = Boolean.Parse(configuration.AppSettings.Settings["recordVideos"].Value);
             hdRecording = Boolean.Parse(configuration.AppSettings.Settings["hdRecording"].Value);
 
+            updateCheckUrl = configuration.AppSettings.Settings["updateCheckUrl"].Value;
+            updateDownloadUrl = configuration.AppSettings.Settings["updateDownloadUrl"].Value;
+
             //videosFolder = configuration.AppSettings.Settings["videosFolder"].Value;
             targetPath = Path.Combine(appDataFolder, "TempRecordings");
             Directory.CreateDirectory(targetPath);
@@ -978,13 +985,49 @@ namespace FireDeptStopwatch.Forms
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SSV štoparica\n\n© 2016-2018 Benjamin Kastelic & PGD Zagradec pri Grosupljem", "O programu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                "SSV štoparica\n\n© 2016-2018 Benjamin Kastelic & PGD Zagradec pri Grosupljem",
+                "O programu", 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Information
+            );
         }
 
         private void CheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var buildVersion = Properties.Resources.BuildVersion;
-            MessageBox.Show(buildVersion, "Verzija");
+            var currentBuildVersion = Version.Parse(Properties.Resources.BuildVersion);
+
+            var latestBuildVersion = currentBuildVersion;
+            using (var webClient = new WebClient())
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                var latestBuildVersionString = webClient.DownloadString(updateCheckUrl);
+                latestBuildVersion = Version.Parse(latestBuildVersionString);
+
+                Cursor.Current = Cursors.Default;
+            }
+
+            if (currentBuildVersion.CompareTo(latestBuildVersion) == 0)
+            {
+                MessageBox.Show(
+                    "Uporabljate najnovejšo verzijo aplikacije.",
+                    "Nova verzija",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Na voljo je nova verzija aplikacije.",
+                    "Nova verzija",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                Process.Start(updateDownloadUrl);
+            }
         }
 
         private void ResultsListBox_MouseMove(object sender, MouseEventArgs e)
