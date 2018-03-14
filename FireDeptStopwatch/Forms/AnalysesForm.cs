@@ -22,13 +22,12 @@ namespace FireDeptStopwatch.Forms
 
         public void InitializeComponents(MainForm parent) {
             ResultList = parent.GetResultsList();
-            ResultList.Reverse();
 
             resultsChart.Series.Clear();
-            var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+            var series1 = new Series
             {
                 Name = "Series1",
-                Color = System.Drawing.Color.Green,
+                Color = Color.Green,
                 IsVisibleInLegend = false,
                 IsXValueIndexed = true,
                 XValueType = ChartValueType.DateTime,
@@ -42,8 +41,10 @@ namespace FireDeptStopwatch.Forms
 
             if (ResultList.Count > 0)
             {
-                foreach (TimerResult result in ResultList)
+                for (var i = ResultList.Count - 1; i >= 0; i--)
                 {
+                    var result = ResultList[i];
+
                     var yValue = DateTime.MinValue + result.GetEndResult();
                     series1.Points.AddXY(result.DateTime, yValue);
                 }
