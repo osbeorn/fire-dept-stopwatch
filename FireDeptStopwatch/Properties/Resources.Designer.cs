@@ -61,7 +61,7 @@ namespace FireDeptStopwatch.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 1900.01.01.01.
         /// </summary>
         internal static string BuildVersion {
             get {
@@ -113,6 +113,15 @@ namespace FireDeptStopwatch.Properties {
         internal static System.IO.UnmanagedMemoryStream ssv_startno_povelje_AT {
             get {
                 return ResourceManager.GetStream("ssv_startno_povelje_AT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ssv_startno_povelje_AT_2 {
+            get {
+                return ResourceManager.GetStream("ssv_startno_povelje_AT_2", resourceCulture);
             }
         }
         

@@ -235,6 +235,9 @@ namespace FireDeptStopwatch.Forms
                 case CountryCode.AT:
                     await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_AT, true));
                     break;
+                case CountryCode.AT_2:
+                    await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_AT_2, true));
+                    break;
                 case CountryCode.HR:
                     await Task.Factory.StartNew(() => PlaySound(Properties.Resources.ssv_startno_povelje_HR, true));
                     break;

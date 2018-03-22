@@ -136,6 +136,9 @@
   <data name="ssv_startno_povelje_AT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ssv_startno_povelje_AT.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ssv_startno_povelje_AT_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ssv_startno_povelje_AT_2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ssv_startno_povelje_HR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ssv_startno_povelje_HR.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

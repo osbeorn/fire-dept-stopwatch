@@ -21,6 +21,7 @@ namespace FireDeptStopwatch.Classes
             return new List<Country>()
             {
                 new Country(CountryCode.AT, "Avstrija"),
+                new Country(CountryCode.AT_2, "Avstrija (Bischofstetten)"),
                 new Country(CountryCode.HR, "Hrvaška"),
                 new Country(CountryCode.SI, "Slovenija")
             };
@@ -29,8 +30,9 @@ namespace FireDeptStopwatch.Classes
 
     public enum CountryCode
     {
-        AT,
-        HR,
-        SI
+        AT, // Austria
+        AT_2, // Austria Bischofstetten
+        HR, // Croatia
+        SI // Slovenia
     }
 }

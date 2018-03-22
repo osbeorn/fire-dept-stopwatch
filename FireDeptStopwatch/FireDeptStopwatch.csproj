@@ -345,6 +345,7 @@
     <None Include="Resources\webcam-busy-2.png" />
     <None Include="Resources\webcam-busy-1.png" />
     <None Include="Resources\BuildVersion.txt" />
+    <None Include="Resources\ssv_startno_povelje_AT_2.wav" />
     <Content Include="swscale-4.dll" />
     <None Include="onvif.discovery.dll" />
     <None Include="onvif.services.dll" />
